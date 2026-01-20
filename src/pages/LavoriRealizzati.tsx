@@ -1,0 +1,143 @@
+import Layout from "@/components/layout/Layout";
+import { Button } from "@/components/ui/button";
+import { Phone, MapPin, ArrowRight } from "lucide-react";
+import { Link } from "react-router-dom";
+import heroImage from "@/assets/hero-solar-home.jpg";
+import villaSolar from "@/assets/villa-solar.jpg";
+import industrialSolar from "@/assets/industrial-solar.jpg";
+
+const projects = [
+  {
+    image: heroImage,
+    title: "Villa unifamiliare",
+    location: "San Lazzaro di Savena (BO)",
+    description: "Impianto da 6 kWp con sistema di accumulo. Copertura del 75% del fabbisogno familiare.",
+    type: "Residenziale",
+  },
+  {
+    image: villaSolar,
+    title: "Casa indipendente",
+    location: "Casalecchio di Reno (BO)",
+    description: "Impianto da 4.5 kWp su tetto a falde. Installazione completata in 2 giorni.",
+    type: "Residenziale",
+  },
+  {
+    image: industrialSolar,
+    title: "Capannone artigianale",
+    location: "Castel San Pietro Terme (BO)",
+    description: "Impianto da 50 kWp. Riduzione del 60% dei costi energetici aziendali.",
+    type: "Industriale",
+  },
+  {
+    image: heroImage,
+    title: "Bifamiliare",
+    location: "Pianoro (BO)",
+    description: "Due impianti separati da 3 kWp ciascuno, uno per ogni unità abitativa.",
+    type: "Residenziale",
+  },
+  {
+    image: industrialSolar,
+    title: "Azienda agricola",
+    location: "Medicina (BO)",
+    description: "Impianto da 30 kWp su copertura stalla. Energia per l'intera attività.",
+    type: "Agricolo",
+  },
+  {
+    image: villaSolar,
+    title: "Villa con piscina",
+    location: "Ozzano dell'Emilia (BO)",
+    description: "Impianto da 8 kWp con accumulo. Anche la piscina funziona a energia solare.",
+    type: "Residenziale",
+  },
+];
+
+const LavoriRealizzati = () => {
+  return (
+    <Layout>
+      {/* Hero */}
+      <section className="section-padding bg-accent">
+        <div className="container-custom">
+          <div className="max-w-2xl mx-auto text-center">
+            <h1 className="text-4xl md:text-5xl font-serif font-bold text-foreground mb-6">
+              I Nostri Lavori
+            </h1>
+            <p className="text-xl text-muted-foreground">
+              Oltre 200 impianti installati in Emilia-Romagna. Ecco alcuni dei nostri lavori più recenti.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Gallery */}
+      <section className="section-padding">
+        <div className="container-custom">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {projects.map((project, index) => (
+              <div key={index} className="group bg-card rounded-xl overflow-hidden shadow-soft border border-border hover:shadow-medium transition-all duration-300">
+                <div className="relative overflow-hidden">
+                  <img
+                    src={project.image}
+                    alt={project.title}
+                    className="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                  <div className="absolute top-4 left-4">
+                    <span className="bg-primary text-primary-foreground text-xs font-medium px-3 py-1 rounded-full">
+                      {project.type}
+                    </span>
+                  </div>
+                </div>
+                <div className="p-6">
+                  <h3 className="text-lg font-serif font-semibold text-foreground mb-2">
+                    {project.title}
+                  </h3>
+                  <div className="flex items-center gap-1 text-sm text-muted-foreground mb-3">
+                    <MapPin className="w-4 h-4" />
+                    {project.location}
+                  </div>
+                  <p className="text-muted-foreground text-sm">
+                    {project.description}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="section-padding bg-gradient-hero">
+        <div className="container-custom">
+          <div className="max-w-2xl mx-auto text-center text-primary-foreground">
+            <h2 className="text-3xl md:text-4xl font-serif font-bold mb-4">
+              Vuoi Vedere il Tuo Impianto Qui?
+            </h2>
+            <p className="text-xl text-primary-foreground/90 mb-8">
+              Contattaci per un sopralluogo gratuito. Potrai avere un impianto come questi.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Button variant="cta" size="xl" asChild>
+                <a href="tel:+39051123456">
+                  <Phone className="w-6 h-6" />
+                  Chiama Ora
+                </a>
+              </Button>
+              <Button 
+                variant="ctaSecondary" 
+                size="lg" 
+                className="bg-primary-foreground/10 border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary"
+                asChild
+              >
+                <Link to="/contatti">
+                  Richiedi Sopralluogo
+                  <ArrowRight className="w-4 h-4" />
+                </Link>
+              </Button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </Layout>
+  );
+};
+
+export default LavoriRealizzati;
