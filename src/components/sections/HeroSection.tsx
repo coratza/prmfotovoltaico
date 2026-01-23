@@ -64,8 +64,8 @@ const HeroSection = () => {
                 <p className="text-sm text-primary-foreground/70">Impianti installati</p>
               </div>
               <div>
-                <p className="text-3xl font-serif font-bold text-secondary">100%</p>
-                <p className="text-sm text-primary-foreground/70">Clienti soddisfatti</p>
+                <p className="text-3xl font-serif font-bold text-secondary">Locale</p>
+                <p className="text-sm text-primary-foreground/70">Assistenza in zona</p>
               </div>
             </div>
           </div>
