@@ -61,12 +61,12 @@ const Contatti = () => {
                     <h3 className="font-semibold text-foreground mb-1">Telefono</h3>
                     <a
                       href="tel:+39051123456"
-                      className="text-2xl font-bold text-cta hover:text-cta-hover transition-colors"
+                      className="phone-link"
                     >
                       051 123 456
                     </a>
                     <p className="text-sm text-muted-foreground mt-1">
-                      Il modo più veloce per parlarci
+                      Il modo più veloce per parlarci (di solito rispondiamo in giornata)
                     </p>
                   </div>
                 </div>

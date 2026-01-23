@@ -17,7 +17,7 @@ const services = [
   {
     icon: Warehouse,
     title: "Fotovoltaico per Aziende",
-    description: "Impianti per capannoni e immobili produttivi. Investimento con ritorno garantito.",
+    description: "Impianti per capannoni e immobili produttivi. Investimento con ritorno stimabile e costi sotto controllo.",
     link: "/fotovoltaico-aziende",
   },
   {

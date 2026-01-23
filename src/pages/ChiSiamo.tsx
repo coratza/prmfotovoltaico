@@ -42,7 +42,7 @@ const ChiSiamo = () => {
                 Siamo un'azienda artigiana di San Lazzaro di Savena, specializzata nell'installazione di impianti fotovoltaici dal 2010.
               </p>
               <p className="text-muted-foreground mb-8">
-                Non siamo un grande portale nazionale. Non abbiamo call center o commerciali aggressivi. Siamo un team di professionisti che lavora direttamente con i clienti, dalla prima telefonata all'attivazione dell'impianto.
+                Lavoriamo con un approccio artigiano: pochi impianti, fatti bene. Ti seguiamo direttamente, dalla prima telefonata al collaudo, con una presenza reale sul territorio.
               </p>
               <Button variant="cta" size="lg" asChild>
                 <a href="tel:+39051123456">
