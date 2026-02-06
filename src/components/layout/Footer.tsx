@@ -10,7 +10,7 @@ const Footer = () => {
           {/* Brand */}
           <div className="lg:col-span-1">
             <Link to="/" className="inline-block mb-4">
-              <img src={prmLogo} alt="PRM Fotovoltaico" className="h-[100px] w-[140px] brightness-0 invert" />
+              <img src={prmLogo} alt="PRM Fotovoltaico" className="h-[120px] w-[120px] brightness-0 invert" />
             </Link>
             <p className="text-primary-foreground/80 text-sm leading-relaxed">
               Installiamo impianti fotovoltaici in Emilia-Romagna. 
