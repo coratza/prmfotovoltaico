@@ -268,55 +268,28 @@ const CalcolaPreventivo = () => {
               <div className="animate-fade-in space-y-6">
                 {/* Card principale */}
                 <div className="blue-card text-center">
-                  <h2 className="text-2xl md:text-3xl font-heading font-light text-primary-foreground mb-6">
-                    La tua stima di risparmio
+                  <h2 className="text-2xl md:text-3xl font-heading font-light text-primary-foreground mb-8">
+                    Il tuo ritorno sull'investimento
                   </h2>
-                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-6">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 mb-8">
                     <div>
-                      <p className="text-primary-foreground/70 text-sm mb-1">Risparmio annuo</p>
-                      <p className="text-3xl md:text-4xl font-heading font-light text-primary-foreground">
-                        €{risultati.risparmioAnnuo.toLocaleString("it-IT")}
-                      </p>
-                    </div>
-                    <div>
-                      <p className="text-primary-foreground/70 text-sm mb-1">Rientro investimento</p>
-                      <p className="text-3xl md:text-4xl font-heading font-light text-primary-foreground">
-                        {risultati.paybackAnni} anni
-                      </p>
-                    </div>
-                    <div>
-                      <p className="text-primary-foreground/70 text-sm mb-1">ROI annuo</p>
-                      <p className="text-3xl md:text-4xl font-heading font-light text-primary-foreground">
+                      <p className="text-primary-foreground/70 text-sm mb-2">Ritorno sull'investimento</p>
+                      <p className="text-5xl md:text-6xl font-heading font-light text-primary-foreground">
                         {risultati.roiAnnuo}%
                       </p>
+                      <p className="text-primary-foreground/70 text-sm mt-1">annuo</p>
+                    </div>
+                    <div>
+                      <p className="text-primary-foreground/70 text-sm mb-2">Rientro dell'investimento</p>
+                      <p className="text-5xl md:text-6xl font-heading font-light text-primary-foreground">
+                        {risultati.paybackAnni}
+                      </p>
+                      <p className="text-primary-foreground/70 text-sm mt-1">anni</p>
                     </div>
                   </div>
                   <p className="text-primary-foreground/90 text-lg leading-relaxed">
-                    Puoi risparmiare fino a <strong>€{risultati.risparmioAnnuo.toLocaleString("it-IT")}/anno</strong> e rientrare dal tuo investimento in circa <strong>{risultati.paybackAnni} anni</strong>.
-                    {risultati.risparmio25Anni > 0 && (
-                      <> In 25 anni il guadagno netto stimato è di <strong>€{risultati.risparmio25Anni.toLocaleString("it-IT")}</strong>.</>
-                    )}
+                    Con un ROI del <strong>{risultati.roiAnnuo}% annuo</strong>, rientrerai dal tuo investimento in circa <strong>{risultati.paybackAnni} anni</strong>.
                   </p>
-                </div>
-
-                {/* Dettaglio */}
-                <div className="bg-card rounded-2xl p-6 md:p-8 shadow-soft border border-border">
-                  <h3 className="text-xl font-heading font-light text-primary mb-4">Dettaglio calcolo</h3>
-                  <div className="grid grid-cols-2 gap-y-3 gap-x-6 text-sm">
-                    <span className="text-muted-foreground">Produzione annua stimata</span>
-                    <span className="text-foreground font-medium text-right">{risultati.produzioneAnnua.toLocaleString("it-IT")} kWh</span>
-                    <span className="text-muted-foreground">Autoconsumo stimato</span>
-                    <span className="text-foreground font-medium text-right">{risultati.autoconsumoKwh.toLocaleString("it-IT")} kWh ({risultati.autoconsumoPct}%)</span>
-                    <span className="text-muted-foreground">Prezzo variabile energia</span>
-                    <span className="text-foreground font-medium text-right">€{risultati.prezzoVariabile.toFixed(3)}/kWh</span>
-                    <div className="col-span-2 border-t border-border my-2" />
-                    <span className="text-muted-foreground">Costo impianto lordo</span>
-                    <span className="text-foreground font-medium text-right">€{risultati.costoLordo.toLocaleString("it-IT")}</span>
-                    <span className="text-muted-foreground">Beneficio incentivi fiscali</span>
-                    <span className="text-foreground font-medium text-right text-primary">-€{risultati.beneficioIncentivi.toLocaleString("it-IT")}</span>
-                    <span className="text-foreground font-semibold">Costo netto stimato</span>
-                    <span className="text-foreground font-bold text-right">€{risultati.costoNetto.toLocaleString("it-IT")}</span>
-                  </div>
                 </div>
 
                 {/* Disclaimer */}
@@ -328,7 +301,6 @@ const CalcolaPreventivo = () => {
                         <strong>Nota importante:</strong> Questa è una stima indicativa basata sui dati forniti e sul modello di calcolo standard.
                         I risultati reali dipendono da fattori specifici (orientamento del tetto, ombreggiamenti, tipologia di contratto energetico,
                         regime fiscale applicabile) che verranno valutati durante il sopralluogo gratuito.
-                        I valori di producibilità, autoconsumo e costi sono parametri iniziali del modello e non costituiscono una promessa di risultato.
                       </p>
                     </div>
                   </div>
