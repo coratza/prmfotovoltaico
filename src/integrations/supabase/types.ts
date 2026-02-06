@@ -14,7 +14,87 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      leads_preventivo: {
+        Row: {
+          accumulo: boolean
+          autoconsumo_kwh: number | null
+          autoconsumo_pct: number | null
+          beneficio_incentivi: number | null
+          connessione: string
+          consumo_annuo: number
+          costo_lordo: number | null
+          costo_netto: number | null
+          created_at: string
+          email: string | null
+          id: string
+          nome: string
+          payback_anni: number | null
+          potenza: number
+          prezzo_variabile: number | null
+          produzione_annua: number | null
+          provincia: string
+          risparmio_25_anni: number | null
+          risparmio_annuo: number | null
+          roi_annuo: number | null
+          spesa_annua: number
+          telefono: string
+          tipo_immobile: string
+          tipologia: string
+        }
+        Insert: {
+          accumulo?: boolean
+          autoconsumo_kwh?: number | null
+          autoconsumo_pct?: number | null
+          beneficio_incentivi?: number | null
+          connessione?: string
+          consumo_annuo: number
+          costo_lordo?: number | null
+          costo_netto?: number | null
+          created_at?: string
+          email?: string | null
+          id?: string
+          nome: string
+          payback_anni?: number | null
+          potenza: number
+          prezzo_variabile?: number | null
+          produzione_annua?: number | null
+          provincia: string
+          risparmio_25_anni?: number | null
+          risparmio_annuo?: number | null
+          roi_annuo?: number | null
+          spesa_annua: number
+          telefono: string
+          tipo_immobile: string
+          tipologia: string
+        }
+        Update: {
+          accumulo?: boolean
+          autoconsumo_kwh?: number | null
+          autoconsumo_pct?: number | null
+          beneficio_incentivi?: number | null
+          connessione?: string
+          consumo_annuo?: number
+          costo_lordo?: number | null
+          costo_netto?: number | null
+          created_at?: string
+          email?: string | null
+          id?: string
+          nome?: string
+          payback_anni?: number | null
+          potenza?: number
+          prezzo_variabile?: number | null
+          produzione_annua?: number | null
+          provincia?: string
+          risparmio_25_anni?: number | null
+          risparmio_annuo?: number | null
+          roi_annuo?: number | null
+          spesa_annua?: number
+          telefono?: string
+          tipo_immobile?: string
+          tipologia?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never

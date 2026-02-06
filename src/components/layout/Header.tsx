@@ -13,6 +13,7 @@ const Header = () => {
     { href: "/fotovoltaico-privati", label: "Per Privati" },
     { href: "/fotovoltaico-aziende", label: "Per Aziende" },
     { href: "/agevolazioni", label: "Agevolazioni" },
+    { href: "/calcola-preventivo", label: "Calcola Preventivo" },
     { href: "/lavori-realizzati", label: "Lavori Realizzati" },
     { href: "/chi-siamo", label: "Chi Siamo" },
     { href: "/contatti", label: "Contatti" },
