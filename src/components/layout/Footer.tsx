@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { Phone, Mail, MapPin } from "lucide-react";
+import prmLogo from "@/assets/prm-logo.png";
 
 const Footer = () => {
   return (
@@ -8,17 +9,15 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
           {/* Brand */}
           <div className="lg:col-span-1">
-            <div className="flex items-center gap-2 mb-4">
-              <div className="w-10 h-10 rounded-lg bg-primary-foreground flex items-center justify-center">
-                <span className="text-primary font-serif font-bold text-xl">S</span>
-              </div>
-              <div>
-                <p className="font-serif font-semibold text-lg">SolarTech</p>
-                <p className="text-xs text-primary-foreground/70">Bologna e provincia</p>
-              </div>
+            <div className="mb-4">
+              <img 
+                src={prmLogo} 
+                alt="PRM Fotovoltaico" 
+                className="h-12 w-auto brightness-0 invert"
+              />
             </div>
             <p className="text-primary-foreground/80 text-sm leading-relaxed">
-              Installiamo impianti fotovoltaici in Emilia-Romagna dal 2010. 
+              Installiamo impianti fotovoltaici in Emilia-Romagna. 
               Contatto diretto, qualità artigianale, assistenza locale.
             </p>
           </div>
@@ -69,7 +68,7 @@ const Footer = () => {
               <li>
                 <a
                   href="tel:+39051123456"
-                  className="flex items-center gap-2 text-primary-foreground hover:text-secondary transition-colors"
+                  className="flex items-center gap-2 text-primary-foreground hover:text-primary-foreground/80 transition-colors"
                 >
                   <Phone className="w-4 h-4" />
                   <span className="font-semibold">051 123 456</span>
@@ -77,11 +76,11 @@ const Footer = () => {
               </li>
               <li>
                 <a
-                  href="mailto:info@solartech-bologna.it"
+                  href="mailto:info@prm-fotovoltaico.it"
                   className="flex items-center gap-2 text-primary-foreground/80 hover:text-primary-foreground transition-colors"
                 >
                   <Mail className="w-4 h-4" />
-                  info@solartech-bologna.it
+                  info@prm-fotovoltaico.it
                 </a>
               </li>
               <li className="flex items-start gap-2 text-primary-foreground/80">
@@ -98,7 +97,7 @@ const Footer = () => {
         {/* Bottom */}
         <div className="mt-12 pt-8 border-t border-primary-foreground/20">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-primary-foreground/60">
-            <p>© 2024 SolarTech. Tutti i diritti riservati.</p>
+            <p>© 2024 PRM Fotovoltaico. Tutti i diritti riservati.</p>
             <p>Operiamo a Bologna, Modena, Ferrara, Ravenna</p>
           </div>
         </div>

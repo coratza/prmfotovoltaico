@@ -27,7 +27,7 @@ const HeroSection = () => {
 
           {/* Headline */}
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif font-bold leading-tight mb-6">
-            Impianti Fotovoltaici a Bologna e Provincia
+            Impianti Fotovoltaici a Bologna, Modena, Ferrara e Ravenna
           </h1>
 
           {/* Subheadline */}
