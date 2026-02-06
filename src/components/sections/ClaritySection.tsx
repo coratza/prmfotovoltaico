@@ -49,7 +49,7 @@ const ClaritySection = () => {
           </p>
 
           <Button variant="cta" size="lg" className="rounded-full" asChild>
-            <a href="tel:+39051123456">
+            <a href="tel:+393246117388">
               <Phone className="w-5 h-5" />
               Prenota una chiamata GRATIS
             </a>

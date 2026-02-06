@@ -120,7 +120,7 @@ const AgevolazionePageTemplate = ({
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button variant="cta" size="lg" className="rounded-full bg-primary-foreground text-foreground hover:bg-primary-foreground/90" asChild>
-              <a href="tel:+39051123456">
+              <a href="tel:+393246117388">
                 <Phone className="w-5 h-5" />
                 Chiama Ora
               </a>
