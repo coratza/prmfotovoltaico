@@ -45,9 +45,9 @@ const Header = () => {
           </nav>
 
           <div className="hidden md:flex items-center gap-3">
-            <a href="tel:+39051123456" className="flex items-center gap-2 text-primary font-semibold hover:text-primary/80 transition-colors">
+            <a href="tel:+393246117388" className="flex items-center gap-2 text-primary font-semibold hover:text-primary/80 transition-colors">
               <Phone className="w-4 h-4" />
-              <span className="text-sm">051 123 456</span>
+              <span className="text-sm">324 611 7388</span>
             </a>
           </div>
 
@@ -74,9 +74,9 @@ const Header = () => {
             </div>
             <div className="mt-4 pt-4 border-t border-border">
               <Button variant="cta" size="lg" className="w-full rounded-full" asChild>
-                <a href="tel:+39051123456">
+                <a href="tel:+393246117388">
                   <Phone className="w-5 h-5" />
-                  Chiama Ora: 051 123 456
+                  Chiama Ora: 324 611 7388
                 </a>
               </Button>
             </div>

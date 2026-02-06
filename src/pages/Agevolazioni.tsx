@@ -103,9 +103,9 @@ const Agevolazioni = () => {
             Chiamaci per una consulenza gratuita sulle detrazioni disponibili per il tuo caso.
           </p>
           <Button variant="cta" size="lg" className="rounded-full bg-primary-foreground text-foreground hover:bg-primary-foreground/90" asChild>
-            <a href="tel:+39051123456">
+            <a href="tel:+393246117388">
               <Phone className="w-5 h-5" />
-              Chiama Ora: 051 123 456
+              Chiama Ora: 324 611 7388
             </a>
           </Button>
         </div>
