@@ -28,13 +28,13 @@ const LeadFormSection = () => {
   };
 
   return (
-    <section className="section-padding bg-accent">
+    <section className="section-padding bg-background">
       <div className="container-custom">
         <div className="max-w-4xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             {/* Copy */}
             <div>
-              <h2 className="text-3xl md:text-4xl font-serif font-bold text-foreground mb-6">
+              <h2 className="text-3xl md:text-4xl font-serif text-primary mb-6">
                 Vuoi capire se il fotovoltaico è adatto al tuo caso?
               </h2>
               <p className="text-lg text-muted-foreground mb-6">
@@ -54,13 +54,13 @@ const LeadFormSection = () => {
             </div>
 
             {/* Form */}
-            <div className="bg-card rounded-xl p-6 md:p-8 shadow-soft border border-border">
+            <div className="bg-card rounded-2xl p-6 md:p-8 shadow-medium border border-border">
               {isSubmitted ? (
                 <div className="text-center py-8">
                   <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
                     <CheckCircle className="w-8 h-8 text-primary" />
                   </div>
-                  <h3 className="text-xl font-semibold text-foreground mb-2">
+                  <h3 className="text-xl font-medium text-foreground mb-2">
                     Richiesta Inviata!
                   </h3>
                   <p className="text-muted-foreground">
@@ -78,7 +78,7 @@ const LeadFormSection = () => {
                       name="name"
                       required
                       placeholder="Mario Rossi"
-                      className="h-12 mt-1"
+                      className="h-12 mt-1 rounded-xl"
                     />
                   </div>
 
@@ -92,7 +92,7 @@ const LeadFormSection = () => {
                       type="tel"
                       required
                       placeholder="333 1234567"
-                      className="h-12 mt-1"
+                      className="h-12 mt-1 rounded-xl"
                     />
                   </div>
 
@@ -105,7 +105,7 @@ const LeadFormSection = () => {
                       name="email"
                       type="email"
                       placeholder="mario.rossi@email.it"
-                      className="h-12 mt-1"
+                      className="h-12 mt-1 rounded-xl"
                     />
                   </div>
 
@@ -137,13 +137,13 @@ const LeadFormSection = () => {
                       required
                       placeholder="40068"
                       maxLength={5}
-                      className="h-12 mt-1"
+                      className="h-12 mt-1 rounded-xl"
                     />
                   </div>
 
                   <Button
                     type="submit"
-                    variant="cta"
+                    variant="default"
                     size="lg"
                     className="w-full mt-2"
                     disabled={isSubmitting}

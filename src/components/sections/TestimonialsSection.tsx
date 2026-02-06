@@ -26,10 +26,10 @@ const testimonials = [
 
 const TestimonialsSection = () => {
   return (
-    <section className="section-padding">
+    <section className="section-padding bg-background">
       <div className="container-custom">
         <div className="text-center max-w-2xl mx-auto mb-12">
-          <h2 className="text-3xl md:text-4xl font-serif font-bold text-foreground mb-4">
+          <h2 className="text-3xl md:text-4xl font-serif text-primary mb-4">
             Cosa Dicono i Clienti
           </h2>
           <p className="text-lg text-muted-foreground">
@@ -49,7 +49,7 @@ const TestimonialsSection = () => {
           {testimonials.map((t) => (
             <figure
               key={`${t.name}-${t.location}`}
-              className="bg-card rounded-xl p-6 shadow-soft border border-border"
+              className="bg-card rounded-2xl p-6 shadow-soft border border-border"
             >
               <div className="flex items-start justify-between gap-4 mb-4">
                 <div className="inline-flex items-center gap-2 rounded-full bg-primary/10 px-3 py-1 text-sm text-primary">
@@ -59,10 +59,10 @@ const TestimonialsSection = () => {
                 <Quote className="h-5 w-5 text-primary/60" />
               </div>
               <blockquote className="text-foreground leading-relaxed">
-                “{t.quote}”
+                "{t.quote}"
               </blockquote>
               <figcaption className="mt-6 pt-4 border-t border-border">
-                <p className="font-semibold text-foreground">{t.name}</p>
+                <p className="font-medium text-foreground">{t.name}</p>
                 <p className="text-sm text-muted-foreground">{t.location}</p>
               </figcaption>
             </figure>

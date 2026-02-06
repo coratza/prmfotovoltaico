@@ -45,15 +45,15 @@ const FotovoltaicoPrivati = () => {
             alt="Villa con pannelli solari"
             className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-primary/95 via-primary/80 to-primary/60" />
+          <div className="absolute inset-0 bg-gradient-to-r from-foreground/90 via-foreground/70 to-foreground/40" />
         </div>
 
         <div className="container-custom relative z-10">
-          <div className="max-w-2xl text-primary-foreground">
-            <h1 className="text-4xl md:text-5xl font-serif font-bold mb-6">
+          <div className="max-w-2xl text-white">
+            <h1 className="text-4xl md:text-5xl font-serif mb-6">
               Fotovoltaico per la Tua Casa
             </h1>
-            <p className="text-xl text-primary-foreground/90 mb-8">
+            <p className="text-xl text-white/90 mb-8 font-light">
               Hai una villa o una casa indipendente? Il fotovoltaico è la scelta giusta per ridurre le bollette e aumentare l'indipendenza energetica.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
@@ -63,7 +63,7 @@ const FotovoltaicoPrivati = () => {
                   Chiama Ora
                 </a>
               </Button>
-              <Button variant="ctaSecondary" size="lg" className="border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary" asChild>
+              <Button variant="ctaSecondary" size="lg" asChild>
                 <Link to="/contatti">
                   Richiedi Sopralluogo
                   <ArrowRight className="w-4 h-4" />
@@ -75,10 +75,10 @@ const FotovoltaicoPrivati = () => {
       </section>
 
       {/* Benefici */}
-      <section className="section-padding">
+      <section className="section-padding bg-muted">
         <div className="container-custom">
           <div className="text-center max-w-2xl mx-auto mb-12">
-            <h2 className="text-3xl md:text-4xl font-serif font-bold text-foreground mb-4">
+            <h2 className="text-3xl md:text-4xl font-serif text-primary mb-4">
               Perché Installare il Fotovoltaico?
             </h2>
             <p className="text-lg text-muted-foreground">
@@ -88,14 +88,14 @@ const FotovoltaicoPrivati = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {benefits.map((benefit) => (
-              <div key={benefit.title} className="bg-card rounded-xl p-6 shadow-soft border border-border">
+              <div key={benefit.title} className="bg-primary rounded-2xl p-6">
                 <div className="flex items-start gap-4">
-                  <div className="flex-shrink-0 w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center">
-                    <benefit.icon className="w-6 h-6 text-primary" />
+                  <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-white/20 flex items-center justify-center">
+                    <benefit.icon className="w-6 h-6 text-white" />
                   </div>
                   <div>
-                    <h3 className="text-lg font-semibold text-foreground mb-1">{benefit.title}</h3>
-                    <p className="text-muted-foreground">{benefit.description}</p>
+                    <h3 className="text-lg font-medium text-white mb-1">{benefit.title}</h3>
+                    <p className="text-white/80">{benefit.description}</p>
                   </div>
                 </div>
               </div>
@@ -105,10 +105,10 @@ const FotovoltaicoPrivati = () => {
       </section>
 
       {/* Processo */}
-      <section className="section-padding bg-accent">
+      <section className="section-padding bg-background">
         <div className="container-custom">
           <div className="text-center max-w-2xl mx-auto mb-12">
-            <h2 className="text-3xl md:text-4xl font-serif font-bold text-foreground mb-4">
+            <h2 className="text-3xl md:text-4xl font-serif text-primary mb-4">
               Come Funziona
             </h2>
             <p className="text-lg text-muted-foreground">
@@ -119,16 +119,15 @@ const FotovoltaicoPrivati = () => {
           <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
             {process.map((item, index) => (
               <div key={item.step} className="relative">
-                <div className="bg-card rounded-xl p-6 shadow-soft border border-border h-full">
-                  <div className="w-10 h-10 rounded-full bg-primary text-primary-foreground flex items-center justify-center font-bold mb-4">
+                <div className="flex items-start gap-4">
+                  <div className="w-14 h-14 rounded-lg bg-primary text-white flex items-center justify-center font-serif text-2xl flex-shrink-0">
                     {item.step}
                   </div>
-                  <h3 className="font-semibold text-foreground mb-2">{item.title}</h3>
-                  <p className="text-sm text-muted-foreground">{item.description}</p>
+                  <div className="pt-1">
+                    <h3 className="font-medium text-primary mb-1">{item.title}</h3>
+                    <p className="text-sm text-muted-foreground">{item.description}</p>
+                  </div>
                 </div>
-                {index < process.length - 1 && (
-                  <div className="hidden md:block absolute top-10 left-full w-full h-0.5 bg-border -translate-x-1/2 z-0" />
-                )}
               </div>
             ))}
           </div>
@@ -136,10 +135,10 @@ const FotovoltaicoPrivati = () => {
       </section>
 
       {/* Cosa include */}
-      <section className="section-padding">
+      <section className="section-padding bg-muted">
         <div className="container-custom">
           <div className="max-w-3xl mx-auto">
-            <h2 className="text-3xl md:text-4xl font-serif font-bold text-foreground mb-8 text-center">
+            <h2 className="text-3xl md:text-4xl font-serif text-primary mb-8 text-center">
               Cosa Include il Nostro Servizio
             </h2>
             
@@ -154,7 +153,7 @@ const FotovoltaicoPrivati = () => {
                 "Collaudo e attivazione dell'impianto",
                 "Assistenza post-vendita locale",
               ].map((item) => (
-                <div key={item} className="flex items-center gap-3 p-4 bg-accent rounded-lg">
+                <div key={item} className="flex items-center gap-3 p-4 bg-card rounded-xl border border-border">
                   <CheckCircle className="w-5 h-5 text-primary flex-shrink-0" />
                   <span className="text-foreground">{item}</span>
                 </div>
@@ -165,13 +164,13 @@ const FotovoltaicoPrivati = () => {
       </section>
 
       {/* CTA */}
-      <section className="section-padding bg-gradient-hero">
+      <section className="section-padding bg-primary">
         <div className="container-custom">
-          <div className="max-w-2xl mx-auto text-center text-primary-foreground">
-            <h2 className="text-3xl md:text-4xl font-serif font-bold mb-4">
+          <div className="max-w-2xl mx-auto text-center text-white">
+            <h2 className="text-3xl md:text-4xl font-serif mb-4">
               Vuoi Sapere se il Fotovoltaico Fa per Te?
             </h2>
-            <p className="text-xl text-primary-foreground/90 mb-8">
+            <p className="text-xl text-white/90 mb-8 font-light">
               Chiamaci o richiedi un sopralluogo. Ti spieghiamo tutto senza impegno.
             </p>
             <Button variant="cta" size="xl" asChild>
