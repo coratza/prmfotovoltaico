@@ -14,8 +14,8 @@ export default {
     },
     extend: {
       fontFamily: {
-        sans: ['"Source Sans 3"', 'system-ui', 'sans-serif'],
-        serif: ['"Playfair Display"', 'Georgia', 'serif'],
+        sans: ['"Open Sans"', 'system-ui', 'sans-serif'],
+        heading: ['"Josefin Sans"', 'system-ui', 'sans-serif'],
       },
       colors: {
         border: "hsl(var(--border))",
@@ -23,6 +23,7 @@ export default {
         ring: "hsl(var(--ring))",
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
+        detail: "hsl(var(--detail))",
         primary: {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",
@@ -81,7 +82,6 @@ export default {
       backgroundImage: {
         'gradient-hero': "var(--gradient-hero)",
         'gradient-warm': "var(--gradient-warm)",
-        'gradient-card': "var(--gradient-card)",
       },
       keyframes: {
         "accordion-down": {
