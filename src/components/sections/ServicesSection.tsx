@@ -1,70 +1,83 @@
-import { Home, Building2, Warehouse, Battery } from "lucide-react";
 import { Link } from "react-router-dom";
-
-const services = [
-  {
-    icon: Home,
-    title: "Fotovoltaico per Privati",
-    description: "Impianti su misura per ville e abitazioni indipendenti. Riduci le bollette e aumenta il valore della tua casa.",
-    link: "/fotovoltaico-privati",
-  },
-  {
-    icon: Building2,
-    title: "Fotovoltaico per Condomini",
-    description: "Soluzioni condominiali per condividere i benefici dell'energia solare tra tutti i condomini.",
-    link: "/contatti",
-  },
-  {
-    icon: Warehouse,
-    title: "Fotovoltaico per Aziende",
-    description: "Impianti per capannoni e immobili produttivi. Investimento con ritorno stimabile e costi sotto controllo.",
-    link: "/fotovoltaico-aziende",
-  },
-  {
-    icon: Battery,
-    title: "Sistemi di Accumulo",
-    description: "Batterie per immagazzinare l'energia prodotta e usarla quando ti serve di più.",
-    link: "/contatti",
-  },
-];
+import { Button } from "@/components/ui/button";
+import villaSolar from "@/assets/villa-solar.jpg";
+import industrialSolar from "@/assets/industrial-solar.jpg";
 
 const ServicesSection = () => {
   return (
-    <section className="section-padding bg-gradient-warm">
+    <section className="section-padding bg-muted">
       <div className="container-custom">
         {/* Header */}
-        <div className="text-center max-w-2xl mx-auto mb-12">
-          <h2 className="text-3xl md:text-4xl font-serif font-bold text-foreground mb-4">
-            Cosa Facciamo
+        <div className="text-center max-w-3xl mx-auto mb-12">
+          <h2 className="text-3xl md:text-4xl font-serif text-primary mb-4">
+            Impianti fotovoltaici per abitazioni e aziende
           </h2>
-          <p className="text-lg text-muted-foreground">
-            Progettiamo e installiamo impianti fotovoltaici completi, dalla consulenza iniziale all'attivazione finale.
+          <p className="text-lg text-primary">
+            Seguiamo tutto il processo: sopralluogo, progettazione, installazione e pratiche.<br />
+            Lavoriamo sul territorio, con un approccio tecnico e concreto.<br />
+            Un solo referente, dall'inizio alla fine.
           </p>
         </div>
 
-        {/* Services Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {services.map((service) => (
-            <Link
-              key={service.title}
-              to={service.link}
-              className="group bg-card rounded-xl p-6 md:p-8 shadow-soft hover:shadow-medium transition-all duration-300 border border-border hover:border-primary/20"
-            >
-              <div className="flex items-start gap-4">
-                <div className="flex-shrink-0 w-14 h-14 rounded-lg bg-primary/10 flex items-center justify-center group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
-                  <service.icon className="w-7 h-7 text-primary group-hover:text-primary-foreground transition-colors" />
-                </div>
+        {/* Service Cards */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          {/* Per Privati */}
+          <div className="bg-primary rounded-3xl overflow-hidden">
+            <div className="flex flex-col md:flex-row items-stretch">
+              <div className="w-full md:w-2/5 h-64 md:h-auto">
+                <img
+                  src={villaSolar}
+                  alt="Fotovoltaico per privati"
+                  className="w-full h-full object-cover p-6 rounded-3xl"
+                />
+              </div>
+              <div className="flex-1 p-6 md:p-8 flex flex-col justify-center">
+                <h3 className="text-2xl md:text-3xl font-serif text-white mb-4">
+                  Per Privati
+                </h3>
+                <p className="text-white/90 leading-relaxed mb-6">
+                  Ogni soluzione viene progettata partendo dal tetto, dai consumi reali e dalle esigenze della famiglia.<br />
+                  Ci occupiamo di tutto: sopralluogo, progettazione, installazione e pratiche.
+                </p>
                 <div>
-                  <h3 className="text-xl font-serif font-semibold text-foreground mb-2 group-hover:text-primary transition-colors">
-                    {service.title}
-                  </h3>
-                  <p className="text-muted-foreground leading-relaxed">
-                    {service.description}
-                  </p>
+                  <Button variant="cardCta" size="lg" asChild>
+                    <Link to="/fotovoltaico-privati">
+                      Scopri di più
+                    </Link>
+                  </Button>
                 </div>
               </div>
-            </Link>
-          ))}
+            </div>
+          </div>
+
+          {/* Per Aziende */}
+          <div className="bg-primary rounded-3xl overflow-hidden">
+            <div className="flex flex-col md:flex-row items-stretch">
+              <div className="w-full md:w-2/5 h-64 md:h-auto">
+                <img
+                  src={industrialSolar}
+                  alt="Fotovoltaico per aziende"
+                  className="w-full h-full object-cover p-6 rounded-3xl"
+                />
+              </div>
+              <div className="flex-1 p-6 md:p-8 flex flex-col justify-center">
+                <h3 className="text-2xl md:text-3xl font-serif text-white mb-4">
+                  Per Aziende
+                </h3>
+                <p className="text-white/90 leading-relaxed mb-6">
+                  Progettiamo l'impianto in base ai consumi dell'attività, agli orari di lavoro e alla struttura del capannone o dell'edificio.<br />
+                  Seguiamo direttamente tutte le fasi: sopralluogo tecnico, progettazione, installazione e pratiche.
+                </p>
+                <div>
+                  <Button variant="cardCta" size="lg" asChild>
+                    <Link to="/fotovoltaico-aziende">
+                      Scopri di più
+                    </Link>
+                  </Button>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>

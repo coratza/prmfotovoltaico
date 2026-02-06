@@ -1,70 +1,86 @@
-import { MapPin, Users, Wrench, ShieldCheck } from "lucide-react";
+import { Link } from "react-router-dom";
+import { Button } from "@/components/ui/button";
 import teamImage from "@/assets/team-installation.jpg";
+import villaSolar from "@/assets/villa-solar.jpg";
+import industrialSolar from "@/assets/industrial-solar.jpg";
 
-const trustPoints = [
+const trustCards = [
   {
-    icon: MapPin,
-    title: "Presenza Locale",
-    description: "Siamo di San Lazzaro. Quando ci chiami, parliamo direttamente con te senza call center.",
+    image: teamImage,
+    title: "Installatore locale, non un intermediario",
+    description: "Seguiamo direttamente ogni impianto.\nNiente call center, niente passaggi di mano",
   },
   {
-    icon: Users,
-    title: "Esperienza Reale",
-    description: "Oltre 200 impianti installati in Emilia-Romagna. Lavori che puoi vedere con i tuoi occhi.",
+    image: industrialSolar,
+    title: "Impianti certificati e componenti selezionate",
+    description: "Utilizziamo solo prodotti affidabili e diffusi.\nInstallazione conforme alle specifiche dei produttori.",
   },
   {
-    icon: Wrench,
-    title: "Qualità Artigiana",
-    description: "Non siamo un grande portale. Ogni installazione riceve la nostra attenzione personale.",
+    image: villaSolar,
+    title: "Un progetto che dura nel tempo",
+    description: "Un impianto fotovoltaico è un investimento.\nDeve funzionare oggi e continuare a farlo negli anni.",
   },
   {
-    icon: ShieldCheck,
-    title: "Assistenza Continua",
-    description: "Problemi post-installazione? Siamo a mezz'ora da te, non dall'altra parte d'Italia.",
+    image: teamImage,
+    title: "Esperienza tecnica sul campo",
+    description: "Il titolare segue i lavori in prima persona.\nQuesto riduce errori, ritardi e incomprensioni.",
+  },
+  {
+    image: industrialSolar,
+    title: "Sopralluogo reale, non preventivi a distanza",
+    description: "Prima analizziamo tetto e consumi.\nPoi parliamo di numeri.",
   },
 ];
 
 const TrustSection = () => {
   return (
-    <section className="section-padding bg-accent">
+    <section className="section-padding bg-muted">
       <div className="container-custom">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          {/* Image */}
-          <div className="relative">
-            <img
-              src={teamImage}
-              alt="Team SolarTech al lavoro"
-              className="rounded-2xl shadow-strong w-full"
-            />
-            <div className="absolute -bottom-6 -right-6 bg-secondary text-secondary-foreground rounded-xl p-4 shadow-medium hidden md:block">
-              <p className="font-serif font-bold text-2xl">Dal 2010</p>
-              <p className="text-sm">in Emilia-Romagna</p>
-            </div>
-          </div>
+        {/* Header */}
+        <div className="text-center max-w-2xl mx-auto mb-12">
+          <h2 className="text-3xl md:text-4xl font-serif text-primary mb-4">
+            Perché scegliere noi
+          </h2>
+        </div>
 
-          {/* Content */}
-          <div>
-            <h2 className="text-3xl md:text-4xl font-serif font-bold text-foreground mb-6">
-              Perché Scegliere un Installatore Locale?
-            </h2>
-            <p className="text-lg text-muted-foreground mb-8">
-              Non siamo un portale nazionale che ti passa al primo installatore disponibile. Siamo noi stessi a progettare e installare il tuo impianto, dal primo sopralluogo all'ultimo collaudo.
-            </p>
-
-            <div className="space-y-6">
-              {trustPoints.map((point) => (
-                <div key={point.title} className="flex gap-4">
-                  <div className="flex-shrink-0 w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center">
-                    <point.icon className="w-6 h-6 text-primary" />
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-foreground mb-1">{point.title}</h3>
-                    <p className="text-muted-foreground text-sm">{point.description}</p>
-                  </div>
+        {/* Trust Cards */}
+        <div className="space-y-6">
+          {trustCards.map((card, index) => (
+            <div
+              key={card.title}
+              className="bg-primary rounded-3xl overflow-hidden"
+            >
+              <div className="flex flex-col md:flex-row items-center gap-6 p-6 md:p-8">
+                {/* Image */}
+                <div className="w-full md:w-64 h-48 md:h-40 flex-shrink-0 rounded-xl overflow-hidden">
+                  <img
+                    src={card.image}
+                    alt={card.title}
+                    className="w-full h-full object-cover"
+                  />
                 </div>
-              ))}
+                
+                {/* Content */}
+                <div className="flex-1 text-center md:text-left">
+                  <h3 className="text-2xl md:text-3xl font-serif text-white mb-3">
+                    {card.title}
+                  </h3>
+                  <p className="text-white/80 text-lg whitespace-pre-line leading-relaxed">
+                    {card.description}
+                  </p>
+                </div>
+
+                {/* CTA */}
+                <div className="flex-shrink-0">
+                  <Button variant="cardCta" size="lg" asChild>
+                    <Link to="/contatti">
+                      Richiedi un sopralluogo
+                    </Link>
+                  </Button>
+                </div>
+              </div>
             </div>
-          </div>
+          ))}
         </div>
       </div>
     </section>

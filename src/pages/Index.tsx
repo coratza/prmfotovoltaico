@@ -1,8 +1,8 @@
 import Layout from "@/components/layout/Layout";
 import HeroSection from "@/components/sections/HeroSection";
 import ServicesSection from "@/components/sections/ServicesSection";
-import TargetSection from "@/components/sections/TargetSection";
 import TrustSection from "@/components/sections/TrustSection";
+import MethodSection from "@/components/sections/MethodSection";
 import TestimonialsSection from "@/components/sections/TestimonialsSection";
 import LeadFormSection from "@/components/sections/LeadFormSection";
 import InvestmentSection from "@/components/sections/InvestmentSection";
@@ -12,9 +12,9 @@ const Index = () => {
   return (
     <Layout>
       <HeroSection />
-      <ServicesSection />
-      <TargetSection />
       <TrustSection />
+      <ServicesSection />
+      <MethodSection />
       <LeadFormSection />
       <InvestmentSection />
       <TestimonialsSection />

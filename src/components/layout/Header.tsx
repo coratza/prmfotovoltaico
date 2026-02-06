@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Phone, Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import prmLogo from "@/assets/prm-logo.png";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -23,14 +24,12 @@ const Header = () => {
       <div className="container-custom">
         <div className="flex items-center justify-between h-16 md:h-20">
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-2">
-            <div className="w-10 h-10 rounded-lg bg-primary flex items-center justify-center">
-              <span className="text-primary-foreground font-serif font-bold text-xl">S</span>
-            </div>
-            <div className="hidden sm:block">
-              <p className="font-serif font-semibold text-foreground text-lg leading-tight">SolarTech</p>
-              <p className="text-xs text-muted-foreground">Bologna e provincia</p>
-            </div>
+          <Link to="/" className="flex items-center">
+            <img 
+              src={prmLogo} 
+              alt="PRM Fotovoltaico" 
+              className="h-12 md:h-14 w-auto"
+            />
           </Link>
 
           {/* Desktop Navigation */}
