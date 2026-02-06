@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Phone, Menu, X, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import prmLogo from "@/assets/prm-logo.png";
+import prmLogoRound from "@/assets/prm-logo-round.png";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -26,7 +26,7 @@ const Header = () => {
       <div className="container-custom">
         <div className="flex items-center justify-between h-16 md:h-20">
           <Link to="/" className="flex items-center">
-            <img src={prmLogo} alt="PRM Fotovoltaico" className="h-16 md:h-20 w-auto" />
+            <img src={prmLogoRound} alt="PRM Fotovoltaico" className="h-16 w-16 md:h-20 md:w-20" />
           </Link>
 
           <nav className="hidden lg:flex items-center gap-1">
