@@ -4,6 +4,8 @@ import ServicesSection from "@/components/sections/ServicesSection";
 import TargetSection from "@/components/sections/TargetSection";
 import TrustSection from "@/components/sections/TrustSection";
 import TestimonialsSection from "@/components/sections/TestimonialsSection";
+import LeadFormSection from "@/components/sections/LeadFormSection";
+import InvestmentSection from "@/components/sections/InvestmentSection";
 import CTASection from "@/components/sections/CTASection";
 
 const Index = () => {
@@ -13,6 +15,8 @@ const Index = () => {
       <ServicesSection />
       <TargetSection />
       <TrustSection />
+      <LeadFormSection />
+      <InvestmentSection />
       <TestimonialsSection />
       <CTASection />
     </Layout>
