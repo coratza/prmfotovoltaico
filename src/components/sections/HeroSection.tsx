@@ -12,7 +12,7 @@ const HeroSection = () => {
           alt="Casa con impianto fotovoltaico a Bologna"
           className="w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-foreground/80 via-foreground/60 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-r from-foreground/90 via-foreground/70 to-foreground/20" />
       </div>
 
       <div className="container-custom relative z-10">
