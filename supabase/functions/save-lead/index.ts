@@ -176,9 +176,9 @@ Deno.serve(async (req) => {
       );
     }
 
-    const supabaseUrl = Deno.env.get("SUPABASE_URL")!;
-    const supabaseKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
-    const supabase = createClient(supabaseUrl, supabaseKey);
+    // Record this request for rate limiting
+    await recordRequest(supabase, ip);
+
 
     const { error } = await supabase.from("leads_preventivo").insert({
       nome: body.nome,
