@@ -16,7 +16,7 @@ export type Database = {
     Tables: {
       leads_preventivo: {
         Row: {
-          accumulo: boolean
+          accumulo: boolean | null
           autoconsumo_kwh: number | null
           autoconsumo_pct: number | null
           beneficio_incentivi: number | null
@@ -52,7 +52,7 @@ export type Database = {
           tipologia: string
         }
         Insert: {
-          accumulo: boolean
+          accumulo?: boolean | null
           autoconsumo_kwh?: number | null
           autoconsumo_pct?: number | null
           beneficio_incentivi?: number | null
@@ -88,7 +88,7 @@ export type Database = {
           tipologia: string
         }
         Update: {
-          accumulo?: boolean
+          accumulo?: boolean | null
           autoconsumo_kwh?: number | null
           autoconsumo_pct?: number | null
           beneficio_incentivi?: number | null

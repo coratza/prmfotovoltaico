@@ -1,0 +1,1 @@
+ALTER TABLE public.leads_preventivo ALTER COLUMN accumulo DROP NOT NULL;
