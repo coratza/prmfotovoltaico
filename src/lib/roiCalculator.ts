@@ -6,117 +6,157 @@ const PRODUCIBILITA: Record<string, number> = {
   ravenna: 1200,
 };
 
-// Percentuali autoconsumo
-const AUTOCONSUMO_PCT: Record<string, Record<string, number>> = {
-  privato: { senza: 0.30, con: 0.70 },
-  azienda: { senza: 0.50, con: 0.80 },
+// Autoconsumo per profilo attività
+const AUTOCONSUMO_PROFILO: Record<string, number> = {
+  diurno: 0.80,
+  misto: 0.70,
+  h24: 0.65,
 };
 
-// Costi impianto (EUR)
-const COSTO_IMPIANTO: Record<number, number> = {
-  3: 6500,
-  6: 10500,
-};
+// CAPEX per scaglione (EUR/kWp)
+function capexPerKwp(kwp: number): number {
+  if (kwp < 50) return 1200;
+  if (kwp < 200) return 1000;
+  if (kwp < 500) return 850;
+  return 750;
+}
 
-const COSTO_ACCUMULO = 4500;
-const MANUTENZIONE_ANNUA = 100;
-const QUOTA_FISSA_PCT = 0.35; // 35% della spesa annua è quota fissa (stima ARERA)
-const DEGRADO_ANNUO = 0.005; // 0.5%/anno
+// Super ammortamento 180%
+const MAGGIORAZIONE = 1.80;
+const ALIQUOTA_FISCALE = 0.24;
+const ANNI_FRUIZIONE = 10;
 
-// Incentivi
-const DETRAZIONE_PRIVATI = 0.50; // 50% in 10 anni
-const MAGGIORAZIONE_AZIENDE = 1.80; // 180%
-const ALIQUOTA_IRES = 0.28; // 28%
+const PREZZO_IMMISSIONE = 0.06; // EUR/kWh
 
 export interface CalcoloInput {
   tipologia: "privato" | "azienda";
   provincia: string;
-  tipoImmobile: "casa_singola" | "condominio" | "capannone";
-  connessione: "connesso" | "offgrid";
-  potenza: 3 | 6;
-  accumulo: boolean;
   consumoAnnuo: number; // kWh
   spesaAnnua: number; // EUR
+  // Solo aziende
+  mqTetto?: number;
+  profiloAttivita?: "diurno" | "misto" | "h24";
 }
 
 export interface CalcoloOutput {
+  kwpCalcolati: number;
   produzioneAnnua: number;
   autoconsumoPct: number;
   autoconsumoKwh: number;
-  prezzoVariabile: number;
-  costoLordo: number;
-  beneficioIncentivi: number;
-  costoNetto: number;
+  immissioneKwh: number;
+  prezzoEvitato: number;
+  capexStimato: number;
   risparmioAnnuo: number;
+  ricavoImmissione: number;
+  beneficioAnnuo: number;
   paybackAnni: number;
-  roiAnnuo: number;
-  risparmio25Anni: number;
+  irrBase: number; // percentuale
+  irrMax: number; // percentuale (con 180% per aziende, uguale a irrBase per privati)
+  avvisoDati: string | null;
+}
+
+// Newton-Raphson per calcolo IRR
+function calcolaIRR(cashflows: number[], guess = 0.10, maxIter = 100, tol = 1e-7): number {
+  let r = guess;
+  for (let i = 0; i < maxIter; i++) {
+    let npv = 0;
+    let dnpv = 0;
+    for (let t = 0; t < cashflows.length; t++) {
+      const factor = Math.pow(1 + r, t);
+      npv += cashflows[t] / factor;
+      if (t > 0) dnpv -= t * cashflows[t] / Math.pow(1 + r, t + 1);
+    }
+    if (Math.abs(dnpv) < 1e-12) break;
+    const rNew = r - npv / dnpv;
+    if (Math.abs(rNew - r) < tol) return rNew;
+    r = rNew;
+  }
+  return r;
 }
 
 export function calcolaROI(input: CalcoloInput): CalcoloOutput {
-  const { tipologia, provincia, potenza, accumulo, consumoAnnuo, spesaAnnua } = input;
+  const { tipologia, provincia, consumoAnnuo, spesaAnnua, mqTetto, profiloAttivita } = input;
 
-  // 1. Produzione annua
   const producibilita = PRODUCIBILITA[provincia.toLowerCase()] || 1250;
-  const produzioneAnnua = potenza * producibilita;
+  let avvisoDati: string | null = null;
 
-  // 2. Autoconsumo
-  const accumuloKey = accumulo ? "con" : "senza";
-  const autoconsumoPct = AUTOCONSUMO_PCT[tipologia][accumuloKey];
-  const autoconsumoKwh = Math.min(produzioneAnnua * autoconsumoPct, consumoAnnuo);
-
-  // 3. Prezzo variabile dalla bolletta
-  const quotaFissa = spesaAnnua * QUOTA_FISSA_PCT;
-  const prezzoVariabile = consumoAnnuo > 0 ? (spesaAnnua - quotaFissa) / consumoAnnuo : 0;
-
-  // 4. Risparmio annuo
-  const risparmioAnnuo = autoconsumoKwh * prezzoVariabile;
-
-  // 5. Costi
-  const costoImpianto = COSTO_IMPIANTO[potenza] || 6500;
-  const costoLordo = costoImpianto + (accumulo ? COSTO_ACCUMULO : 0);
-
-  // 6. Incentivi
-  let beneficioIncentivi: number;
-  if (tipologia === "privato") {
-    // Detrazione 50% in 10 anni (valore totale recuperato)
-    beneficioIncentivi = costoLordo * DETRAZIONE_PRIVATI;
+  // 1. Dimensionamento kWp
+  let kwp: number;
+  if (tipologia === "azienda" && mqTetto) {
+    kwp = Math.min(mqTetto * 0.18, 1000);
   } else {
-    // Aziende: ammortamento maggiorato al 180%, beneficio = maggiorazione * aliquota IRES
-    beneficioIncentivi = costoLordo * MAGGIORAZIONE_AZIENDE * ALIQUOTA_IRES;
+    // Privato: dal consumo con leggero sovradimensionamento
+    kwp = Math.min((consumoAnnuo / producibilita) * 1.1, 20);
   }
 
-  // 7. Costo netto
-  const costoNetto = costoLordo - beneficioIncentivi;
+  // 2. Produzione annua
+  let produzioneAnnua = kwp * producibilita;
+
+  // 3. Controllo coerenza: produzione > 1.3 * consumo → riduzione
+  if (produzioneAnnua > 1.3 * consumoAnnuo) {
+    const kwpAdj = (consumoAnnuo / producibilita) * 1.3;
+    kwp = Math.min(kwp, kwpAdj);
+    produzioneAnnua = kwp * producibilita;
+  }
+
+  // 4. Prezzo medio e controllo coerenza
+  const prezzoMedio = consumoAnnuo > 0 ? spesaAnnua / consumoAnnuo : 0;
+  if (prezzoMedio < 0.08 || prezzoMedio > 0.35) {
+    avvisoDati = "I dati inseriti non sembrano coerenti. Ricontrolla il consumo (kWh) e la spesa annua (€) nelle tue bollette.";
+  }
+  const prezzoEvitato = prezzoMedio * 0.80;
+
+  // 5. Autoconsumo
+  const profilo = tipologia === "azienda" && profiloAttivita
+    ? (AUTOCONSUMO_PROFILO[profiloAttivita] || 0.70)
+    : 0.70; // privati: fisso misto 70%
+  const autoconsumoPct = profilo;
+  const autoconsumoKwh = Math.min(produzioneAnnua, consumoAnnuo * 0.95) * profilo;
+  const immissioneKwh = Math.max(produzioneAnnua - autoconsumoKwh, 0);
+
+  // 6. Beneficio annuo
+  const risparmioAnnuo = autoconsumoKwh * prezzoEvitato;
+  const ricavoImmissione = immissioneKwh * PREZZO_IMMISSIONE;
+  const beneficioAnnuo = risparmioAnnuo + ricavoImmissione;
+
+  // 7. CAPEX
+  const euroPerKwp = capexPerKwp(kwp);
+  const capexStimato = kwp * euroPerKwp;
 
   // 8. Payback
-  const flussoAnnuo = risparmioAnnuo - MANUTENZIONE_ANNUA;
-  const paybackAnni = flussoAnnuo > 0 ? costoNetto / flussoAnnuo : 99;
+  const paybackAnni = beneficioAnnuo > 0 ? capexStimato / beneficioAnnuo : 99;
 
-  // 9. ROI annuo
-  const roiAnnuo = costoNetto > 0 ? flussoAnnuo / costoNetto : 0;
+  // 9. IRR base (25 anni)
+  const cfBase: number[] = [-capexStimato];
+  for (let t = 1; t <= 25; t++) cfBase.push(beneficioAnnuo);
+  const irrBase = calcolaIRR(cfBase) * 100;
 
-  // 10. Risparmio cumulato 25 anni (con degrado)
-  let risparmio25Anni = 0;
-  for (let anno = 1; anno <= 25; anno++) {
-    const degradoFactor = Math.pow(1 - DEGRADO_ANNUO, anno - 1);
-    const autoconsumoAnno = Math.min(produzioneAnnua * degradoFactor * autoconsumoPct, consumoAnnuo);
-    const risparmioAnno = autoconsumoAnno * prezzoVariabile - MANUTENZIONE_ANNUA;
-    risparmio25Anni += risparmioAnno;
+  // 10. IRR max (con 180% solo per aziende)
+  let irrMax = irrBase;
+  if (tipologia === "azienda") {
+    const taxTotal = capexStimato * MAGGIORAZIONE * ALIQUOTA_FISCALE;
+    const taxAnnual = taxTotal / ANNI_FRUIZIONE;
+    const cfMax: number[] = [-capexStimato];
+    for (let t = 1; t <= 25; t++) {
+      cfMax.push(beneficioAnnuo + (t <= ANNI_FRUIZIONE ? taxAnnual : 0));
+    }
+    irrMax = calcolaIRR(cfMax) * 100;
   }
-  risparmio25Anni -= costoNetto; // netto dell'investimento
 
   return {
+    kwpCalcolati: Math.round(kwp * 10) / 10,
     produzioneAnnua: Math.round(produzioneAnnua),
     autoconsumoPct: Math.round(autoconsumoPct * 100),
     autoconsumoKwh: Math.round(autoconsumoKwh),
-    prezzoVariabile: Math.round(prezzoVariabile * 1000) / 1000,
-    costoLordo: Math.round(costoLordo),
-    beneficioIncentivi: Math.round(beneficioIncentivi),
-    costoNetto: Math.round(costoNetto),
+    immissioneKwh: Math.round(immissioneKwh),
+    prezzoEvitato: Math.round(prezzoEvitato * 1000) / 1000,
+    capexStimato: Math.round(capexStimato),
     risparmioAnnuo: Math.round(risparmioAnnuo),
+    ricavoImmissione: Math.round(ricavoImmissione),
+    beneficioAnnuo: Math.round(beneficioAnnuo),
     paybackAnni: Math.round(paybackAnni * 10) / 10,
-    roiAnnuo: Math.round(roiAnnuo * 1000) / 10,
-    risparmio25Anni: Math.round(risparmio25Anni),
+    irrBase: Math.round(irrBase * 10) / 10,
+    irrMax: Math.round(irrMax * 10) / 10,
+    avvisoDati,
   };
 }
