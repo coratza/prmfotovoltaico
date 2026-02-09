@@ -77,12 +77,52 @@ async function sendWhatsAppNotification(lead: Record<string, unknown>) {
   }
 }
 
+const MAX_REQUESTS_PER_HOUR = 5;
+
+async function checkRateLimit(supabase: ReturnType<typeof createClient>, ip: string): Promise<boolean> {
+  const oneHourAgo = new Date(Date.now() - 60 * 60 * 1000).toISOString();
+  const { count, error } = await supabase
+    .from("rate_limits")
+    .select("*", { count: "exact", head: true })
+    .eq("ip_address", ip)
+    .eq("endpoint", "save-lead")
+    .gte("created_at", oneHourAgo);
+
+  if (error) {
+    console.error("Rate limit check error:", error);
+    return false; // fail open
+  }
+  return (count ?? 0) >= MAX_REQUESTS_PER_HOUR;
+}
+
+async function recordRequest(supabase: ReturnType<typeof createClient>, ip: string) {
+  await supabase.from("rate_limits").insert({ ip_address: ip, endpoint: "save-lead" });
+}
+
 Deno.serve(async (req) => {
   if (req.method === "OPTIONS") {
     return new Response("ok", { headers: corsHeaders });
   }
 
   try {
+    const supabaseUrl = Deno.env.get("SUPABASE_URL")!;
+    const supabaseKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
+    const supabase = createClient(supabaseUrl, supabaseKey);
+
+    // Rate limiting by IP
+    const ip = req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() 
+      || req.headers.get("cf-connecting-ip") 
+      || "unknown";
+
+    const isLimited = await checkRateLimit(supabase, ip);
+    if (isLimited) {
+      console.log(`Rate limited IP: ${ip}`);
+      return new Response(
+        JSON.stringify({ error: "Troppe richieste. Riprova tra qualche minuto." }),
+        { status: 429, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+      );
+    }
+
     const body = await req.json();
     console.log("Received lead data:", JSON.stringify(body));
 
