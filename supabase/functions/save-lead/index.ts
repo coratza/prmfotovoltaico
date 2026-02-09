@@ -40,6 +40,43 @@ function validateEmail(email: string): string | null {
   return null;
 }
 
+async function sendWhatsAppNotification(lead: Record<string, unknown>) {
+  const phone = Deno.env.get("WHATSAPP_PHONE");
+  const apikey = Deno.env.get("CALLMEBOT_APIKEY");
+  
+  if (!phone || !apikey) {
+    console.log("WhatsApp credentials not configured, skipping notification");
+    return;
+  }
+
+  const msg = [
+    "🔔 *Nuovo Lead PRM!*",
+    "",
+    `👤 *Nome:* ${lead.nome}`,
+    `📞 *Tel:* ${lead.telefono}`,
+    `📧 *Email:* ${lead.email || "N/D"}`,
+    `🏷 *Tipo:* ${lead.tipologia}`,
+    `📍 *Provincia:* ${lead.provincia}`,
+    `🏠 *Immobile:* ${lead.tipo_immobile}`,
+    "",
+    `⚡ *kWp:* ${lead.kwp_calcolati || "N/D"}`,
+    `💰 *Risparmio/anno:* €${lead.risparmio_annuo ? Number(lead.risparmio_annuo).toLocaleString("it-IT") : "N/D"}`,
+    `📊 *Payback:* ${lead.payback_anni ? `${lead.payback_anni} anni` : "N/D"}`,
+    `🎯 *Qualifica 180%:* ${lead.qualifica_180 || "N/D"}`,
+  ].join("\n");
+
+  const encoded = encodeURIComponent(msg);
+  const url = `https://api.callmebot.com/whatsapp.php?phone=${phone}&text=${encoded}&apikey=${apikey}`;
+
+  try {
+    const res = await fetch(url);
+    const text = await res.text();
+    console.log("WhatsApp notification sent:", res.status, text);
+  } catch (err) {
+    console.error("WhatsApp notification failed:", err);
+  }
+}
+
 Deno.serve(async (req) => {
   if (req.method === "OPTIONS") {
     return new Response("ok", { headers: corsHeaders });
@@ -142,6 +179,11 @@ Deno.serve(async (req) => {
         { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } }
       );
     }
+
+    // Send WhatsApp notification (non-blocking)
+    sendWhatsAppNotification(body).catch((err) =>
+      console.error("WhatsApp background error:", err)
+    );
 
     console.log("Lead saved successfully");
     return new Response(
