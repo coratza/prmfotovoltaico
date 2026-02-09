@@ -51,6 +51,7 @@ const App = () => (
           <Route path="/agevolazioni/agevolazioni-aziende-modena" element={<AgevolazioniAziendeModena />} />
           <Route path="/agevolazioni/agevolazioni-aziende-ferrara" element={<AgevolazioniAziendeFerrara />} />
           <Route path="/agevolazioni/agevolazioni-aziende-ravenna" element={<AgevolazioniAziendeRavenna />} />
+          <Route path="/admin" element={<Admin />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
