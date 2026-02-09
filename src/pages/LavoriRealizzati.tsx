@@ -116,7 +116,7 @@ const LavoriRealizzati = () => {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button variant="cta" size="xl" asChild>
-                <a href="tel:+39051123456">
+                <a href="tel:+393246117388">
                   <Phone className="w-6 h-6" />
                   Chiama Ora
                 </a>

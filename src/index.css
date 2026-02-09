@@ -1,66 +1,58 @@
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Open+Sans:wght@300;400;500;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;500;600;700&family=Open+Sans:wght@300;400;500;600;700&display=swap');
-
 @layer base {
   :root {
-    /* Palette professionale - Blu primario + dettagli azzurri + neutri */
     --background: 210 20% 98%;
     --foreground: 222 22% 14%;
 
-    /* Card e superfici */
     --card: 0 0% 100%;
     --card-foreground: 222 22% 14%;
 
     --popover: 0 0% 100%;
     --popover-foreground: 222 22% 14%;
 
-    /* Primario: #1E74BB (HSL ~ 207 72% 43%) */
+    /* Primario: #1E74BB */
     --primary: 207 72% 43%;
     --primary-foreground: 0 0% 100%;
 
-    /* Secondario neutro (supporto UI, non “marketing”) */
+    /* Azzurro dettaglio: #29A7E2 */
+    --detail: 199 76% 52%;
+
     --secondary: 210 18% 94%;
     --secondary-foreground: 222 22% 14%;
 
-    /* Superfici muted */
     --muted: 210 16% 96%;
-    --muted-foreground: 220 10% 40%;
+    --muted-foreground: 220 12% 38%;
 
-    /* Dettagli: #29A7E2 (HSL ~ 199 76% 52%) */
-    --accent: 199 76% 92%;
+    --accent: 210 20% 96%;
     --accent-foreground: 207 72% 33%;
 
-    /* CTA (neutro scuro) - professionale e coerente col blu */
+    /* CTA neutro scuro */
     --cta: 222 22% 14%;
     --cta-foreground: 0 0% 100%;
     --cta-hover: 222 22% 10%;
 
-    /* Destructive */
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
 
-    /* Bordi e input */
-    --border: 214 18% 88%;
+    --border: 214 18% 90%;
     --input: 214 18% 88%;
     --ring: 207 72% 43%;
 
     --radius: 0.5rem;
 
-    /* Gradients */
     --gradient-hero: linear-gradient(135deg, hsl(207 72% 43%) 0%, hsl(212 74% 34%) 100%);
     --gradient-warm: linear-gradient(180deg, hsl(210 20% 98%) 0%, hsl(210 18% 95%) 100%);
-    --gradient-card: linear-gradient(180deg, hsl(0 0% 100%) 0%, hsl(210 16% 98%) 100%);
 
-    /* Shadows */
     --shadow-soft: 0 4px 20px -4px hsl(222 22% 14% / 0.08);
     --shadow-medium: 0 8px 30px -6px hsl(222 22% 14% / 0.12);
     --shadow-strong: 0 12px 40px -8px hsl(222 22% 14% / 0.18);
     --shadow-cta: 0 10px 26px -10px hsl(222 22% 14% / 0.35);
 
-    /* Sidebar */
     --sidebar-background: 210 20% 97%;
     --sidebar-foreground: 222 22% 18%;
     --sidebar-primary: 207 72% 43%;
@@ -80,6 +72,7 @@
     --popover-foreground: 210 20% 96%;
     --primary: 207 78% 58%;
     --primary-foreground: 222 22% 8%;
+    --detail: 199 76% 62%;
     --secondary: 220 14% 18%;
     --secondary-foreground: 210 20% 96%;
     --muted: 220 14% 16%;
@@ -115,13 +108,13 @@
   }
 
   body {
-    @apply bg-background text-foreground font-sans antialiased;
+    @apply bg-background text-foreground antialiased;
     font-family: 'Open Sans', system-ui, sans-serif;
   }
 
   h1, h2, h3, h4, h5, h6 {
     font-family: 'Josefin Sans', system-ui, sans-serif;
-    @apply font-light tracking-wide;
+    @apply tracking-tight;
   }
 }
 
@@ -140,6 +133,11 @@
 
   .phone-link {
     @apply text-primary font-bold text-xl md:text-2xl hover:text-primary/80 transition-colors;
+  }
+
+  /* Blue card style matching reference */
+  .blue-card {
+    @apply bg-primary rounded-3xl p-6 md:p-8 text-primary-foreground shadow-medium;
   }
 }
 

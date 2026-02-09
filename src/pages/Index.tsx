@@ -1,24 +1,28 @@
 import Layout from "@/components/layout/Layout";
 import HeroSection from "@/components/sections/HeroSection";
-import ServicesSection from "@/components/sections/ServicesSection";
-import TrustSection from "@/components/sections/TrustSection";
-import MethodSection from "@/components/sections/MethodSection";
-import TestimonialsSection from "@/components/sections/TestimonialsSection";
-import LeadFormSection from "@/components/sections/LeadFormSection";
 import InvestmentSection from "@/components/sections/InvestmentSection";
-import CTASection from "@/components/sections/CTASection";
+import WhyChooseUsSection from "@/components/sections/WhyChooseUsSection";
+import ServicesSection from "@/components/sections/ServicesSection";
+import DetrazioniPreviewSection from "@/components/sections/DetrazioniPreviewSection";
+import MethodSection from "@/components/sections/MethodSection";
+import ClaritySection from "@/components/sections/ClaritySection";
+import PartnersSection from "@/components/sections/PartnersSection";
+import LeadFormSection from "@/components/sections/LeadFormSection";
+import TestimonialsSection from "@/components/sections/TestimonialsSection";
 
 const Index = () => {
   return (
     <Layout>
       <HeroSection />
-      <TrustSection />
-      <ServicesSection />
-      <MethodSection />
-      <LeadFormSection />
       <InvestmentSection />
+      <WhyChooseUsSection />
+      <ServicesSection />
+      <DetrazioniPreviewSection />
+      <MethodSection />
+      <ClaritySection />
+      <PartnersSection />
+      <LeadFormSection />
       <TestimonialsSection />
-      <CTASection />
     </Layout>
   );
 };

@@ -60,10 +60,10 @@ const Contatti = () => {
                   <div>
                     <h3 className="font-semibold text-foreground mb-1">Telefono</h3>
                     <a
-                      href="tel:+39051123456"
+                      href="tel:+393246117388"
                       className="phone-link"
                     >
-                      051 123 456
+                      324 611 7388
                     </a>
                     <p className="text-sm text-muted-foreground mt-1">
                       Il modo più veloce per parlarci (di solito rispondiamo in giornata)
@@ -240,9 +240,9 @@ const Contatti = () => {
               Siamo disponibili per rispondere alle tue domande.
             </p>
             <Button variant="cta" size="xl" asChild>
-              <a href="tel:+39051123456">
+              <a href="tel:+393246117388">
                 <Phone className="w-6 h-6" />
-                Chiama Ora: 051 123 456
+                Chiama Ora: 324 611 7388
               </a>
             </Button>
           </div>

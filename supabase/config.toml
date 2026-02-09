@@ -1,0 +1,4 @@
+project_id = "ugcmklwooqrmjupyubth"
+
+[functions.save-lead]
+verify_jwt = false
