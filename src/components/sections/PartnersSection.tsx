@@ -1,7 +1,11 @@
+import logoGrowatt from "@/assets/logo-growatt.png";
+import logoZucchetti from "@/assets/logo-zucchetti.png";
+import logoHuawei from "@/assets/logo-huawei.png";
+
 const partners = [
-  { name: "Growatt", color: "from-primary to-detail" },
-  { name: "Zucchetti", color: "from-primary to-detail" },
-  { name: "Huawei", color: "from-primary to-detail" },
+  { name: "Growatt", logo: logoGrowatt },
+  { name: "Zucchetti", logo: logoZucchetti },
+  { name: "Huawei", logo: logoHuawei },
 ];
 
 const PartnersSection = () => {
@@ -24,11 +28,13 @@ const PartnersSection = () => {
           {partners.map((partner) => (
             <div
               key={partner.name}
-              className="bg-gradient-to-br from-primary to-detail rounded-2xl p-8 flex items-center justify-center h-32 shadow-soft"
+              className="bg-card border border-border rounded-2xl p-8 flex items-center justify-center h-32 shadow-soft"
             >
-              <span className="text-primary-foreground text-2xl font-heading font-medium tracking-wide">
-                {partner.name}
-              </span>
+              <img
+                src={partner.logo}
+                alt={`Logo ${partner.name}`}
+                className="max-h-16 max-w-full object-contain"
+              />
             </div>
           ))}
         </div>
