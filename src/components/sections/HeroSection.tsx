@@ -11,6 +11,9 @@ const HeroSection = () => {
           src={heroImage}
           alt="Casa con impianto fotovoltaico a Bologna"
           className="w-full h-full object-cover"
+          fetchPriority="high"
+          decoding="sync"
+          loading="eager"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-foreground/90 via-foreground/70 to-foreground/20" />
       </div>
