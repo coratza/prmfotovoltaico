@@ -21,6 +21,7 @@ import AgevolazioniAziendeBologna from "./pages/agevolazioni/AgevolazioniAziende
 import AgevolazioniAziendeModena from "./pages/agevolazioni/AgevolazioniAziendeModena";
 import AgevolazioniAziendeFerrara from "./pages/agevolazioni/AgevolazioniAziendeFerrara";
 import AgevolazioniAziendeRavenna from "./pages/agevolazioni/AgevolazioniAziendeRavenna";
+import Admin from "./pages/Admin";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
