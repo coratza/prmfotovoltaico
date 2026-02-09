@@ -20,19 +20,29 @@ export type Database = {
           autoconsumo_kwh: number | null
           autoconsumo_pct: number | null
           beneficio_incentivi: number | null
-          connessione: string
+          capex_stimato: number | null
+          connessione: string | null
           consumo_annuo: number
           costo_lordo: number | null
           costo_netto: number | null
           created_at: string
           email: string | null
+          ha_impianto_esistente: boolean | null
           id: string
+          immissione_kwh: number | null
+          irr_base: number | null
+          irr_max: number | null
+          kwp_calcolati: number | null
+          mq_tetto: number | null
           nome: string
           payback_anni: number | null
-          potenza: number
+          potenza: number | null
           prezzo_variabile: number | null
           produzione_annua: number | null
+          profilo_attivita: string | null
           provincia: string
+          qualifica_180: string | null
+          ricavo_immissione: number | null
           risparmio_25_anni: number | null
           risparmio_annuo: number | null
           roi_annuo: number | null
@@ -42,23 +52,33 @@ export type Database = {
           tipologia: string
         }
         Insert: {
-          accumulo?: boolean
+          accumulo: boolean
           autoconsumo_kwh?: number | null
           autoconsumo_pct?: number | null
           beneficio_incentivi?: number | null
-          connessione?: string
+          capex_stimato?: number | null
+          connessione?: string | null
           consumo_annuo: number
           costo_lordo?: number | null
           costo_netto?: number | null
           created_at?: string
           email?: string | null
+          ha_impianto_esistente?: boolean | null
           id?: string
+          immissione_kwh?: number | null
+          irr_base?: number | null
+          irr_max?: number | null
+          kwp_calcolati?: number | null
+          mq_tetto?: number | null
           nome: string
           payback_anni?: number | null
-          potenza: number
+          potenza?: number | null
           prezzo_variabile?: number | null
           produzione_annua?: number | null
+          profilo_attivita?: string | null
           provincia: string
+          qualifica_180?: string | null
+          ricavo_immissione?: number | null
           risparmio_25_anni?: number | null
           risparmio_annuo?: number | null
           roi_annuo?: number | null
@@ -72,19 +92,29 @@ export type Database = {
           autoconsumo_kwh?: number | null
           autoconsumo_pct?: number | null
           beneficio_incentivi?: number | null
-          connessione?: string
+          capex_stimato?: number | null
+          connessione?: string | null
           consumo_annuo?: number
           costo_lordo?: number | null
           costo_netto?: number | null
           created_at?: string
           email?: string | null
+          ha_impianto_esistente?: boolean | null
           id?: string
+          immissione_kwh?: number | null
+          irr_base?: number | null
+          irr_max?: number | null
+          kwp_calcolati?: number | null
+          mq_tetto?: number | null
           nome?: string
           payback_anni?: number | null
-          potenza?: number
+          potenza?: number | null
           prezzo_variabile?: number | null
           produzione_annua?: number | null
+          profilo_attivita?: string | null
           provincia?: string
+          qualifica_180?: string | null
+          ricavo_immissione?: number | null
           risparmio_25_anni?: number | null
           risparmio_annuo?: number | null
           roi_annuo?: number | null
