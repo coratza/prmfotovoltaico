@@ -144,18 +144,38 @@ const CalcolaPreventivo = () => {
 
   return (
     <Layout>
-      {/* Hero */}
+      {/* Hero con layout a 2 colonne */}
       <section className="section-padding bg-accent">
-        <div className="container-custom text-center">
-          <div className="max-w-2xl mx-auto">
-            <Calculator className="w-12 h-12 text-primary mx-auto mb-4" />
-            <h1 className="text-3xl md:text-5xl font-heading font-light text-primary mb-4">
-              Calcola il Tuo Preventivo
-            </h1>
-            <p className="text-lg text-muted-foreground">
-              Scopri quanto puoi risparmiare con un impianto fotovoltaico.
-              Stima basata sui dati reali della tua bolletta.
-            </p>
+        <div className="container-custom">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-start">
+            {/* Colonna sinistra: motivazioni */}
+            <div className="lg:pt-4">
+              <h1 className="text-3xl md:text-5xl font-heading font-light text-primary mb-4">
+                Calcola il Tuo Rendimento
+              </h1>
+              <p className="text-lg text-muted-foreground mb-8">
+                Inserisci i tuoi dati e scopri subito quanto puoi risparmiare e guadagnare con il fotovoltaico.
+              </p>
+              <div className="space-y-4 hidden lg:block">
+                {[
+                  { icon: "📊", title: "Stima personalizzata", desc: "Basata sui tuoi consumi reali e sulla tua bolletta" },
+                  { icon: "💰", title: "Calcolo del rendimento", desc: "Scopri il ritorno sull'investimento e i tempi di rientro" },
+                  { icon: "🏠", title: "Per privati e aziende", desc: "Soluzioni su misura per ogni esigenza" },
+                  { icon: "📞", title: "Sopralluogo gratuito", desc: "Dopo il calcolo, ti contattiamo per una valutazione precisa" },
+                ].map((item) => (
+                  <div key={item.title} className="flex items-start gap-4 bg-card rounded-xl p-4 border border-border">
+                    <span className="text-2xl">{item.icon}</span>
+                    <div>
+                      <h3 className="font-medium text-foreground">{item.title}</h3>
+                      <p className="text-sm text-muted-foreground">{item.desc}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Colonna destra: form step 1 inline (solo su desktop) */}
+            <div className="lg:hidden" />
           </div>
         </div>
       </section>
@@ -326,7 +346,7 @@ const CalcolaPreventivo = () => {
                                   Per valutare l'ottimizzazione del tuo impianto esistente, contattaci direttamente per una consulenza personalizzata.
                                 </p>
                                 <Button variant="cta" size="sm" className="rounded-full mt-3" asChild>
-                                  <a href="tel:+393246117388">
+                                  <a href="tel:+393356117388">
                                     <Phone className="w-4 h-4" /> Chiamaci
                                   </a>
                                 </Button>
@@ -344,7 +364,7 @@ const CalcolaPreventivo = () => {
                     <ArrowLeft className="w-4 h-4" /> Indietro
                   </Button>
                   <Button variant="cta" size="lg" className="rounded-full" onClick={handleCalcola} disabled={!canProceedStep2 || (isAzienda && haImpiantoEsistente)}>
-                    Calcola Preventivo <ArrowRight className="w-4 h-4" />
+                    Calcola Rendimento <ArrowRight className="w-4 h-4" />
                   </Button>
                 </div>
               </div>
@@ -466,9 +486,9 @@ const CalcolaPreventivo = () => {
                     Vuoi una valutazione precisa e personalizzata?
                   </p>
                   <Button variant="cta" size="lg" className="rounded-full" asChild>
-                    <a href="tel:+393246117388">
+                    <a href="tel:+393356117388">
                       <Phone className="w-5 h-5" />
-                      Chiamaci: 324 611 7388
+                      Chiamaci: 335 611 7388
                     </a>
                   </Button>
                   <p className="text-sm text-muted-foreground mt-3">

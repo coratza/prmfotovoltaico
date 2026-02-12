@@ -2,48 +2,51 @@ import Layout from "@/components/layout/Layout";
 import { Button } from "@/components/ui/button";
 import { Phone, MapPin, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
-import heroImage from "@/assets/hero-solar-home.jpg";
-import villaSolar from "@/assets/villa-solar.jpg";
-import industrialSolar from "@/assets/industrial-solar.jpg";
+import projectVilla from "@/assets/project-villa-unifamiliare.jpg";
+import projectCasa from "@/assets/project-casa-indipendente.jpg";
+import projectCapannone from "@/assets/project-capannone.jpg";
+import projectBifamiliare from "@/assets/project-bifamiliare.jpg";
+import projectAgricola from "@/assets/project-azienda-agricola.jpg";
+import projectPiscina from "@/assets/project-villa-piscina.jpg";
 
 const projects = [
   {
-    image: heroImage,
+    image: projectVilla,
     title: "Villa unifamiliare",
     location: "San Lazzaro di Savena (BO)",
     description: "Impianto residenziale con accumulo. Autoconsumo aumentato e gestione completa delle pratiche.",
     type: "Residenziale",
   },
   {
-    image: villaSolar,
+    image: projectCasa,
     title: "Casa indipendente",
     location: "Casalecchio di Reno (BO)",
     description: "Impianto su tetto a falde. Lavoro pulito e tempi rapidi, con collaudo e messa in servizio.",
     type: "Residenziale",
   },
   {
-    image: industrialSolar,
+    image: projectCapannone,
     title: "Capannone artigianale",
     location: "Castel San Pietro Terme (BO)",
     description: "Impianto industriale dimensionato sui consumi aziendali. Obiettivo: aumentare l'autoconsumo e ridurre i costi.",
     type: "Industriale",
   },
   {
-    image: heroImage,
+    image: projectBifamiliare,
     title: "Bifamiliare",
     location: "Pianoro (BO)",
     description: "Soluzione su misura per due unità abitative, con gestione separata e pratica completa.",
     type: "Residenziale",
   },
   {
-    image: industrialSolar,
+    image: projectAgricola,
     title: "Azienda agricola",
     location: "Medicina (BO)",
     description: "Impianto su copertura agricola, con studio di fattibilità e ottimizzazione dei consumi in azienda.",
     type: "Agricolo",
   },
   {
-    image: villaSolar,
+    image: projectPiscina,
     title: "Villa con piscina",
     location: "Ozzano dell'Emilia (BO)",
     description: "Impianto residenziale con accumulo per aumentare l'autonomia e coprire carichi elettrici importanti.",
@@ -116,7 +119,7 @@ const LavoriRealizzati = () => {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button variant="cta" size="xl" asChild>
-                <a href="tel:+393246117388">
+                <a href="tel:+393356117388">
                   <Phone className="w-6 h-6" />
                   Chiama Ora
                 </a>

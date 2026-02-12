@@ -34,7 +34,7 @@ const App = () => (
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Index />} />
-          <Route path="/calcola-preventivo" element={<CalcolaPreventivo />} />
+          <Route path="/calcola-rendimento" element={<CalcolaPreventivo />} />
           <Route path="/fotovoltaico-privati" element={<FotovoltaicoPrivati />} />
           <Route path="/fotovoltaico-aziende" element={<FotovoltaicoAziende />} />
           <Route path="/lavori-realizzati" element={<LavoriRealizzati />} />
