@@ -35,6 +35,7 @@ export type Database = {
           kwp_calcolati: number | null
           mq_tetto: number | null
           nome: string
+          note: string | null
           payback_anni: number | null
           potenza: number | null
           prezzo_variabile: number | null
@@ -47,6 +48,7 @@ export type Database = {
           risparmio_annuo: number | null
           roi_annuo: number | null
           spesa_annua: number
+          stato: string
           telefono: string
           tipo_immobile: string
           tipologia: string
@@ -71,6 +73,7 @@ export type Database = {
           kwp_calcolati?: number | null
           mq_tetto?: number | null
           nome: string
+          note?: string | null
           payback_anni?: number | null
           potenza?: number | null
           prezzo_variabile?: number | null
@@ -83,6 +86,7 @@ export type Database = {
           risparmio_annuo?: number | null
           roi_annuo?: number | null
           spesa_annua: number
+          stato?: string
           telefono: string
           tipo_immobile: string
           tipologia: string
@@ -107,6 +111,7 @@ export type Database = {
           kwp_calcolati?: number | null
           mq_tetto?: number | null
           nome?: string
+          note?: string | null
           payback_anni?: number | null
           potenza?: number | null
           prezzo_variabile?: number | null
@@ -119,6 +124,7 @@ export type Database = {
           risparmio_annuo?: number | null
           roi_annuo?: number | null
           spesa_annua?: number
+          stato?: string
           telefono?: string
           tipo_immobile?: string
           tipologia?: string
