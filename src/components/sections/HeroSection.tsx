@@ -31,7 +31,7 @@ const HeroSection = () => {
 
           <div className="flex flex-col sm:flex-row gap-4">
             <Button variant="cta" size="lg" className="bg-primary-foreground text-foreground hover:bg-primary-foreground/90 rounded-full px-8" asChild>
-              <a href="tel:+393246117388">
+              <a href="tel:+393356117388">
                 <Phone className="w-5 h-5" />
                 CHIAMA ORA
               </a>

@@ -43,15 +43,15 @@ const Footer = () => {
             <h4 className="font-heading font-medium text-lg mb-4">Contatti</h4>
             <ul className="space-y-3 text-sm">
               <li>
-                <a href="tel:+393246117388" className="flex items-center gap-2 text-primary-foreground hover:text-primary-foreground/80 transition-colors">
+                <a href="tel:+393356117388" className="flex items-center gap-2 text-primary-foreground hover:text-primary-foreground/80 transition-colors">
                   <Phone className="w-4 h-4" />
-                  <span className="font-semibold">324 611 7388</span>
+                  <span className="font-semibold">335 611 7388</span>
                 </a>
               </li>
               <li>
-                <a href="mailto:info@prmfotovoltaico.it" className="flex items-center gap-2 text-primary-foreground/80 hover:text-primary-foreground transition-colors">
+                <a href="mailto:prm.navone@legalmail.it" className="flex items-center gap-2 text-primary-foreground/80 hover:text-primary-foreground transition-colors">
                   <Mail className="w-4 h-4" />
-                  info@prmfotovoltaico.it
+                  prm.navone@legalmail.it
                 </a>
               </li>
               <li className="flex items-start gap-2 text-primary-foreground/80">

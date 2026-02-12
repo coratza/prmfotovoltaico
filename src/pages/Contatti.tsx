@@ -60,10 +60,10 @@ const Contatti = () => {
                   <div>
                     <h3 className="font-semibold text-foreground mb-1">Telefono</h3>
                     <a
-                      href="tel:+393246117388"
+                      href="tel:+393356117388"
                       className="phone-link"
                     >
-                      324 611 7388
+                      335 611 7388
                     </a>
                     <p className="text-sm text-muted-foreground mt-1">
                       Il modo più veloce per parlarci (di solito rispondiamo in giornata)
@@ -78,10 +78,10 @@ const Contatti = () => {
                   <div>
                     <h3 className="font-semibold text-foreground mb-1">Email</h3>
                     <a
-                      href="mailto:info@solartech-bologna.it"
+                      href="mailto:prm.navone@legalmail.it"
                       className="text-primary hover:underline"
                     >
-                      info@solartech-bologna.it
+                      prm.navone@legalmail.it
                     </a>
                     <p className="text-sm text-muted-foreground mt-1">
                       Per richieste scritte
@@ -240,9 +240,9 @@ const Contatti = () => {
               Siamo disponibili per rispondere alle tue domande.
             </p>
             <Button variant="cta" size="xl" asChild>
-              <a href="tel:+393246117388">
+              <a href="tel:+393356117388">
                 <Phone className="w-6 h-6" />
-                Chiama Ora: 324 611 7388
+                Chiama Ora: 335 611 7388
               </a>
             </Button>
           </div>

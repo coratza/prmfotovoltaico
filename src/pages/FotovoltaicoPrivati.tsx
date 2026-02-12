@@ -35,7 +35,7 @@ const FotovoltaicoPrivati = () => {
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <Button size="lg" className="rounded-full bg-primary-foreground text-foreground hover:bg-primary-foreground/90" asChild>
-                <a href="tel:+393246117388"><Phone className="w-5 h-5" />Chiama Ora</a>
+                <a href="tel:+393356117388"><Phone className="w-5 h-5" />Chiama Ora</a>
               </Button>
               <Button size="lg" className="rounded-full border-2 border-primary-foreground bg-transparent text-primary-foreground hover:bg-primary-foreground/10" asChild>
                 <Link to="/contatti">Richiedi Sopralluogo<ArrowRight className="w-4 h-4" /></Link>
@@ -109,7 +109,7 @@ const FotovoltaicoPrivati = () => {
           <h2 className="text-3xl md:text-4xl font-heading font-light mb-4">Vuoi Sapere se il Fotovoltaico Fa per Te?</h2>
           <p className="text-xl text-primary-foreground/90 mb-8">Chiamaci o richiedi un sopralluogo. Ti spieghiamo tutto senza impegno.</p>
           <Button size="lg" className="rounded-full bg-primary-foreground text-foreground hover:bg-primary-foreground/90" asChild>
-            <a href="tel:+393246117388"><Phone className="w-6 h-6" />Chiama Ora: 324 611 7388</a>
+            <a href="tel:+393356117388"><Phone className="w-6 h-6" />Chiama Ora: 335 611 7388</a>
           </Button>
         </div>
       </section>
