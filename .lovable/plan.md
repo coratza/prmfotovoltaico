@@ -1,22 +1,69 @@
 
 
-## Fix: Scroll automatico in cima alla pagina quando si cambia pagina
+## Ottimizzazione SEO completa per PRM Fotovoltaico
 
-### Problema
+Stessa struttura del piano approvato, con una modifica: il title della Home avra "PRM Fotovoltaico" prima delle keyword geografiche.
 
-Quando navighi tra le pagine cliccando sui link del menu (es. "Per Privati", "Per Aziende"), la pagina non scrolla in alto e resti nella stessa posizione (tipicamente il footer). Questo e' il comportamento predefinito di React Router, che non resetta la posizione di scroll al cambio di route.
+---
 
-### Soluzione
+### 1. index.html - Rebranding e meta tag
 
-Creare un componente `ScrollToTop` che ascolta i cambi di route e forza lo scroll in cima alla pagina, poi inserirlo dentro il `BrowserRouter` in `App.tsx`.
+- **Title**: "PRM Fotovoltaico | Impianti Fotovoltaici Bologna, Modena, Ferrara, Ravenna"
+- **Description**: keyword-rich con tutte e 4 le province
+- **Keywords**: lista completa con tutte le keyword fornite
+- **Author**: "PRM Fotovoltaico"
+- **Canonical**: aggiornato a `https://prmfotovoltaico.lovable.app`
+- **OG/Twitter tags**: aggiornati con brand PRM prima
+- **JSON-LD structured data**: schema LocalBusiness con nome, indirizzo, telefono, aree servite
+
+### 2. Componente SEOHead riutilizzabile
+
+Nuovo file `src/components/SEOHead.tsx` che imposta `document.title` e meta description/keywords dinamiche per ogni pagina.
+
+### 3. Title dinamici per ogni pagina
+
+- **Home**: "PRM Fotovoltaico | Impianti Fotovoltaici Bologna, Modena, Ferrara, Ravenna"
+- **Fotovoltaico Privati**: "Fotovoltaico Residenziale Bologna | Installazione Chiavi in Mano | PRM Fotovoltaico"
+- **Fotovoltaico Aziende**: "Fotovoltaico Aziendale e Industriale Emilia-Romagna | PRM Fotovoltaico"
+- **Calcola Rendimento**: "Calcola Rendimento Fotovoltaico | Preventivo Gratuito | PRM Fotovoltaico"
+- **Lavori Realizzati**: "Lavori Realizzati Fotovoltaico Bologna e Emilia-Romagna | PRM Fotovoltaico"
+- **Chi Siamo**: "Chi Siamo - Installatore Fotovoltaico Bologna | PRM Fotovoltaico"
+- **Contatti**: "Contatti PRM Fotovoltaico | Installatore Bologna Modena Ferrara Ravenna"
+- **Agevolazioni hub**: "Detrazioni e Agevolazioni Fotovoltaico Emilia-Romagna | PRM Fotovoltaico"
+- **Sottopagine agevolazioni**: title dinamici dal template
+
+### 4. ChiSiamo.tsx - Correggere alt immagine
+
+Da "SolarTech" a "PRM Fotovoltaico"
+
+### 5. Creare public/sitemap.xml
+
+19 URL con priorita differenziate (Home 1.0, pagine principali 0.9, sottopagine 0.7-0.8)
+
+### 6. Aggiornare robots.txt
+
+Aggiungere `Sitemap: https://prmfotovoltaico.lovable.app/sitemap.xml`
+
+---
 
 ### Dettagli tecnici
 
-**Nuovo file: `src/components/ScrollToTop.tsx`**
+**File da creare:**
+- `src/components/SEOHead.tsx`
+- `public/sitemap.xml`
 
-Componente che usa `useLocation` e `useNavigationType` di React Router per intercettare ogni navigazione e chiamare `window.scrollTo(0, 0)`. Non resetta lo scroll quando l'utente usa il tasto "Indietro" del browser (navigazione POP).
+**File da modificare:**
+- `index.html` - rebranding + JSON-LD
+- `public/robots.txt` - sitemap
+- `src/pages/ChiSiamo.tsx` - alt immagine
+- `src/pages/Index.tsx` - aggiunta SEOHead
+- `src/pages/FotovoltaicoPrivati.tsx` - aggiunta SEOHead
+- `src/pages/FotovoltaicoAziende.tsx` - aggiunta SEOHead
+- `src/pages/CalcolaPreventivo.tsx` - aggiunta SEOHead
+- `src/pages/LavoriRealizzati.tsx` - aggiunta SEOHead
+- `src/pages/Contatti.tsx` - aggiunta SEOHead
+- `src/pages/Agevolazioni.tsx` - aggiunta SEOHead
+- `src/components/AgevolazionePageTemplate.tsx` - aggiunta SEOHead dinamico
 
-**File modificato: `src/App.tsx`**
-
-Aggiungere `<ScrollToTop />` subito dopo `<BrowserRouter>`, prima di `<Routes>`. Nessun'altra modifica necessaria.
+Nessuna modifica al database.
 
