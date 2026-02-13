@@ -1,4 +1,5 @@
 import Layout from "@/components/layout/Layout";
+import SEOHead from "@/components/SEOHead";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Phone, ArrowRight, CheckCircle, FileText, Wrench, BadgePercent, Home, Building2 } from "lucide-react";
@@ -59,6 +60,11 @@ const steps = [
 const Agevolazioni = () => {
   return (
     <Layout>
+      <SEOHead
+        title="Detrazioni e Agevolazioni Fotovoltaico Emilia-Romagna | PRM Fotovoltaico"
+        description="Scopri detrazioni fiscali e agevolazioni per impianti fotovoltaici in Emilia-Romagna. Detrazione 50% privati, agevolazioni 180% aziende. PRM Fotovoltaico ti guida."
+        keywords="detrazioni fotovoltaico, agevolazioni fotovoltaico, detrazioni fiscali fotovoltaico Emilia Romagna, detrazioni fotovoltaico Bologna, detrazioni fotovoltaico Ferrara, detrazioni fotovoltaico Modena, agevolazioni aziende fotovoltaico"
+      />
       <section className="section-padding bg-accent">
         <div className="container-custom">
           <div className="max-w-3xl mx-auto text-center">

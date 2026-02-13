@@ -1,4 +1,5 @@
 import Layout from "@/components/layout/Layout";
+import SEOHead from "@/components/SEOHead";
 import { Button } from "@/components/ui/button";
 import { Phone, ArrowRight, MapPin, Users, Heart, Wrench } from "lucide-react";
 import { Link } from "react-router-dom";
@@ -30,6 +31,11 @@ const values = [
 const ChiSiamo = () => {
   return (
     <Layout>
+      <SEOHead
+        title="Chi Siamo - Installatore Fotovoltaico Bologna | PRM Fotovoltaico"
+        description="PRM Fotovoltaico: azienda artigiana di San Lazzaro di Savena, specializzata in impianti fotovoltaici dal 2010. Oltre 200 installazioni a Bologna e Emilia-Romagna."
+        keywords="PRM Fotovoltaico chi siamo, installatore fotovoltaico Bologna, azienda fotovoltaico San Lazzaro di Savena, fotovoltaico artigiano Emilia Romagna"
+      />
       {/* Hero */}
       <section className="section-padding bg-accent">
         <div className="container-custom">
@@ -54,7 +60,7 @@ const ChiSiamo = () => {
             <div className="relative">
               <img
                 src={teamImage}
-                alt="Il team SolarTech al lavoro"
+                alt="Il team PRM Fotovoltaico al lavoro su impianto fotovoltaico a Bologna"
                 className="rounded-2xl shadow-strong w-full"
               />
               <div className="absolute -bottom-6 -left-6 bg-secondary text-secondary-foreground rounded-xl p-4 shadow-medium hidden md:block">

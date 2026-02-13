@@ -1,4 +1,5 @@
 import Layout from "@/components/layout/Layout";
+import SEOHead from "@/components/SEOHead";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Phone, CheckCircle, ArrowRight } from "lucide-react";
@@ -30,6 +31,10 @@ const AgevolazionePageTemplate = ({
 }: AgevolazionePageProps) => {
   return (
     <Layout>
+      <SEOHead
+        title={`${title} | PRM Fotovoltaico`}
+        description={heroSubtitle}
+      />
       {/* Hero */}
       <section className="section-padding bg-accent">
         <div className="container-custom">

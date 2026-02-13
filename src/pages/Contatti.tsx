@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Layout from "@/components/layout/Layout";
+import SEOHead from "@/components/SEOHead";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -28,6 +29,11 @@ const Contatti = () => {
 
   return (
     <Layout>
+      <SEOHead
+        title="Contatti PRM Fotovoltaico | Installatore Bologna Modena Ferrara Ravenna"
+        description="Contatta PRM Fotovoltaico per un sopralluogo gratuito. Installazione impianti fotovoltaici a Bologna, Modena, Ferrara e Ravenna. Chiama il 335 611 7388."
+        keywords="contatti PRM Fotovoltaico, installatore fotovoltaico Bologna, sopralluogo fotovoltaico gratuito, telefono fotovoltaico Bologna"
+      />
       {/* Hero */}
       <section className="section-padding bg-accent">
         <div className="container-custom">

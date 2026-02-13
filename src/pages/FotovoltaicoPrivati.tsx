@@ -1,4 +1,5 @@
 import Layout from "@/components/layout/Layout";
+import SEOHead from "@/components/SEOHead";
 import { Button } from "@/components/ui/button";
 import { Phone, ArrowRight, CheckCircle, Home, Lightbulb, Shield, Clock } from "lucide-react";
 import { Link } from "react-router-dom";
@@ -21,6 +22,11 @@ const process = [
 const FotovoltaicoPrivati = () => {
   return (
     <Layout>
+      <SEOHead
+        title="Fotovoltaico Residenziale Bologna | Installazione Chiavi in Mano | PRM Fotovoltaico"
+        description="Installa un impianto fotovoltaico residenziale a Bologna e provincia. Sopralluogo gratuito, pannelli di qualità, pratiche incluse. PRM Fotovoltaico, installatore locale dal 2010."
+        keywords="fotovoltaico residenziale Bologna, fotovoltaico casa, pannelli solari villa, impianto fotovoltaico privato, fotovoltaico con accumulo, installazione fotovoltaico chiavi in mano"
+      />
       {/* Hero */}
       <section className="relative py-20 md:py-32">
         <div className="absolute inset-0">
