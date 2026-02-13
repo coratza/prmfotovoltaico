@@ -1,4 +1,5 @@
 import Layout from "@/components/layout/Layout";
+import SEOHead from "@/components/SEOHead";
 import { Button } from "@/components/ui/button";
 import { Phone, MapPin, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
@@ -57,6 +58,11 @@ const projects = [
 const LavoriRealizzati = () => {
   return (
     <Layout>
+      <SEOHead
+        title="Lavori Realizzati Fotovoltaico Bologna e Emilia-Romagna | PRM Fotovoltaico"
+        description="Oltre 200 impianti fotovoltaici installati a Bologna e in Emilia-Romagna. Scopri i nostri lavori: ville, capannoni, aziende agricole. PRM Fotovoltaico."
+        keywords="lavori fotovoltaico Bologna, impianti fotovoltaici realizzati, portfolio fotovoltaico Emilia Romagna, installazioni fotovoltaico"
+      />
       {/* Hero */}
       <section className="section-padding bg-accent">
         <div className="container-custom">

@@ -1,4 +1,5 @@
 import Layout from "@/components/layout/Layout";
+import SEOHead from "@/components/SEOHead";
 import { Button } from "@/components/ui/button";
 import { Phone, ArrowRight, CheckCircle, TrendingDown, Zap, Award, Calculator } from "lucide-react";
 import { Link } from "react-router-dom";
@@ -14,6 +15,11 @@ const benefits = [
 const FotovoltaicoAziende = () => {
   return (
     <Layout>
+      <SEOHead
+        title="Fotovoltaico Aziendale e Industriale Emilia-Romagna | PRM Fotovoltaico"
+        description="Impianti fotovoltaici per aziende e industrie in Emilia-Romagna. Riduci i costi energetici con un investimento concreto. PRM Fotovoltaico, installatore specializzato."
+        keywords="fotovoltaico aziendale Bologna, fotovoltaico industriale, fotovoltaico per imprese, fotovoltaico per industria, fotovoltaico capannone, impianto fotovoltaico azienda Emilia Romagna"
+      />
       {/* Hero */}
       <section className="relative py-20 md:py-32">
         <div className="absolute inset-0">

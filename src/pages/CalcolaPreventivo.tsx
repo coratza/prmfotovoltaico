@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Layout from "@/components/layout/Layout";
+import SEOHead from "@/components/SEOHead";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Phone, Calculator, ArrowRight, ArrowLeft, CheckCircle, AlertTriangle, Info } from "lucide-react";
@@ -144,6 +145,11 @@ const CalcolaPreventivo = () => {
 
   return (
     <Layout>
+      <SEOHead
+        title="Calcola Rendimento Fotovoltaico | Preventivo Gratuito | PRM Fotovoltaico"
+        description="Calcola online il rendimento del tuo impianto fotovoltaico. Preventivo gratuito e personalizzato per privati e aziende a Bologna, Modena, Ferrara e Ravenna."
+        keywords="preventivo fotovoltaico, calcola rendimento fotovoltaico, preventivo impianti fotovoltaici Emilia Romagna, simulazione risparmio fotovoltaico"
+      />
       {/* Hero con layout a 2 colonne */}
       <section className="section-padding bg-accent">
         <div className="container-custom">

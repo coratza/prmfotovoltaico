@@ -1,4 +1,5 @@
 import Layout from "@/components/layout/Layout";
+import SEOHead from "@/components/SEOHead";
 import HeroSection from "@/components/sections/HeroSection";
 import InvestmentSection from "@/components/sections/InvestmentSection";
 import WhyChooseUsSection from "@/components/sections/WhyChooseUsSection";
@@ -13,6 +14,11 @@ import TestimonialsSection from "@/components/sections/TestimonialsSection";
 const Index = () => {
   return (
     <Layout>
+      <SEOHead
+        title="PRM Fotovoltaico | Impianti Fotovoltaici Bologna, Modena, Ferrara, Ravenna"
+        description="PRM Fotovoltaico: installazione impianti fotovoltaici chiavi in mano a Bologna, Modena, Ferrara e Ravenna. Sopralluogo gratuito, preventivo personalizzato. Privati e aziende."
+        keywords="PRM Fotovoltaico, fotovoltaico Bologna, impianti fotovoltaici Bologna, installazione fotovoltaico Modena, fotovoltaico Ferrara, fotovoltaico Ravenna, fotovoltaico Emilia Romagna, pannelli solari, energia solare"
+      />
       <HeroSection />
       <InvestmentSection />
       <WhyChooseUsSection />
