@@ -1,8 +1,20 @@
+import { useEffect } from "react";
 import Layout from "@/components/layout/Layout";
 import SEOHead from "@/components/SEOHead";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Phone, CheckCircle, ArrowRight } from "lucide-react";
+import { Phone, CheckCircle, ArrowRight, HelpCircle } from "lucide-react";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
+
+interface FAQ {
+  question: string;
+  answer: string;
+}
 
 interface AgevolazionePageProps {
   title: string;
@@ -10,30 +22,95 @@ interface AgevolazionePageProps {
   heroTitle: string;
   heroSubtitle: string;
   badge: string;
+  introText?: string;
   sections: {
     title: string;
     content: string[];
   }[];
   requirements: string[];
+  faqs?: FAQ[];
   province?: string;
+  keywords?: string;
+  ctaButtonText?: string;
   relatedLinks: { label: string; href: string }[];
 }
 
 const AgevolazionePageTemplate = ({
   title,
+  metaDescription,
   heroTitle,
   heroSubtitle,
   badge,
+  introText,
   sections,
   requirements,
+  faqs,
   province,
+  keywords,
+  ctaButtonText,
   relatedLinks,
 }: AgevolazionePageProps) => {
+  // Inject JSON-LD schemas
+  useEffect(() => {
+    const scripts: HTMLScriptElement[] = [];
+
+    // FAQ Schema
+    if (faqs && faqs.length > 0) {
+      const faqSchema = {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        mainEntity: faqs.map((faq) => ({
+          "@type": "Question",
+          name: faq.question,
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: faq.answer,
+          },
+        })),
+      };
+      const faqScript = document.createElement("script");
+      faqScript.type = "application/ld+json";
+      faqScript.text = JSON.stringify(faqSchema);
+      document.head.appendChild(faqScript);
+      scripts.push(faqScript);
+    }
+
+    // LocalBusiness Schema
+    const localBusinessSchema = {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      name: "PRM Fotovoltaico",
+      description: metaDescription,
+      telephone: "+39 335 611 7388",
+      url: "https://prmfotovoltaico.lovable.app",
+      address: {
+        "@type": "PostalAddress",
+        addressLocality: province || "Bologna",
+        addressRegion: "Emilia-Romagna",
+        addressCountry: "IT",
+      },
+      areaServed: province
+        ? { "@type": "AdministrativeArea", name: `Provincia di ${province}` }
+        : undefined,
+      priceRange: "€€",
+    };
+    const lbScript = document.createElement("script");
+    lbScript.type = "application/ld+json";
+    lbScript.text = JSON.stringify(localBusinessSchema);
+    document.head.appendChild(lbScript);
+    scripts.push(lbScript);
+
+    return () => {
+      scripts.forEach((s) => s.remove());
+    };
+  }, [faqs, province, metaDescription]);
+
   return (
     <Layout>
       <SEOHead
         title={`${title} | PRM Fotovoltaico`}
-        description={heroSubtitle}
+        description={metaDescription}
+        keywords={keywords}
       />
       {/* Hero */}
       <section className="section-padding bg-accent">
@@ -55,6 +132,19 @@ const AgevolazionePageTemplate = ({
           </div>
         </div>
       </section>
+
+      {/* Intro text */}
+      {introText && (
+        <section className="section-padding pb-0">
+          <div className="container-custom">
+            <div className="max-w-3xl mx-auto">
+              <p className="text-lg text-muted-foreground leading-relaxed">
+                {introText}
+              </p>
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* Content sections */}
       <section className="section-padding">
@@ -87,6 +177,30 @@ const AgevolazionePageTemplate = ({
                 ))}
               </div>
             </div>
+
+            {/* FAQ */}
+            {faqs && faqs.length > 0 && (
+              <div>
+                <h2 className="text-2xl md:text-3xl font-heading font-light text-primary mb-6">
+                  Domande frequenti
+                </h2>
+                <Accordion type="single" collapsible className="w-full">
+                  {faqs.map((faq, i) => (
+                    <AccordionItem key={i} value={`faq-${i}`}>
+                      <AccordionTrigger className="text-left text-foreground font-medium">
+                        <span className="flex items-center gap-2">
+                          <HelpCircle className="w-4 h-4 text-primary flex-shrink-0" />
+                          {faq.question}
+                        </span>
+                      </AccordionTrigger>
+                      <AccordionContent className="text-muted-foreground leading-relaxed">
+                        {faq.answer}
+                      </AccordionContent>
+                    </AccordionItem>
+                  ))}
+                </Accordion>
+              </div>
+            )}
           </div>
         </div>
       </section>
@@ -118,10 +232,12 @@ const AgevolazionePageTemplate = ({
       <section className="section-padding bg-gradient-hero">
         <div className="container-custom text-center text-primary-foreground">
           <h2 className="text-3xl md:text-4xl font-heading font-light mb-4">
-            Vuoi sapere se puoi accedere a queste agevolazioni{province ? ` a ${province}` : ""}?
+            {ctaButtonText
+              ? `${ctaButtonText}${province ? ` a ${province}` : ""}`
+              : `Vuoi sapere se puoi accedere a queste agevolazioni${province ? ` a ${province}` : ""}?`}
           </h2>
           <p className="text-xl text-primary-foreground/85 mb-8">
-            Chiamaci per una consulenza gratuita e personalizzata.
+            Ogni situazione è diversa: chiamaci per una consulenza gratuita e personalizzata.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button variant="cta" size="lg" className="rounded-full bg-primary-foreground text-foreground hover:bg-primary-foreground/90" asChild>
