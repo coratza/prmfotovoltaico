@@ -72,7 +72,7 @@ const Contatti = () => {
                       335 611 7388
                     </a>
                     <p className="text-sm text-muted-foreground mt-1">
-                      Il modo più veloce per parlarci (di solito rispondiamo in giornata)
+                      Ing. Navone Riccardo — rispondiamo di solito in giornata
                     </p>
                   </div>
                 </div>
