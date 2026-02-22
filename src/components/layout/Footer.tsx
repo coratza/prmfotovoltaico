@@ -47,6 +47,7 @@ const Footer = () => {
                   <Phone className="w-4 h-4" />
                   <span className="font-semibold">335 611 7388</span>
                 </a>
+                <p className="text-primary-foreground/60 text-xs mt-0.5 ml-6">Ing. Navone Riccardo</p>
               </li>
               <li>
                 <a href="mailto:prm.navone@legalmail.it" className="flex items-center gap-2 text-primary-foreground/80 hover:text-primary-foreground transition-colors">

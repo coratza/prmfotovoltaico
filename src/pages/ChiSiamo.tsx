@@ -45,7 +45,7 @@ const ChiSiamo = () => {
                 Chi Siamo
               </h1>
               <p className="text-xl text-muted-foreground mb-6">
-                Siamo un'azienda artigiana di San Lazzaro di Savena, specializzata nell'installazione di impianti fotovoltaici dal 2010.
+                Siamo un'azienda artigiana di San Lazzaro di Savena, fondata dall'Ing. Navone Riccardo, specializzata nell'installazione di impianti fotovoltaici dal 2010.
               </p>
               <p className="text-muted-foreground mb-8">
                 Lavoriamo con un approccio artigiano: pochi impianti, fatti bene. Ti seguiamo direttamente, dalla prima telefonata al collaudo, con una presenza reale sul territorio.
