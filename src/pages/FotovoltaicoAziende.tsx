@@ -19,6 +19,7 @@ const FotovoltaicoAziende = () => {
         title="Fotovoltaico Aziendale e Industriale Emilia-Romagna | PRM Fotovoltaico"
         description="Impianti fotovoltaici per aziende e industrie in Emilia-Romagna. Riduci i costi energetici con un investimento concreto. PRM Fotovoltaico, installatore specializzato."
         keywords="fotovoltaico aziendale Bologna, fotovoltaico industriale, fotovoltaico per imprese, fotovoltaico per industria, fotovoltaico capannone, impianto fotovoltaico azienda Emilia Romagna"
+        canonicalPath="/fotovoltaico-aziende"
       />
       {/* Hero */}
       <section className="relative py-20 md:py-32">

@@ -62,6 +62,7 @@ const LavoriRealizzati = () => {
         title="Lavori Realizzati Fotovoltaico Bologna e Emilia-Romagna | PRM Fotovoltaico"
         description="Oltre 200 impianti fotovoltaici installati a Bologna e in Emilia-Romagna. Scopri i nostri lavori: ville, capannoni, aziende agricole. PRM Fotovoltaico."
         keywords="lavori fotovoltaico Bologna, impianti fotovoltaici realizzati, portfolio fotovoltaico Emilia Romagna, installazioni fotovoltaico"
+        canonicalPath="/lavori-realizzati"
       />
       {/* Hero */}
       <section className="section-padding bg-accent">
