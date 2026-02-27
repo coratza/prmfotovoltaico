@@ -82,7 +82,7 @@ const AgevolazionePageTemplate = ({
       name: "PRM Fotovoltaico",
       description: metaDescription,
       telephone: "+39 335 611 7388",
-      url: "https://prmfotovoltaico.lovable.app",
+      url: "https://prmfotovoltaico.com",
       address: {
         "@type": "PostalAddress",
         addressLocality: province || "Bologna",
