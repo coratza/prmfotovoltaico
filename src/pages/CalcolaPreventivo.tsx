@@ -149,6 +149,7 @@ const CalcolaPreventivo = () => {
         title="Calcola Rendimento Fotovoltaico | Preventivo Gratuito | PRM Fotovoltaico"
         description="Calcola online il rendimento del tuo impianto fotovoltaico. Preventivo gratuito e personalizzato per privati e aziende a Bologna, Modena, Ferrara e Ravenna."
         keywords="preventivo fotovoltaico, calcola rendimento fotovoltaico, preventivo impianti fotovoltaici Emilia Romagna, simulazione risparmio fotovoltaico"
+        canonicalPath="/calcola-rendimento"
       />
       {/* Hero con layout a 2 colonne */}
       <section className="section-padding bg-accent">

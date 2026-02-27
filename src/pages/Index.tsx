@@ -18,6 +18,7 @@ const Index = () => {
         title="PRM Fotovoltaico | Impianti Fotovoltaici Bologna, Modena, Ferrara, Ravenna"
         description="PRM Fotovoltaico: installazione impianti fotovoltaici chiavi in mano a Bologna, Modena, Ferrara e Ravenna. Sopralluogo gratuito, preventivo personalizzato. Privati e aziende."
         keywords="PRM Fotovoltaico, fotovoltaico Bologna, impianti fotovoltaici Bologna, installazione fotovoltaico Modena, fotovoltaico Ferrara, fotovoltaico Ravenna, fotovoltaico Emilia Romagna, pannelli solari, energia solare"
+        canonicalPath="/"
       />
       <HeroSection />
       <InvestmentSection />

@@ -12,5 +12,6 @@ Allow: /
 
 User-agent: *
 Allow: /
+Disallow: /admin
 
-Sitemap: https://prmfotovoltaico.lovable.app/sitemap.xml
+Sitemap: https://prmfotovoltaico.com/sitemap.xml
