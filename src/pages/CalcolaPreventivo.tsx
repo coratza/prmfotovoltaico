@@ -158,10 +158,10 @@ const CalcolaPreventivo = () => {
             {/* Colonna sinistra: motivazioni */}
             <div className="lg:pt-4">
               <h1 className="text-3xl md:text-5xl font-heading font-light text-primary mb-4">
-                Calcola il Tuo Rendimento
+                Calcola il Rendimento del Tuo Investimento Fotovoltaico
               </h1>
               <p className="text-lg text-muted-foreground mb-8">
-                Inserisci i tuoi dati e scopri subito quanto puoi risparmiare e guadagnare con il fotovoltaico.
+                Scopri ROI, tempo di rientro e risparmio annuo del tuo impianto fotovoltaico. Simulazione gratuita e personalizzata.
               </p>
               <div className="space-y-4 hidden lg:block">
                 {[
