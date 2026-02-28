@@ -4,23 +4,78 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { CheckCircle } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { supabase } from "@/integrations/supabase/client";
+import { validatePhone, validateEmail } from "@/lib/validation";
 
 const LeadFormSection = () => {
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [clientType, setClientType] = useState("privato");
+  const [phoneError, setPhoneError] = useState<string | null>(null);
+  const [emailError, setEmailError] = useState<string | null>(null);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+
+    const nome = formData.get("name") as string;
+    const telefono = formData.get("phone") as string;
+    const email = (formData.get("email") as string) || "";
+    const details = (formData.get("details") as string) || "";
+
+    // Validate
+    const pErr = validatePhone(telefono);
+    const eErr = validateEmail(email);
+    setPhoneError(pErr);
+    setEmailError(eErr);
+    if (pErr || eErr) return;
+
     setIsSubmitting(true);
-    await new Promise((resolve) => setTimeout(resolve, 1000));
-    setIsSubmitting(false);
-    setIsSubmitted(true);
-    toast({
-      title: "Richiesta inviata!",
-      description: "Ti ricontatteremo al più presto.",
-    });
+    try {
+      const { error } = await supabase.functions.invoke("save-lead", {
+        body: {
+          nome,
+          telefono,
+          email: email || null,
+          tipologia: clientType,
+          provincia: "bologna",
+          tipo_immobile: clientType === "azienda" ? "capannone" : "casa_singola",
+          consumo_annuo: 3500,
+          spesa_annua: 800,
+          ...(clientType === "azienda" && {
+            mq_tetto: 100,
+            profilo_attivita: "diurno",
+          }),
+          note: details || null,
+        },
+      });
+
+      if (error) {
+        console.error("Errore invio lead:", error);
+        toast({
+          title: "Errore nell'invio",
+          description: "Si è verificato un problema. Riprova o chiamaci direttamente.",
+          variant: "destructive",
+        });
+      } else {
+        setIsSubmitted(true);
+        toast({
+          title: "Richiesta inviata!",
+          description: "Ti ricontatteremo al più presto.",
+        });
+      }
+    } catch (err) {
+      console.error("Errore invio lead:", err);
+      toast({
+        title: "Errore nell'invio",
+        description: "Si è verificato un problema. Riprova o chiamaci direttamente.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -53,7 +108,7 @@ const LeadFormSection = () => {
                   <label htmlFor="lead-name" className="block text-sm font-medium text-foreground mb-1.5">
                     Nome e Cognome *
                   </label>
-                  <Input id="lead-name" name="name" required placeholder="Mario Rossi" className="h-12 rounded-xl" />
+                  <Input id="lead-name" name="name" required placeholder="Mario Rossi" className="h-12 rounded-xl" maxLength={200} />
                 </div>
                 <div>
                   <label htmlFor="lead-company" className="block text-sm font-medium text-foreground mb-1.5">
@@ -66,15 +121,17 @@ const LeadFormSection = () => {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                 <div>
                   <label htmlFor="lead-email" className="block text-sm font-medium text-foreground mb-1.5">
-                    Email *
+                    Email
                   </label>
-                  <Input id="lead-email" name="email" type="email" required placeholder="mario@email.it" className="h-12 rounded-xl" />
+                  <Input id="lead-email" name="email" type="email" placeholder="mario@email.it" className="h-12 rounded-xl" />
+                  {emailError && <p className="text-sm text-destructive mt-1">{emailError}</p>}
                 </div>
                 <div>
                   <label htmlFor="lead-phone" className="block text-sm font-medium text-foreground mb-1.5">
                     Telefono *
                   </label>
-                  <Input id="lead-phone" name="phone" type="tel" required placeholder="333 1234567" className="h-12 rounded-xl" />
+                  <Input id="lead-phone" name="phone" type="tel" required placeholder="333 1234567" className="h-12 rounded-xl" maxLength={30} />
+                  {phoneError && <p className="text-sm text-destructive mt-1">{phoneError}</p>}
                 </div>
               </div>
 

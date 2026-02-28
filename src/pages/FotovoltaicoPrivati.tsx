@@ -31,7 +31,7 @@ const FotovoltaicoPrivati = () => {
       {/* Hero */}
       <section className="relative py-20 md:py-32">
         <div className="absolute inset-0">
-          <img src={villaSolar} alt="Villa con pannelli solari" className="w-full h-full object-cover" />
+          <img src={villaSolar} alt="Villa con pannelli solari installati da PRM Fotovoltaico a Bologna" className="w-full h-full object-cover" loading="eager" fetchPriority="high" />
           <div className="absolute inset-0 bg-gradient-to-r from-foreground/85 via-foreground/65 to-transparent" />
         </div>
         <div className="container-custom relative z-10">

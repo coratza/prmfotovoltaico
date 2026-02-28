@@ -85,10 +85,11 @@ const LavoriRealizzati = () => {
             {projects.map((project, index) => (
               <div key={index} className="group bg-card rounded-xl overflow-hidden shadow-soft border border-border hover:shadow-medium transition-all duration-300">
                 <div className="relative overflow-hidden">
-                  <img
+                   <img
                     src={project.image}
-                    alt={project.title}
+                    alt={`Impianto fotovoltaico ${project.title} a ${project.location} - PRM Fotovoltaico`}
                     className="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-500"
+                    loading="lazy"
                   />
                   <div className="absolute top-4 left-4">
                     <span className="bg-primary text-primary-foreground text-xs font-medium px-3 py-1 rounded-full">
