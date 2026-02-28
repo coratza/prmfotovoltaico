@@ -146,9 +146,9 @@ const CalcolaPreventivo = () => {
   return (
     <Layout>
       <SEOHead
-        title="Calcola Rendimento Fotovoltaico | Preventivo Gratuito | PRM Fotovoltaico"
-        description="Calcola online il rendimento del tuo impianto fotovoltaico. Preventivo gratuito e personalizzato per privati e aziende a Bologna, Modena, Ferrara e Ravenna."
-        keywords="preventivo fotovoltaico, calcola rendimento fotovoltaico, preventivo impianti fotovoltaici Emilia Romagna, simulazione risparmio fotovoltaico"
+        title="Calcola Rendimento Investimento Fotovoltaico | ROI, Payback e Risparmio | PRM Fotovoltaico"
+        description="Calcola gratis il rendimento del tuo investimento fotovoltaico: ROI, tempo di rientro, risparmio annuo e IRR a 25 anni. Simulatore online per privati e aziende a Bologna, Modena, Ferrara e Ravenna."
+        keywords="rendimento investimento fotovoltaico, ROI fotovoltaico, calcolo rendimento pannelli solari, tempo rientro investimento fotovoltaico, payback fotovoltaico, risparmio fotovoltaico, simulazione rendimento fotovoltaico, preventivo fotovoltaico gratuito, quanto rende fotovoltaico, investimento fotovoltaico conviene, fotovoltaico ritorno economico, IRR fotovoltaico, calcolo autoconsumo fotovoltaico, preventivo impianti fotovoltaici Emilia Romagna"
         canonicalPath="/calcola-rendimento"
       />
       {/* Hero con layout a 2 colonne */}
