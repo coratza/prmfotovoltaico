@@ -27,6 +27,10 @@ const FotovoltaicoPrivati = () => {
         description="Installa un impianto fotovoltaico residenziale a Bologna e provincia. Sopralluogo gratuito, pannelli di qualità, pratiche incluse. PRM Fotovoltaico, installatore locale dal 2010."
         keywords="fotovoltaico residenziale Bologna, fotovoltaico casa, pannelli solari villa, impianto fotovoltaico privato, fotovoltaico con accumulo, installazione fotovoltaico chiavi in mano"
         canonicalPath="/fotovoltaico-privati"
+        breadcrumbs={[
+          { name: "Home", href: "/" },
+          { name: "Fotovoltaico Privati", href: "/fotovoltaico-privati" },
+        ]}
       />
       {/* Hero */}
       <section className="relative py-20 md:py-32">
