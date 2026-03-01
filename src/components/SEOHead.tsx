@@ -1,15 +1,27 @@
 import { useEffect } from "react";
 
+interface BreadcrumbItem {
+  name: string;
+  href: string;
+}
+
+interface FAQItem {
+  question: string;
+  answer: string;
+}
+
 interface SEOHeadProps {
   title: string;
   description: string;
   keywords?: string;
   canonicalPath?: string;
+  breadcrumbs?: BreadcrumbItem[];
+  faqs?: FAQItem[];
 }
 
 const SITE_URL = "https://prmfotovoltaico.com";
 
-const SEOHead = ({ title, description, keywords, canonicalPath }: SEOHeadProps) => {
+const SEOHead = ({ title, description, keywords, canonicalPath, breadcrumbs, faqs }: SEOHeadProps) => {
   useEffect(() => {
     document.title = title;
 
@@ -53,10 +65,54 @@ const SEOHead = ({ title, description, keywords, canonicalPath }: SEOHeadProps) 
       }
     }
 
+    // JSON-LD scripts
+    const scripts: HTMLScriptElement[] = [];
+
+    // BreadcrumbList schema
+    if (breadcrumbs && breadcrumbs.length > 0) {
+      const breadcrumbSchema = {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        itemListElement: breadcrumbs.map((item, index) => ({
+          "@type": "ListItem",
+          position: index + 1,
+          name: item.name,
+          item: `${SITE_URL}${item.href}`,
+        })),
+      };
+      const script = document.createElement("script");
+      script.type = "application/ld+json";
+      script.text = JSON.stringify(breadcrumbSchema);
+      document.head.appendChild(script);
+      scripts.push(script);
+    }
+
+    // FAQ schema
+    if (faqs && faqs.length > 0) {
+      const faqSchema = {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        mainEntity: faqs.map((faq) => ({
+          "@type": "Question",
+          name: faq.question,
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: faq.answer,
+          },
+        })),
+      };
+      const script = document.createElement("script");
+      script.type = "application/ld+json";
+      script.text = JSON.stringify(faqSchema);
+      document.head.appendChild(script);
+      scripts.push(script);
+    }
+
     return () => {
       document.title = "PRM Fotovoltaico | Impianti Fotovoltaici Bologna, Modena, Ferrara, Ravenna";
+      scripts.forEach((s) => s.remove());
     };
-  }, [title, description, keywords, canonicalPath]);
+  }, [title, description, keywords, canonicalPath, breadcrumbs, faqs]);
 
   return null;
 };
