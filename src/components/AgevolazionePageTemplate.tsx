@@ -33,6 +33,8 @@ interface AgevolazionePageProps {
   keywords?: string;
   ctaButtonText?: string;
   relatedLinks: { label: string; href: string }[];
+  canonicalPath?: string;
+  breadcrumbs?: { name: string; href: string }[];
 }
 
 const AgevolazionePageTemplate = ({
