@@ -81,6 +81,10 @@ const Contatti = () => {
         description="Contatta PRM Fotovoltaico per un sopralluogo gratuito. Installazione impianti fotovoltaici a Bologna, Modena, Ferrara e Ravenna. Chiama il 335 611 7388."
         keywords="contatti PRM Fotovoltaico, installatore fotovoltaico Bologna, sopralluogo fotovoltaico gratuito, telefono fotovoltaico Bologna"
         canonicalPath="/contatti"
+        breadcrumbs={[
+          { name: "Home", href: "/" },
+          { name: "Contatti", href: "/contatti" },
+        ]}
       />
       {/* Hero */}
       <section className="section-padding bg-accent">

@@ -10,6 +10,13 @@ const AgevolazioniAziendeFerrara = () => (
     badge="-180%"
     province="Ferrara"
     ctaButtonText="Verifica la tua agevolazione"
+    canonicalPath="/agevolazioni/agevolazioni-aziende-ferrara"
+    breadcrumbs={[
+      { name: "Home", href: "/" },
+      { name: "Agevolazioni", href: "/agevolazioni" },
+      { name: "Agevolazioni Aziende", href: "/agevolazioni/agevolazioni-aziende" },
+      { name: "Ferrara", href: "/agevolazioni/agevolazioni-aziende-ferrara" },
+    ]}
     introText="La provincia di Ferrara, con il suo forte settore agricolo e un tessuto produttivo di piccole e medie imprese, è un territorio ideale per il fotovoltaico aziendale. Le ampie coperture di stalle, fienili, magazzini e capannoni offrono superfici perfette per impianti di grande potenza. In questa pagina trovi tutte le informazioni sulle agevolazioni fiscali e i contributi disponibili per le imprese ferraresi che vogliono investire nell'energia solare."
     sections={[
       {

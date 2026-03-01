@@ -8,6 +8,13 @@ const DetrazioniPrivatiModena = () => (
     heroSubtitle="Possiedi una casa a Modena o in provincia? Puoi usufruire della detrazione fiscale del 50% per l'installazione del tuo impianto fotovoltaico."
     badge="-50%"
     province="Modena"
+    canonicalPath="/agevolazioni/detrazioni-privati-modena"
+    breadcrumbs={[
+      { name: "Home", href: "/" },
+      { name: "Agevolazioni", href: "/agevolazioni" },
+      { name: "Detrazioni Privati", href: "/agevolazioni/detrazioni-privati" },
+      { name: "Modena", href: "/agevolazioni/detrazioni-privati-modena" },
+    ]}
     sections={[
       {
         title: "Detrazione del 50% per abitazioni a Modena",

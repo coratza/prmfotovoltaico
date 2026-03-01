@@ -33,6 +33,8 @@ interface AgevolazionePageProps {
   keywords?: string;
   ctaButtonText?: string;
   relatedLinks: { label: string; href: string }[];
+  canonicalPath?: string;
+  breadcrumbs?: { name: string; href: string }[];
 }
 
 const AgevolazionePageTemplate = ({
@@ -49,6 +51,8 @@ const AgevolazionePageTemplate = ({
   keywords,
   ctaButtonText,
   relatedLinks,
+  canonicalPath,
+  breadcrumbs,
 }: AgevolazionePageProps) => {
   // Inject JSON-LD schemas
   useEffect(() => {
@@ -111,6 +115,9 @@ const AgevolazionePageTemplate = ({
         title={`${title} | PRM Fotovoltaico`}
         description={metaDescription}
         keywords={keywords}
+        canonicalPath={canonicalPath}
+        breadcrumbs={breadcrumbs}
+        faqs={faqs}
       />
       {/* Hero */}
       <section className="section-padding bg-accent">

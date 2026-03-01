@@ -8,6 +8,13 @@ const DetrazioniPrivatiRavenna = () => (
     heroSubtitle="Possiedi una casa a Ravenna o in provincia? Scopri come usufruire della detrazione fiscale del 50% per il tuo impianto fotovoltaico."
     badge="-50%"
     province="Ravenna"
+    canonicalPath="/agevolazioni/detrazioni-privati-ravenna"
+    breadcrumbs={[
+      { name: "Home", href: "/" },
+      { name: "Agevolazioni", href: "/agevolazioni" },
+      { name: "Detrazioni Privati", href: "/agevolazioni/detrazioni-privati" },
+      { name: "Ravenna", href: "/agevolazioni/detrazioni-privati-ravenna" },
+    ]}
     sections={[
       {
         title: "Detrazione del 50% per abitazioni a Ravenna",
