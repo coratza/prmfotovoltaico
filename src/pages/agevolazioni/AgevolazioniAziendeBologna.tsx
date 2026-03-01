@@ -10,6 +10,13 @@ const AgevolazioniAziendeBologna = () => (
     badge="-180%"
     province="Bologna"
     ctaButtonText="Verifica la tua agevolazione"
+    canonicalPath="/agevolazioni/agevolazioni-aziende-bologna"
+    breadcrumbs={[
+      { name: "Home", href: "/" },
+      { name: "Agevolazioni", href: "/agevolazioni" },
+      { name: "Agevolazioni Aziende", href: "/agevolazioni/agevolazioni-aziende" },
+      { name: "Bologna", href: "/agevolazioni/agevolazioni-aziende-bologna" },
+    ]}
     introText="Se la tua azienda ha sede a Bologna o nella provincia, installare un impianto fotovoltaico nel 2025 può essere un investimento a costo quasi zero grazie alla combinazione di incentivi nazionali e contributi locali. In questa pagina trovi una guida completa e aggiornata a tutte le agevolazioni fiscali disponibili per le imprese bolognesi che vogliono ridurre i costi energetici con il fotovoltaico."
     sections={[
       {

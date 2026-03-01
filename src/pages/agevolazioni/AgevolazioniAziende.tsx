@@ -9,6 +9,12 @@ const AgevolazioniAziende = () => (
     heroTitle="Agevolazioni Fotovoltaico per Aziende"
     heroSubtitle="Sono disponibili agevolazioni fiscali fino al 180% del valore dell'investimento. Il beneficio dipende dalla tipologia di impresa e dal regime fiscale."
     badge="-180%"
+    canonicalPath="/agevolazioni/agevolazioni-aziende"
+    breadcrumbs={[
+      { name: "Home", href: "/" },
+      { name: "Agevolazioni", href: "/agevolazioni" },
+      { name: "Agevolazioni Aziende", href: "/agevolazioni/agevolazioni-aziende" },
+    ]}
     sections={[
       {
         title: "Piano Transizione 5.0",

@@ -10,6 +10,13 @@ const AgevolazioniAziendeRavenna = () => (
     badge="-180%"
     province="Ravenna"
     ctaButtonText="Verifica la tua agevolazione"
+    canonicalPath="/agevolazioni/agevolazioni-aziende-ravenna"
+    breadcrumbs={[
+      { name: "Home", href: "/" },
+      { name: "Agevolazioni", href: "/agevolazioni" },
+      { name: "Agevolazioni Aziende", href: "/agevolazioni/agevolazioni-aziende" },
+      { name: "Ravenna", href: "/agevolazioni/agevolazioni-aziende-ravenna" },
+    ]}
     introText="Ravenna e la sua provincia ospitano un tessuto produttivo variegato: dal porto industriale alle attività turistiche della riviera, dalle aziende agricole della pianura alle imprese manifatturiere di Faenza e Lugo. Per tutte queste realtà, il fotovoltaico rappresenta un'opportunità concreta per ridurre i costi energetici e aumentare la competitività. Questa guida ti illustra tutte le agevolazioni fiscali e i contributi disponibili per le aziende ravennati."
     sections={[
       {

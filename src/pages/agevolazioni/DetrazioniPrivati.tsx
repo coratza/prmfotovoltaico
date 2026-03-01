@@ -9,6 +9,12 @@ const DetrazioniPrivati = () => (
     heroTitle="Detrazioni Fotovoltaico per Privati"
     heroSubtitle="È prevista una detrazione fiscale fino al 50% per l'installazione di impianti fotovoltaici su abitazioni. La detrazione viene recuperata nel tempo tramite la dichiarazione dei redditi."
     badge="-50%"
+    canonicalPath="/agevolazioni/detrazioni-privati"
+    breadcrumbs={[
+      { name: "Home", href: "/" },
+      { name: "Agevolazioni", href: "/agevolazioni" },
+      { name: "Detrazioni Privati", href: "/agevolazioni/detrazioni-privati" },
+    ]}
     sections={[
       {
         title: "Come funziona la detrazione del 50%",

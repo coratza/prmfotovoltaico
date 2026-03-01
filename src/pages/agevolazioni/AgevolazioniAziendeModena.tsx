@@ -10,6 +10,13 @@ const AgevolazioniAziendeModena = () => (
     badge="-180%"
     province="Modena"
     ctaButtonText="Verifica la tua agevolazione"
+    canonicalPath="/agevolazioni/agevolazioni-aziende-modena"
+    breadcrumbs={[
+      { name: "Home", href: "/" },
+      { name: "Agevolazioni", href: "/agevolazioni" },
+      { name: "Agevolazioni Aziende", href: "/agevolazioni/agevolazioni-aziende" },
+      { name: "Modena", href: "/agevolazioni/agevolazioni-aziende-modena" },
+    ]}
     introText="Modena è una delle province più energivore dell'Emilia-Romagna, con un tessuto produttivo che spazia dalla ceramica alla meccanica, dal tessile all'agroalimentare. Per le aziende modenesi, il fotovoltaico non è solo una scelta sostenibile ma un investimento strategico, reso ancora più conveniente dalle agevolazioni fiscali attualmente disponibili. In questa guida trovi tutto ciò che devi sapere per accedere agli incentivi e ridurre concretamente i costi energetici della tua impresa."
     sections={[
       {

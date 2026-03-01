@@ -8,6 +8,13 @@ const DetrazioniPrivatiBologna = () => (
     heroSubtitle="Sei proprietario di una casa a Bologna o in provincia? Puoi usufruire della detrazione fiscale del 50% per l'installazione di un impianto fotovoltaico sulla tua abitazione."
     badge="-50%"
     province="Bologna"
+    canonicalPath="/agevolazioni/detrazioni-privati-bologna"
+    breadcrumbs={[
+      { name: "Home", href: "/" },
+      { name: "Agevolazioni", href: "/agevolazioni" },
+      { name: "Detrazioni Privati", href: "/agevolazioni/detrazioni-privati" },
+      { name: "Bologna", href: "/agevolazioni/detrazioni-privati-bologna" },
+    ]}
     sections={[
       {
         title: "Detrazione del 50% per abitazioni a Bologna",

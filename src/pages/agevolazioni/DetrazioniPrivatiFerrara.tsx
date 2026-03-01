@@ -8,6 +8,13 @@ const DetrazioniPrivatiFerrara = () => (
     heroSubtitle="Hai una casa a Ferrara o in provincia? Puoi beneficiare della detrazione fiscale del 50% per installare un impianto fotovoltaico sulla tua abitazione."
     badge="-50%"
     province="Ferrara"
+    canonicalPath="/agevolazioni/detrazioni-privati-ferrara"
+    breadcrumbs={[
+      { name: "Home", href: "/" },
+      { name: "Agevolazioni", href: "/agevolazioni" },
+      { name: "Detrazioni Privati", href: "/agevolazioni/detrazioni-privati" },
+      { name: "Ferrara", href: "/agevolazioni/detrazioni-privati-ferrara" },
+    ]}
     sections={[
       {
         title: "Detrazione del 50% per abitazioni a Ferrara",
