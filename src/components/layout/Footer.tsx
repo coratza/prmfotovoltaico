@@ -24,6 +24,7 @@ const Footer = () => {
             <ul className="space-y-2 text-sm text-primary-foreground/80">
               <li><Link to="/fotovoltaico-privati" className="hover:text-primary-foreground transition-colors">Fotovoltaico per Privati</Link></li>
               <li><Link to="/fotovoltaico-aziende" className="hover:text-primary-foreground transition-colors">Fotovoltaico per Aziende</Link></li>
+              <li><Link to="/calcola-rendimento" className="hover:text-primary-foreground transition-colors">Calcola Rendimento</Link></li>
               <li><Link to="/agevolazioni" className="hover:text-primary-foreground transition-colors">Detrazioni e Agevolazioni</Link></li>
               <li><Link to="/lavori-realizzati" className="hover:text-primary-foreground transition-colors">Lavori Realizzati</Link></li>
             </ul>
