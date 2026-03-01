@@ -51,6 +51,8 @@ const AgevolazionePageTemplate = ({
   keywords,
   ctaButtonText,
   relatedLinks,
+  canonicalPath,
+  breadcrumbs,
 }: AgevolazionePageProps) => {
   // Inject JSON-LD schemas
   useEffect(() => {
