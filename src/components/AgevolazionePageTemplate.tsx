@@ -115,6 +115,9 @@ const AgevolazionePageTemplate = ({
         title={`${title} | PRM Fotovoltaico`}
         description={metaDescription}
         keywords={keywords}
+        canonicalPath={canonicalPath}
+        breadcrumbs={breadcrumbs}
+        faqs={faqs}
       />
       {/* Hero */}
       <section className="section-padding bg-accent">
