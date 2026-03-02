@@ -7,7 +7,7 @@ import { Badge } from "@/components/ui/badge";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
-import { LogOut, Download, Search, Users, CalendarDays, ChevronDown, ChevronUp, Loader2 } from "lucide-react";
+import { LogOut, Download, Search, Users, CalendarDays, ChevronDown, ChevronUp, Loader2, RefreshCw } from "lucide-react";
 import type { Tables } from "@/integrations/supabase/types";
 
 type Lead = Tables<"leads_preventivo">;
@@ -24,8 +24,11 @@ const AdminDashboard = ({ onLogout }: Props) => {
   const [filterProvincia, setFilterProvincia] = useState("all");
   const [expandedId, setExpandedId] = useState<string | null>(null);
 
+  // Auto-refresh every 30 seconds
   useEffect(() => {
     fetchLeads();
+    const interval = setInterval(fetchLeads, 30000);
+    return () => clearInterval(interval);
   }, []);
 
   const fetchLeads = async () => {
@@ -91,9 +94,14 @@ const AdminDashboard = ({ onLogout }: Props) => {
       {/* Header */}
       <header className="border-b bg-card px-4 py-3 flex items-center justify-between">
         <h1 className="text-xl font-bold font-[Josefin_Sans] text-foreground">Dashboard Lead PRM</h1>
-        <Button variant="outline" size="sm" onClick={onLogout}>
-          <LogOut className="h-4 w-4 mr-1" /> Esci
-        </Button>
+        <div className="flex items-center gap-2">
+          <Button variant="outline" size="sm" onClick={() => fetchLeads()}>
+            <RefreshCw className="h-4 w-4 mr-1" /> Aggiorna
+          </Button>
+          <Button variant="outline" size="sm" onClick={onLogout}>
+            <LogOut className="h-4 w-4 mr-1" /> Esci
+          </Button>
+        </div>
       </header>
 
       <main className="max-w-7xl mx-auto px-4 py-6 space-y-6">
