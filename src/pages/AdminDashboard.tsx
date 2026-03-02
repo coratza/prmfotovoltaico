@@ -7,7 +7,7 @@ import { Badge } from "@/components/ui/badge";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
-import { LogOut, Download, Search, Users, CalendarDays, ChevronDown, ChevronUp, Loader2 } from "lucide-react";
+import { LogOut, Download, Search, Users, CalendarDays, ChevronDown, ChevronUp, Loader2, RefreshCw } from "lucide-react";
 import type { Tables } from "@/integrations/supabase/types";
 
 type Lead = Tables<"leads_preventivo">;
