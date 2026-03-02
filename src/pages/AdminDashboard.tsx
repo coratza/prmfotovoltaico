@@ -24,8 +24,11 @@ const AdminDashboard = ({ onLogout }: Props) => {
   const [filterProvincia, setFilterProvincia] = useState("all");
   const [expandedId, setExpandedId] = useState<string | null>(null);
 
+  // Auto-refresh every 30 seconds
   useEffect(() => {
     fetchLeads();
+    const interval = setInterval(fetchLeads, 30000);
+    return () => clearInterval(interval);
   }, []);
 
   const fetchLeads = async () => {
