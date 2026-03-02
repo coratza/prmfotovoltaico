@@ -94,9 +94,14 @@ const AdminDashboard = ({ onLogout }: Props) => {
       {/* Header */}
       <header className="border-b bg-card px-4 py-3 flex items-center justify-between">
         <h1 className="text-xl font-bold font-[Josefin_Sans] text-foreground">Dashboard Lead PRM</h1>
-        <Button variant="outline" size="sm" onClick={onLogout}>
-          <LogOut className="h-4 w-4 mr-1" /> Esci
-        </Button>
+        <div className="flex items-center gap-2">
+          <Button variant="outline" size="sm" onClick={() => fetchLeads()}>
+            <RefreshCw className="h-4 w-4 mr-1" /> Aggiorna
+          </Button>
+          <Button variant="outline" size="sm" onClick={onLogout}>
+            <LogOut className="h-4 w-4 mr-1" /> Esci
+          </Button>
+        </div>
       </header>
 
       <main className="max-w-7xl mx-auto px-4 py-6 space-y-6">
