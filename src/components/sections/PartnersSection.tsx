@@ -1,11 +1,13 @@
 import logoGrowatt from "@/assets/logo-growatt.png";
 import logoZucchetti from "@/assets/logo-zucchetti.png";
 import logoHuawei from "@/assets/logo-huawei.png";
+import logoSma from "@/assets/logo-sma.png";
 
 const partners = [
   { name: "Growatt", logo: logoGrowatt },
   { name: "Zucchetti", logo: logoZucchetti },
   { name: "Huawei", logo: logoHuawei },
+  { name: "SMA", logo: logoSma },
 ];
 
 const PartnersSection = () => {
