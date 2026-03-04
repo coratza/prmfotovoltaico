@@ -27,9 +27,9 @@ const DetrazioniPrivati = () => (
       {
         title: "Quanto puoi risparmiare concretamente",
         content: [
-          "Un impianto fotovoltaico residenziale da 6 kWp può costare indicativamente tra 8.000€ e 12.000€. Con la detrazione del 50%, il costo effettivo si dimezza.",
-          "A questo si aggiunge il risparmio in bolletta che, a seconda dei consumi e dell'autoconsumo, può arrivare a 1.000-1.500€ l'anno.",
-          "Il tempo di ritorno dell'investimento si riduce sensibilmente, rendendo il fotovoltaico una scelta economicamente vantaggiosa.",
+          "Il costo di un impianto fotovoltaico residenziale dipende dalla potenza, dalla tipologia di pannelli e inverter, e dalla complessità dell'installazione. Con la detrazione del 50%, il costo effettivo si dimezza sempre.",
+          "A questo si aggiunge il risparmio in bolletta che, a seconda dei consumi e dell'autoconsumo, può essere molto significativo già dal primo anno.",
+          "Ogni situazione è diversa: chiamaci o richiedi un sopralluogo gratuito per ricevere un preventivo dettagliato e scoprire il tempo di ritorno dell'investimento per la tua casa.",
         ],
       },
       {
