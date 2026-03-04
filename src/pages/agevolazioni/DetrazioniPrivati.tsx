@@ -20,8 +20,8 @@ const DetrazioniPrivati = () => (
         title: "Come funziona la detrazione del 50%",
         content: [
           "La detrazione fiscale per il fotovoltaico consente di recuperare il 50% del costo dell'impianto attraverso la dichiarazione dei redditi, suddivisa in 10 rate annuali di pari importo.",
-          "Questo significa che un impianto da 10.000€ ti costerà effettivamente 5.000€, con un recupero di 500€ all'anno per 10 anni.",
-          "La detrazione si applica alle spese sostenute per l'acquisto e l'installazione di impianti fotovoltaici su edifici residenziali esistenti.",
+          "Questo significa che, qualunque sia il costo del tuo impianto, ne recuperi la metà. Il risparmio effettivo dipende dalla dimensione dell'impianto e dalle caratteristiche della tua abitazione.",
+          "La detrazione si applica alle spese sostenute per l'acquisto e l'installazione di impianti fotovoltaici su edifici residenziali esistenti. Contattaci per un preventivo personalizzato e scopri quanto puoi risparmiare nel tuo caso specifico.",
         ],
       },
       {
