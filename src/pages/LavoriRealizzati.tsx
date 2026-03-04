@@ -15,6 +15,12 @@ import projectCasale from "@/assets/project-casale.jpg";
 import projectCondominio from "@/assets/project-condominio.jpg";
 import projectPensilina from "@/assets/project-pensilina.jpg";
 import projectAgriturismo from "@/assets/project-agriturismo.jpg";
+import projectVillettaSchiera from "@/assets/project-villetta-schiera.jpg";
+import projectCantina from "@/assets/project-cantina.jpg";
+import projectOfficina from "@/assets/project-officina.jpg";
+import projectGroundMount from "@/assets/project-ground-mount.jpg";
+import projectHotel from "@/assets/project-hotel.jpg";
+import projectScuola from "@/assets/project-scuola.jpg";
 
 const projects = [
   {
@@ -100,6 +106,48 @@ const projects = [
     location: "Sasso Marconi (BO)",
     description: "Impianto su struttura rurale con ottimizzazione dei consumi per attività ricettiva e agricola.",
     type: "Agricolo",
+  },
+  {
+    image: projectVillettaSchiera,
+    title: "Villetta a schiera",
+    location: "Budrio (BO)",
+    description: "Impianto compatto su tetto a falde in contesto urbano, con gestione pratiche e allaccio in rete.",
+    type: "Residenziale",
+  },
+  {
+    image: projectCantina,
+    title: "Cantina vinicola",
+    location: "Dozza (BO)",
+    description: "Impianto su copertura del casale con vista sui vigneti. Autosufficienza energetica per produzione e conservazione.",
+    type: "Agricolo",
+  },
+  {
+    image: projectOfficina,
+    title: "Officina meccanica",
+    location: "Granarolo dell'Emilia (BO)",
+    description: "Copertura totale del tetto con moduli fotovoltaici per abbattere i costi di energia dell'attività.",
+    type: "Commerciale",
+  },
+  {
+    image: projectGroundMount,
+    title: "Impianto a terra",
+    location: "Molinella (BO)",
+    description: "Installazione a terra su terreno agricolo con strutture inclinate per massimizzare la produzione annua.",
+    type: "Agricolo",
+  },
+  {
+    image: projectHotel,
+    title: "Struttura ricettiva",
+    location: "Porretta Terme (BO)",
+    description: "Impianto su hotel con copertura dei consumi per climatizzazione e servizi agli ospiti.",
+    type: "Commerciale",
+  },
+  {
+    image: projectScuola,
+    title: "Edificio scolastico",
+    location: "San Giovanni in Persiceto (BO)",
+    description: "Impianto su struttura pubblica con progettazione dedicata e iter autorizzativo completo.",
+    type: "Pubblico",
   },
 ];
 
