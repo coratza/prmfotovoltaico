@@ -15,7 +15,7 @@ import FAQSection from "@/components/sections/FAQSection";
 const homeFaqs = [
   {
     question: "Quanto costa un impianto fotovoltaico a Bologna?",
-    answer: "Il costo di un impianto fotovoltaico residenziale a Bologna varia indicativamente tra 1.500€ e 2.200€ per kWp installato, a seconda della tipologia di pannelli, dell'inverter e della complessità dell'installazione. Per una casa con consumi medi (3.500 kWh/anno) si parla di un impianto da circa 4-6 kWp. Contattaci per un preventivo personalizzato gratuito.",
+    answer: "Il costo di un impianto fotovoltaico dipende da molti fattori: dimensione dell'impianto, tipologia di pannelli e inverter, complessità dell'installazione e presenza di accumulo. Ogni casa è diversa, per questo offriamo sopralluoghi gratuiti e preventivi personalizzati senza impegno. Chiamaci o compila il modulo di contatto per ricevere la tua proposta su misura.",
   },
   {
     question: "Quanto tempo ci vuole per installare un impianto fotovoltaico?",
