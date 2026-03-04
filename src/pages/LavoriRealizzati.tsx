@@ -9,6 +9,12 @@ import projectCapannone from "@/assets/project-capannone.jpg";
 import projectBifamiliare from "@/assets/project-bifamiliare.jpg";
 import projectAgricola from "@/assets/project-azienda-agricola.jpg";
 import projectPiscina from "@/assets/project-villa-piscina.jpg";
+import projectVillaModerna from "@/assets/project-villa-moderna.jpg";
+import projectMagazzino from "@/assets/project-magazzino.jpg";
+import projectCasale from "@/assets/project-casale.jpg";
+import projectCondominio from "@/assets/project-condominio.jpg";
+import projectPensilina from "@/assets/project-pensilina.jpg";
+import projectAgriturismo from "@/assets/project-agriturismo.jpg";
 
 const projects = [
   {
@@ -52,6 +58,48 @@ const projects = [
     location: "Ozzano dell'Emilia (BO)",
     description: "Impianto residenziale con accumulo per aumentare l'autonomia e coprire carichi elettrici importanti.",
     type: "Residenziale",
+  },
+  {
+    image: projectVillaModerna,
+    title: "Villa moderna",
+    location: "Valsamoggia (BO)",
+    description: "Impianto su tetto in laterizio con pannelli monocristallini ad alta efficienza e sistema di monitoraggio remoto.",
+    type: "Residenziale",
+  },
+  {
+    image: projectMagazzino,
+    title: "Magazzino logistico",
+    location: "Bentivoglio (BO)",
+    description: "Grande impianto su copertura piana con oltre 100 kW di potenza installata. Riduzione drastica dei costi energetici.",
+    type: "Industriale",
+  },
+  {
+    image: projectCasale,
+    title: "Casale di campagna",
+    location: "Monteveglio (BO)",
+    description: "Installazione su casale ristrutturato, integrazione architettonica e massima resa anche in collina.",
+    type: "Residenziale",
+  },
+  {
+    image: projectCondominio,
+    title: "Condominio residenziale",
+    location: "Imola (BO)",
+    description: "Impianto condominiale su tetto piano con ripartizione dei benefici tra le unità abitative.",
+    type: "Condominiale",
+  },
+  {
+    image: projectPensilina,
+    title: "Pensilina fotovoltaica",
+    location: "Zola Predosa (BO)",
+    description: "Struttura carport con moduli integrati per produzione energetica e protezione veicoli.",
+    type: "Commerciale",
+  },
+  {
+    image: projectAgriturismo,
+    title: "Agriturismo",
+    location: "Sasso Marconi (BO)",
+    description: "Impianto su struttura rurale con ottimizzazione dei consumi per attività ricettiva e agricola.",
+    type: "Agricolo",
   },
 ];
 
