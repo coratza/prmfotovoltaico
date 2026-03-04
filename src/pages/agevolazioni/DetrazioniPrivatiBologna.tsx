@@ -20,7 +20,7 @@ const DetrazioniPrivatiBologna = () => (
         title: "Detrazione del 50% per abitazioni a Bologna",
         content: [
           "Se possiedi una casa indipendente, una villa o un'abitazione a Bologna e provincia, puoi installare un impianto fotovoltaico beneficiando della detrazione fiscale del 50%.",
-          "La detrazione viene recuperata in 10 rate annuali tramite la dichiarazione dei redditi. Per un impianto da 10.000€, recuperi 500€ all'anno per 10 anni.",
+          "La detrazione viene recuperata in 10 rate annuali tramite la dichiarazione dei redditi. Qualunque sia il costo del tuo impianto, ne recuperi la metà. Contattaci per scoprire quanto puoi risparmiare nel tuo caso specifico.",
           "PRM Fotovoltaico opera direttamente a Bologna e provincia con sede a San Lazzaro di Savena. Siamo installatori locali, non intermediari.",
         ],
       },
