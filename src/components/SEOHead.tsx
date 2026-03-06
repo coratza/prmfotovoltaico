@@ -10,6 +10,13 @@ interface FAQItem {
   answer: string;
 }
 
+interface SoftwareAppSchema {
+  name: string;
+  description: string;
+  url: string;
+  category: string;
+}
+
 interface SEOHeadProps {
   title: string;
   description: string;
@@ -17,6 +24,7 @@ interface SEOHeadProps {
   canonicalPath?: string;
   breadcrumbs?: BreadcrumbItem[];
   faqs?: FAQItem[];
+  softwareApp?: SoftwareAppSchema;
 }
 
 const SITE_URL = "https://prmfotovoltaico.com";
