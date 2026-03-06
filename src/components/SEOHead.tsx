@@ -29,7 +29,7 @@ interface SEOHeadProps {
 
 const SITE_URL = "https://prmfotovoltaico.com";
 
-const SEOHead = ({ title, description, keywords, canonicalPath, breadcrumbs, faqs }: SEOHeadProps) => {
+const SEOHead = ({ title, description, keywords, canonicalPath, breadcrumbs, faqs, softwareApp }: SEOHeadProps) => {
   useEffect(() => {
     document.title = title;
 
