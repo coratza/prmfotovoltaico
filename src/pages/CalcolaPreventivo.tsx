@@ -189,6 +189,12 @@ const CalcolaPreventivo = () => {
           { name: "Simulatore Fotovoltaico", href: "/calcola-rendimento" },
         ]}
         faqs={seoFaqs}
+        softwareApp={{
+          name: "Simulatore Fotovoltaico PRM",
+          description: "Calcola gratis quanto risparmi con il fotovoltaico: produzione annua, risparmio in bolletta, ROI e tempo di rientro dell'investimento.",
+          url: "https://prmfotovoltaico.com/calcola-rendimento",
+          category: "UtilitiesApplication",
+        }}
       />
 
       {/* ══════════ HERO ══════════ */}
