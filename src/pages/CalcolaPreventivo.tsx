@@ -1,15 +1,47 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import Layout from "@/components/layout/Layout";
 import SEOHead from "@/components/SEOHead";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Phone, Calculator, ArrowRight, ArrowLeft, CheckCircle, AlertTriangle, Info } from "lucide-react";
+import {
+  Phone, Calculator, ArrowRight, ArrowLeft, CheckCircle, AlertTriangle,
+  Info, Zap, TrendingUp, Clock, Sun, Shield, Award, Users, BarChart3
+} from "lucide-react";
 import { calcolaROI, type CalcoloInput, type CalcoloOutput } from "@/lib/roiCalculator";
 import { validatePhone, validateEmail } from "@/lib/validation";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
+import FAQSection from "@/components/sections/FAQSection";
 
 type Step = "contatto" | "impianto" | "risultati";
+
+const seoFaqs = [
+  {
+    question: "Quanto produce un impianto fotovoltaico da 6 kW?",
+    answer: "Un impianto fotovoltaico da 6 kW in Emilia-Romagna produce mediamente tra 7.200 e 7.600 kWh all'anno, a seconda della provincia, dell'orientamento e dell'inclinazione dei pannelli. A Bologna la producibilità media è di circa 1.250 kWh per kWp installato.",
+  },
+  {
+    question: "Quanto si risparmia con il fotovoltaico?",
+    answer: "Il risparmio dipende dai consumi, dalla quota di autoconsumo e dal costo dell'energia. Mediamente una famiglia italiana risparmia tra il 50% e il 70% sulla bolletta elettrica. Per un'azienda con consumi diurni il risparmio può superare l'80%. Usa il nostro simulatore per un calcolo personalizzato.",
+  },
+  {
+    question: "Quanto costa installare un impianto fotovoltaico?",
+    answer: "Il costo di un impianto fotovoltaico varia in base alla potenza e alla complessità dell'installazione. Per ottenere un preventivo accurato basato sulle tue esigenze specifiche, utilizza il nostro calcolatore gratuito o contattaci per un sopralluogo senza impegno.",
+  },
+  {
+    question: "Quanto dura un impianto fotovoltaico?",
+    answer: "I pannelli fotovoltaici moderni hanno una vita utile di 25-30 anni con garanzia di produzione all'80% dopo 25 anni. Gli inverter durano mediamente 10-15 anni. La manutenzione ordinaria è minima: pulizia periodica e controllo dell'impianto.",
+  },
+  {
+    question: "Conviene ancora installare il fotovoltaico nel 2025?",
+    answer: "Sì, il fotovoltaico conviene ancora nel 2025. Il costo dei pannelli è sceso del 70% negli ultimi 10 anni, le detrazioni fiscali del 50% sono ancora attive per i privati, e le aziende possono beneficiare del super ammortamento al 180%. Il tempo di rientro dell'investimento è mediamente tra 5 e 8 anni.",
+  },
+  {
+    question: "Cosa succede all'energia che non consumo?",
+    answer: "L'energia prodotta e non autoconsumata viene immessa in rete e remunerata attraverso lo Scambio Sul Posto (SSP) o il Ritiro Dedicato (RID). Il ricavo è inferiore al prezzo di acquisto, per questo è importante massimizzare l'autoconsumo, eventualmente con un sistema di accumulo a batterie.",
+  },
+];
 
 const CalcolaPreventivo = () => {
   const { toast } = useToast();
@@ -114,7 +146,6 @@ const CalcolaPreventivo = () => {
       : "verifica_necessaria";
 
     try {
-      // We save qualification result — in a real scenario we'd update the lead
       toast({
         title: esito === "potenzialmente_idoneo"
           ? "Potenzialmente idoneo all'agevolazione fiscale"
@@ -134,7 +165,6 @@ const CalcolaPreventivo = () => {
 
   const isAzienda = tipologia === "azienda";
 
-  // Auto-set tipo immobile when switching tipologia
   const handleTipologiaChange = (t: "privato" | "azienda") => {
     setTipologia(t);
     if (t === "azienda") setTipoImmobile("capannone");
@@ -143,55 +173,102 @@ const CalcolaPreventivo = () => {
 
   const qualificaCompleta = qualifica.q1 && qualifica.q2 && qualifica.q3 && qualifica.q4;
 
+  const scrollToCalc = () => {
+    document.getElementById("calcolatore")?.scrollIntoView({ behavior: "smooth" });
+  };
+
   return (
     <Layout>
       <SEOHead
-        title="Calcola Rendimento Investimento Fotovoltaico | ROI, Payback e Risparmio | PRM Fotovoltaico"
-        description="Calcola gratis il rendimento del tuo investimento fotovoltaico: ROI, tempo di rientro, risparmio annuo e IRR a 25 anni. Simulatore online per privati e aziende a Bologna, Modena, Ferrara e Ravenna."
-        keywords="rendimento investimento fotovoltaico, ROI fotovoltaico, calcolo rendimento pannelli solari, tempo rientro investimento fotovoltaico, payback fotovoltaico, risparmio fotovoltaico, simulazione rendimento fotovoltaico, preventivo fotovoltaico gratuito, quanto rende fotovoltaico, investimento fotovoltaico conviene, fotovoltaico ritorno economico, IRR fotovoltaico, calcolo autoconsumo fotovoltaico, preventivo impianti fotovoltaici Emilia Romagna"
+        title="Simulatore Fotovoltaico Gratuito | Calcola Risparmio e Rendimento | PRM Fotovoltaico"
+        description="Calcola gratis quanto risparmi con il fotovoltaico: produzione, risparmio annuo, ROI e tempo di rientro. Simulatore online per privati e aziende a Bologna, Modena, Ferrara e Ravenna."
+        keywords="simulatore fotovoltaico, calcolo fotovoltaico, rendimento fotovoltaico, quanto rende fotovoltaico, quanto produce impianto fotovoltaico, quanto si risparmia con fotovoltaico, conviene fotovoltaico, calcolo rendimento pannelli solari, preventivo fotovoltaico gratuito, quanto produce impianto 6kw"
         canonicalPath="/calcola-rendimento"
         breadcrumbs={[
           { name: "Home", href: "/" },
-          { name: "Calcola Rendimento", href: "/calcola-rendimento" },
+          { name: "Simulatore Fotovoltaico", href: "/calcola-rendimento" },
         ]}
+        faqs={seoFaqs}
       />
-      {/* Hero con layout a 2 colonne */}
-      <section className="section-padding bg-accent">
-        <div className="container-custom">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-start">
-            {/* Colonna sinistra: motivazioni */}
-            <div className="lg:pt-4">
-              <h1 className="text-3xl md:text-5xl font-heading font-light text-primary mb-4">
-                Calcola il Rendimento del Tuo Investimento Fotovoltaico
+
+      {/* ══════════ HERO ══════════ */}
+      <section className="relative bg-primary overflow-hidden">
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute top-0 right-0 w-96 h-96 bg-primary-foreground rounded-full blur-3xl -translate-y-1/2 translate-x-1/3" />
+          <div className="absolute bottom-0 left-0 w-64 h-64 bg-primary-foreground rounded-full blur-3xl translate-y-1/2 -translate-x-1/3" />
+        </div>
+        <div className="container-custom relative z-10 py-16 md:py-24">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            {/* Left: copy */}
+            <div className="text-primary-foreground">
+              <div className="inline-flex items-center gap-2 bg-primary-foreground/15 rounded-full px-4 py-1.5 mb-6 text-sm font-medium">
+                <Calculator className="w-4 h-4" />
+                Simulazione gratuita in 30 secondi
+              </div>
+              <h1 className="text-3xl md:text-4xl lg:text-5xl font-heading font-light leading-tight mb-5">
+                Scopri quanto puoi risparmiare con il fotovoltaico sul tuo tetto
               </h1>
-              <p className="text-lg text-muted-foreground mb-8">
-                Scopri ROI, tempo di rientro e risparmio annuo del tuo impianto fotovoltaico. Simulazione gratuita e personalizzata.
+              <p className="text-lg text-primary-foreground/85 mb-8 leading-relaxed max-w-xl">
+                Calcolo gratuito in 30 secondi. Scopri produzione, risparmio e costo stimato dell'impianto.
               </p>
-              <div className="space-y-4 hidden lg:block">
+
+              {/* Micro-benefits */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
                 {[
-                  { icon: "📊", title: "Stima personalizzata", desc: "Basata sui tuoi consumi reali e sulla tua bolletta" },
-                  { icon: "💰", title: "Calcolo del rendimento", desc: "Scopri il ritorno sull'investimento e i tempi di rientro" },
-                  { icon: "🏠", title: "Per privati e aziende", desc: "Soluzioni su misura per ogni esigenza" },
-                  { icon: "📞", title: "Sopralluogo gratuito", desc: "Dopo il calcolo, ti contattiamo per una valutazione precisa" },
+                  { icon: Sun, text: "Quanta energia produce il tuo tetto" },
+                  { icon: TrendingUp, text: "Quanto risparmi ogni anno" },
+                  { icon: BarChart3, text: "Quanto costa l'impianto" },
+                  { icon: Clock, text: "Quando rientra l'investimento" },
                 ].map((item) => (
-                  <div key={item.title} className="flex items-start gap-4 bg-card rounded-xl p-4 border border-border">
-                    <span className="text-2xl">{item.icon}</span>
-                    <div>
-                      <h3 className="font-medium text-foreground">{item.title}</h3>
-                      <p className="text-sm text-muted-foreground">{item.desc}</p>
+                  <div key={item.text} className="flex items-center gap-3">
+                    <div className="w-8 h-8 rounded-full bg-primary-foreground/15 flex items-center justify-center flex-shrink-0">
+                      <item.icon className="w-4 h-4" />
                     </div>
+                    <span className="text-sm text-primary-foreground/90">{item.text}</span>
                   </div>
                 ))}
               </div>
+
+              <Button
+                size="xl"
+                className="rounded-full bg-primary-foreground text-primary hover:bg-primary-foreground/90 shadow-strong font-semibold"
+                onClick={scrollToCalc}
+              >
+                <Calculator className="w-5 h-5" />
+                Calcola il tuo risparmio
+              </Button>
             </div>
 
-            {/* Colonna destra: form step 1 inline (solo su desktop) */}
-            <div className="lg:hidden" />
+            {/* Right: social proof summary */}
+            <div className="hidden lg:block">
+              <div className="bg-primary-foreground/10 backdrop-blur-sm rounded-3xl p-8 border border-primary-foreground/15">
+                <p className="text-primary-foreground/70 text-sm uppercase tracking-wider mb-6 font-medium">Con la simulazione scopri:</p>
+                <div className="space-y-5">
+                  {[
+                    { icon: Zap, title: "Produzione energetica", desc: "Stima personalizzata basata sulla tua posizione e consumi reali" },
+                    { icon: TrendingUp, title: "Risparmio in bolletta", desc: "Calcolo preciso della riduzione della tua spesa energetica" },
+                    { icon: Clock, title: "Tempo di rientro", desc: "Scopri in quanti anni recuperi l'investimento" },
+                    { icon: BarChart3, title: "ROI a 25 anni", desc: "Rendimento annuo del tuo investimento fotovoltaico" },
+                  ].map((item) => (
+                    <div key={item.title} className="flex items-start gap-4">
+                      <div className="w-10 h-10 rounded-xl bg-primary-foreground/15 flex items-center justify-center flex-shrink-0">
+                        <item.icon className="w-5 h-5 text-primary-foreground" />
+                      </div>
+                      <div>
+                        <h3 className="font-medium text-primary-foreground text-sm">{item.title}</h3>
+                        <p className="text-xs text-primary-foreground/70 mt-0.5">{item.desc}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      <section className="section-padding">
+      {/* ══════════ CALCULATOR ══════════ */}
+      <section id="calcolatore" className="section-padding scroll-mt-4">
         <div className="container-custom">
           <div className="max-w-2xl mx-auto">
             {/* Progress */}
@@ -202,7 +279,7 @@ const CalcolaPreventivo = () => {
                 { key: "risultati", label: "Risultati" },
               ].map((s, i) => (
                 <div key={s.key} className="flex items-center gap-2">
-                  <div className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-medium ${
+                  <div className={`w-9 h-9 rounded-full flex items-center justify-center text-sm font-semibold transition-colors ${
                     step === s.key
                       ? "bg-primary text-primary-foreground"
                       : (["contatto", "impianto", "risultati"].indexOf(step) > i
@@ -210,21 +287,24 @@ const CalcolaPreventivo = () => {
                         : "bg-muted text-muted-foreground")
                   }`}>
                     {["contatto", "impianto", "risultati"].indexOf(step) > i ? (
-                      <CheckCircle className="w-4 h-4" />
+                      <CheckCircle className="w-5 h-5" />
                     ) : (
                       i + 1
                     )}
                   </div>
-                  <span className="text-sm text-muted-foreground hidden sm:block">{s.label}</span>
-                  {i < 2 && <div className="w-8 h-px bg-border" />}
+                  <span className="text-sm font-medium text-muted-foreground hidden sm:block">{s.label}</span>
+                  {i < 2 && <div className="w-10 h-px bg-border" />}
                 </div>
               ))}
             </div>
 
             {/* Step 1: Contatto */}
             {step === "contatto" && (
-              <div className="bg-card rounded-2xl p-6 md:p-8 shadow-soft border border-border animate-fade-in">
-                <h2 className="text-2xl font-heading font-light text-primary mb-6">I tuoi dati di contatto</h2>
+              <div className="bg-card rounded-2xl p-6 md:p-8 shadow-medium border border-border animate-fade-in">
+                <div className="text-center mb-6">
+                  <h2 className="text-2xl font-heading font-light text-primary mb-2">Iniziamo dal tuo contatto</h2>
+                  <p className="text-sm text-muted-foreground">Ti servono solo 30 secondi. I tuoi dati sono al sicuro.</p>
+                </div>
                 <div className="space-y-4">
                   <div>
                     <label className="block text-sm font-medium text-foreground mb-1">Nome e Cognome *</label>
@@ -234,6 +314,7 @@ const CalcolaPreventivo = () => {
                     <label className="block text-sm font-medium text-foreground mb-1">Telefono *</label>
                     <Input value={telefono} onChange={(e) => { setTelefono(e.target.value); setPhoneError(null); }} type="tel" placeholder="333 1234567" className="h-12" maxLength={30} />
                     {phoneError && <p className="text-sm text-destructive mt-1">{phoneError}</p>}
+                    <p className="text-xs text-muted-foreground mt-1">Per inviarti il report e fissare il sopralluogo gratuito.</p>
                   </div>
                   <div>
                     <label className="block text-sm font-medium text-foreground mb-1">Email (opzionale)</label>
@@ -242,17 +323,23 @@ const CalcolaPreventivo = () => {
                   </div>
                 </div>
                 <div className="mt-8 flex justify-end">
-                  <Button variant="cta" size="lg" className="rounded-full" onClick={handleStep1Next} disabled={!canProceedStep1}>
+                  <Button variant="cta" size="lg" className="rounded-full w-full sm:w-auto" onClick={handleStep1Next} disabled={!canProceedStep1}>
                     Avanti <ArrowRight className="w-4 h-4" />
                   </Button>
                 </div>
+                <p className="text-xs text-muted-foreground text-center mt-4 flex items-center justify-center gap-1">
+                  <Shield className="w-3 h-3" /> Nessun impegno. Dati protetti e mai condivisi con terzi.
+                </p>
               </div>
             )}
 
             {/* Step 2: Impianto */}
             {step === "impianto" && (
-              <div className="bg-card rounded-2xl p-6 md:p-8 shadow-soft border border-border animate-fade-in">
-                <h2 className="text-2xl font-heading font-light text-primary mb-6">Dati del tuo impianto</h2>
+              <div className="bg-card rounded-2xl p-6 md:p-8 shadow-medium border border-border animate-fade-in">
+                <div className="text-center mb-6">
+                  <h2 className="text-2xl font-heading font-light text-primary mb-2">Dati del tuo impianto</h2>
+                  <p className="text-sm text-muted-foreground">Inserisci i dati che trovi sulla tua bolletta elettrica.</p>
+                </div>
                 <div className="space-y-5">
                   {/* Tipologia */}
                   <div>
@@ -260,7 +347,7 @@ const CalcolaPreventivo = () => {
                     <div className="grid grid-cols-2 gap-3">
                       {(["privato", "azienda"] as const).map((t) => (
                         <button key={t} onClick={() => handleTipologiaChange(t)} className={`p-3 rounded-xl border text-sm font-medium transition-colors ${tipologia === t ? "border-primary bg-primary/10 text-primary" : "border-border text-muted-foreground hover:border-primary/50"}`}>
-                          {t === "privato" ? "Privato" : "Azienda"}
+                          {t === "privato" ? "🏠 Privato" : "🏭 Azienda"}
                         </button>
                       ))}
                     </div>
@@ -299,28 +386,30 @@ const CalcolaPreventivo = () => {
                   {/* Consumo annuo */}
                   <div>
                     <label className="block text-sm font-medium text-foreground mb-1">Consumo annuo (kWh) *</label>
-                    <p className="text-xs text-muted-foreground mb-2">Lo trovi nella tua bolletta annuale o nella sintesi dei consumi</p>
+                    <p className="text-xs text-muted-foreground mb-2 flex items-center gap-1">
+                      <Info className="w-3 h-3" /> Puoi trovare questo dato nella tua bolletta elettrica o nella sintesi dei consumi.
+                    </p>
                     <Input value={consumoAnnuo} onChange={(e) => setConsumoAnnuo(e.target.value.replace(/[^0-9]/g, ""))} type="text" inputMode="numeric" placeholder="Es. 3500" className="h-12" />
                   </div>
 
                   {/* Spesa annua */}
                   <div>
                     <label className="block text-sm font-medium text-foreground mb-1">Spesa annua bolletta (€) *</label>
-                    <p className="text-xs text-muted-foreground mb-2">La spesa totale che paghi ogni anno di energia elettrica</p>
+                    <p className="text-xs text-muted-foreground mb-2 flex items-center gap-1">
+                      <Info className="w-3 h-3" /> La spesa totale annua che paghi per l'energia elettrica.
+                    </p>
                     <Input value={spesaAnnua} onChange={(e) => setSpesaAnnua(e.target.value.replace(/[^0-9]/g, ""))} type="text" inputMode="numeric" placeholder="Es. 800" className="h-12" />
                   </div>
 
                   {/* --- CAMPI SOLO AZIENDE --- */}
                   {isAzienda && (
                     <>
-                      {/* m² tetto */}
                       <div>
                         <label className="block text-sm font-medium text-foreground mb-1">m² di tetto disponibile *</label>
                         <p className="text-xs text-muted-foreground mb-2">Superficie utile per l'installazione dei pannelli</p>
                         <Input value={mqTetto} onChange={(e) => setMqTetto(e.target.value.replace(/[^0-9]/g, ""))} type="text" inputMode="numeric" placeholder="Es. 500" className="h-12" />
                       </div>
 
-                      {/* Profilo attività */}
                       <div>
                         <label className="block text-sm font-medium text-foreground mb-2">Profilo attività</label>
                         <div className="grid grid-cols-3 gap-3">
@@ -336,7 +425,6 @@ const CalcolaPreventivo = () => {
                         </div>
                       </div>
 
-                      {/* Impianto esistente */}
                       <div>
                         <label className="block text-sm font-medium text-foreground mb-2">Hai già un impianto fotovoltaico?</label>
                         <div className="grid grid-cols-2 gap-3">
@@ -370,12 +458,12 @@ const CalcolaPreventivo = () => {
                   )}
                 </div>
 
-                <div className="mt-8 flex justify-between">
+                <div className="mt-8 flex flex-col sm:flex-row justify-between gap-3">
                   <Button variant="outline" size="lg" className="rounded-full" onClick={() => setStep("contatto")}>
                     <ArrowLeft className="w-4 h-4" /> Indietro
                   </Button>
                   <Button variant="cta" size="lg" className="rounded-full" onClick={handleCalcola} disabled={!canProceedStep2 || (isAzienda && haImpiantoEsistente)}>
-                    Calcola Rendimento <ArrowRight className="w-4 h-4" />
+                    <Calculator className="w-5 h-5" /> Calcola il tuo risparmio
                   </Button>
                 </div>
               </div>
@@ -394,34 +482,55 @@ const CalcolaPreventivo = () => {
                   </div>
                 )}
 
-                {/* Card principale */}
-                <div className="blue-card text-center">
-                  <h2 className="text-2xl md:text-3xl font-heading font-light text-primary-foreground mb-8">
-                    {isAzienda ? "Il rendimento stimato del tuo investimento" : "Il tuo ritorno sull'investimento"}
+                {/* Main results cards */}
+                <div className="blue-card">
+                  <h2 className="text-2xl md:text-3xl font-heading font-light text-primary-foreground text-center mb-8">
+                    Il tuo risparmio stimato con il fotovoltaico
                   </h2>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 mb-8">
-                    <div>
-                      <p className="text-primary-foreground/70 text-sm mb-2">
-                        {isAzienda ? "Rendimento stimato fino a" : "Rendimento stimato"}
-                      </p>
-                      <p className="text-5xl md:text-6xl font-heading font-light text-primary-foreground">
+                  <div className="grid grid-cols-2 gap-6 mb-6">
+                    <div className="bg-primary-foreground/10 rounded-2xl p-5 text-center">
+                      <TrendingUp className="w-6 h-6 text-primary-foreground/70 mx-auto mb-2" />
+                      <p className="text-3xl md:text-4xl font-heading font-light text-primary-foreground">
                         {isAzienda ? risultati.irrMax : risultati.irrBase}%
                       </p>
-                      <p className="text-primary-foreground/70 text-sm mt-1">annuo (IRR)</p>
-                    </div>
-                    <div>
-                      <p className="text-primary-foreground/70 text-sm mb-2">Rientro dell'investimento</p>
-                      <p className="text-5xl md:text-6xl font-heading font-light text-primary-foreground">
-                        {risultati.paybackAnni}
+                      <p className="text-primary-foreground/70 text-xs mt-1">
+                        {isAzienda ? "Rendimento annuo (fino a)" : "Rendimento annuo (IRR)"}
                       </p>
-                      <p className="text-primary-foreground/70 text-sm mt-1">anni</p>
+                    </div>
+                    <div className="bg-primary-foreground/10 rounded-2xl p-5 text-center">
+                      <Clock className="w-6 h-6 text-primary-foreground/70 mx-auto mb-2" />
+                      <p className="text-3xl md:text-4xl font-heading font-light text-primary-foreground">
+                        {risultati.paybackAnni} <span className="text-lg">anni</span>
+                      </p>
+                      <p className="text-primary-foreground/70 text-xs mt-1">Rientro investimento</p>
                     </div>
                   </div>
-                  <p className="text-primary-foreground/90 text-lg leading-relaxed">
+
+                  {/* Detailed metrics */}
+                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+                    {[
+                      { label: "Produzione annua", value: `${risultati.produzioneAnnua.toLocaleString("it-IT")} kWh`, icon: Sun },
+                      { label: "Risparmio annuo", value: `€ ${risultati.risparmioAnnuo.toLocaleString("it-IT")}`, icon: TrendingUp },
+                      { label: "Autoconsumo", value: `${risultati.autoconsumoPct}%`, icon: Zap },
+                      { label: "Impianto", value: `${risultati.kwpCalcolati} kWp`, icon: BarChart3 },
+                    ].map((item) => (
+                      <div key={item.label} className="bg-primary-foreground/5 rounded-xl p-3 text-center">
+                        <item.icon className="w-4 h-4 text-primary-foreground/60 mx-auto mb-1" />
+                        <p className="text-lg font-heading font-light text-primary-foreground">{item.value}</p>
+                        <p className="text-primary-foreground/60 text-[10px] mt-0.5">{item.label}</p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Summary text */}
+                <div className="bg-card rounded-2xl p-6 border border-border shadow-soft">
+                  <h3 className="text-lg font-medium text-foreground mb-3">Riepilogo della tua simulazione</h3>
+                  <p className="text-muted-foreground leading-relaxed text-sm">
                     {isAzienda ? (
-                      <>Con un rendimento <strong>fino al {risultati.irrMax}% annuo</strong> (scenario massimo con agevolazione fiscale), rientrerai dal tuo investimento in circa <strong>{risultati.paybackAnni} anni</strong>.</>
+                      <>Con un impianto da <strong>{risultati.kwpCalcolati} kWp</strong>, la tua azienda può produrre circa <strong>{risultati.produzioneAnnua.toLocaleString("it-IT")} kWh</strong> all'anno, risparmiando <strong>€ {risultati.risparmioAnnuo.toLocaleString("it-IT")}</strong> sulla bolletta. Con un rendimento <strong>fino al {risultati.irrMax}% annuo</strong> (scenario massimo con agevolazione fiscale), l'investimento rientra in circa <strong>{risultati.paybackAnni} anni</strong>.</>
                     ) : (
-                      <>Con un rendimento del <strong>{risultati.irrBase}% annuo</strong>, rientrerai dal tuo investimento in circa <strong>{risultati.paybackAnni} anni</strong>.</>
+                      <>Con un impianto da <strong>{risultati.kwpCalcolati} kWp</strong>, il tuo tetto può produrre circa <strong>{risultati.produzioneAnnua.toLocaleString("it-IT")} kWh</strong> all'anno, riducendo la bolletta di <strong>€ {risultati.risparmioAnnuo.toLocaleString("it-IT")}</strong> all'anno. Con un rendimento del <strong>{risultati.irrBase}% annuo</strong>, l'investimento rientra in circa <strong>{risultati.paybackAnni} anni</strong>.</>
                     )}
                   </p>
                 </div>
@@ -432,9 +541,9 @@ const CalcolaPreventivo = () => {
                     <AlertTriangle className="w-5 h-5 text-muted-foreground flex-shrink-0 mt-0.5" />
                     <div>
                       <p className="text-sm text-muted-foreground leading-relaxed">
-                        <strong>Nota importante:</strong> Stima preliminare basata sui dati inseriti e su assunzioni standard.
+                        <strong>Nota:</strong> Stima preliminare basata sui dati inseriti e su assunzioni standard.
                         {isAzienda && " L'accesso all'agevolazione fiscale (super ammortamento 180%) dipende da requisiti e capienza fiscale."}
-                        {" "}I risultati reali dipendono da fattori specifici (orientamento del tetto, ombreggiamenti, tipologia di contratto energetico)
+                        {" "}I risultati reali dipendono da fattori specifici (orientamento del tetto, ombreggiamenti, contratto energetico)
                         che verranno valutati durante il sopralluogo gratuito.
                       </p>
                     </div>
@@ -491,23 +600,176 @@ const CalcolaPreventivo = () => {
                   </div>
                 )}
 
-                {/* CTA */}
-                <div className="text-center">
-                  <p className="text-lg text-foreground font-medium mb-4">
-                    Vuoi una valutazione precisa e personalizzata?
+                {/* ══════════ LEAD CAPTURE CTA ══════════ */}
+                <div className="bg-primary rounded-2xl p-8 text-center text-primary-foreground">
+                  <h3 className="text-2xl font-heading font-light mb-3">
+                    Vuoi il report completo per il tuo tetto?
+                  </h3>
+                  <p className="text-primary-foreground/80 mb-6 max-w-md mx-auto text-sm">
+                    Ricevi gratuitamente: dimensionamento dell'impianto, stima del risparmio a 25 anni e consulenza personalizzata con sopralluogo incluso.
                   </p>
-                  <Button variant="cta" size="lg" className="rounded-full" asChild>
-                    <a href="tel:+393356117388">
-                      <Phone className="w-5 h-5" />
-                      Chiamaci: 335 611 7388
-                    </a>
-                  </Button>
-                  <p className="text-sm text-muted-foreground mt-3">
-                    Il sopralluogo è gratuito e senza impegno.
+                  <div className="flex flex-col sm:flex-row gap-3 justify-center">
+                    <Button size="lg" className="rounded-full bg-primary-foreground text-primary hover:bg-primary-foreground/90 font-semibold" asChild>
+                      <a href="tel:+393356117388">
+                        <Phone className="w-5 h-5" />
+                        Chiamaci: 335 611 7388
+                      </a>
+                    </Button>
+                    <Button size="lg" className="rounded-full border-2 border-primary-foreground bg-transparent text-primary-foreground hover:bg-primary-foreground/10" asChild>
+                      <Link to="/contatti">
+                        Richiedi sopralluogo gratuito
+                        <ArrowRight className="w-4 h-4" />
+                      </Link>
+                    </Button>
+                  </div>
+                  <p className="text-xs text-primary-foreground/60 mt-4">
+                    Sopralluogo gratuito e senza impegno in tutta l'Emilia-Romagna.
                   </p>
                 </div>
               </div>
             )}
+          </div>
+        </div>
+      </section>
+
+      {/* ══════════ TRUST SECTION ══════════ */}
+      <section className="py-12 bg-accent border-y border-border">
+        <div className="container-custom">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+            {[
+              { icon: Award, number: "+100", label: "Impianti installati" },
+              { icon: Shield, number: "10+", label: "Anni di esperienza" },
+              { icon: Users, number: "100%", label: "Clienti soddisfatti" },
+              { icon: CheckCircle, number: "25 anni", label: "Garanzia pannelli" },
+            ].map((item) => (
+              <div key={item.label}>
+                <item.icon className="w-8 h-8 text-primary mx-auto mb-3" />
+                <p className="text-2xl md:text-3xl font-heading font-light text-foreground">{item.number}</p>
+                <p className="text-sm text-muted-foreground mt-1">{item.label}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ══════════ SEO CONTENT ══════════ */}
+      <section className="section-padding">
+        <div className="container-custom">
+          <div className="max-w-3xl mx-auto prose-custom">
+            <h2 className="text-3xl font-heading font-light text-primary mb-6">
+              Come funziona il calcolo del rendimento fotovoltaico
+            </h2>
+            <p className="text-muted-foreground leading-relaxed mb-4">
+              Il rendimento di un impianto fotovoltaico dipende da diversi fattori che interagiscono tra loro. Il nostro simulatore tiene conto dei principali parametri per fornirti una stima realistica e personalizzata del risparmio che puoi ottenere.
+            </p>
+            <p className="text-muted-foreground leading-relaxed mb-4">
+              Il calcolo parte dai tuoi consumi reali e dalla tua bolletta per dimensionare l'impianto in modo ottimale. Viene poi stimata la produzione energetica in base alla <strong>producibilità specifica della tua zona</strong> (espressa in kWh per kWp installato), che varia da provincia a provincia in Emilia-Romagna.
+            </p>
+            <p className="text-muted-foreground leading-relaxed mb-8">
+              La quota di autoconsumo — ovvero l'energia prodotta e utilizzata direttamente — è il fattore più importante per il risparmio economico. Maggiore è l'autoconsumo, più rapido è il ritorno sull'investimento. Per le aziende con profilo di consumo diurno, l'autoconsumo può raggiungere l'80%, rendendo il fotovoltaico particolarmente conveniente.
+            </p>
+
+            <h2 className="text-3xl font-heading font-light text-primary mb-6">
+              Quanto produce un impianto fotovoltaico in Italia
+            </h2>
+            <p className="text-muted-foreground leading-relaxed mb-4">
+              La produzione di un impianto fotovoltaico dipende principalmente dalla <strong>posizione geografica</strong>, dall'<strong>orientamento dei pannelli</strong> (ideale è il sud), dall'<strong>inclinazione</strong> (tra 25° e 35° è ottimale) e dalla presenza di eventuali ombreggiamenti.
+            </p>
+            <p className="text-muted-foreground leading-relaxed mb-4">
+              In Emilia-Romagna, la producibilità media si attesta intorno ai 1.200–1.270 kWh per kWp installato all'anno. Questo significa che un impianto da 6 kWp a Bologna produce mediamente circa 7.500 kWh all'anno, sufficienti a coprire i consumi di una famiglia di 4 persone.
+            </p>
+            <p className="text-muted-foreground leading-relaxed mb-8">
+              Le province con la migliore irradiazione in regione sono Modena (1.270 kWh/kWp) e Bologna (1.250 kWh/kWp), seguite da Ferrara (1.230 kWh/kWp) e Ravenna (1.200 kWh/kWp). Queste differenze, seppur contenute, influenzano il dimensionamento ottimale dell'impianto.
+            </p>
+
+            <h2 className="text-3xl font-heading font-light text-primary mb-6">
+              Quanto si risparmia con il fotovoltaico
+            </h2>
+            <p className="text-muted-foreground leading-relaxed mb-4">
+              Il risparmio economico con il fotovoltaico deriva dalla <strong>riduzione della bolletta elettrica</strong> attraverso l'autoconsumo dell'energia prodotta. Ogni kWh che produci e consumi direttamente è un kWh che non acquisti dalla rete, al prezzo variabile della tua tariffa.
+            </p>
+            <p className="text-muted-foreground leading-relaxed mb-4">
+              L'energia prodotta in eccesso viene immessa in rete e remunerata attraverso lo <strong>Scambio Sul Posto</strong> o il <strong>Ritiro Dedicato</strong>, con un ricavo parziale. Per massimizzare il risparmio, è fondamentale ottimizzare l'autoconsumo: spostare i carichi energetici (lavatrice, lavastoviglie, ricarica auto elettrica) nelle ore di produzione solare.
+            </p>
+            <p className="text-muted-foreground leading-relaxed mb-8">
+              Per un'analisi completa del tuo potenziale risparmio, il nostro simulatore calcola il beneficio annuo combinando risparmio da autoconsumo e ricavo da immissione in rete, fornendoti anche il <strong>tempo di rientro dell'investimento</strong> e il <strong>rendimento annuo (IRR)</strong> a 25 anni.
+            </p>
+
+            <h2 className="text-3xl font-heading font-light text-primary mb-6">
+              Quanto costa un impianto fotovoltaico
+            </h2>
+            <p className="text-muted-foreground leading-relaxed mb-4">
+              Il costo di un impianto fotovoltaico dipende dalla potenza installata, dalla tipologia di pannelli, dalla complessità dell'installazione e dagli accessori scelti (come sistemi di accumulo a batterie o ottimizzatori di potenza).
+            </p>
+            <p className="text-muted-foreground leading-relaxed mb-4">
+              Il costo unitario (€/kWp) diminuisce all'aumentare della potenza dell'impianto, rendendo gli impianti più grandi proporzionalmente più convenienti. Per i privati, sono disponibili le <Link to="/agevolazioni/detrazioni-privati" className="text-primary hover:underline font-medium">detrazioni fiscali del 50%</Link> che dimezzano il costo effettivo dell'investimento. Per le aziende, il <Link to="/agevolazioni/agevolazioni-aziende" className="text-primary hover:underline font-medium">super ammortamento al 180%</Link> offre un significativo vantaggio fiscale.
+            </p>
+            <p className="text-muted-foreground leading-relaxed mb-8">
+              Per conoscere il costo specifico per il tuo caso, utilizza il simulatore sopra o <Link to="/contatti" className="text-primary hover:underline font-medium">richiedi un sopralluogo gratuito</Link>. Ogni impianto è progettato su misura per massimizzare il rendimento e il risparmio.
+            </p>
+
+            <h2 className="text-3xl font-heading font-light text-primary mb-6">
+              Conviene installare il fotovoltaico nel 2025?
+            </h2>
+            <p className="text-muted-foreground leading-relaxed mb-4">
+              Sì, il 2025 è un anno particolarmente favorevole per investire nel fotovoltaico. Il costo dei pannelli solari è sceso drasticamente negli ultimi anni, mentre l'efficienza è aumentata. I pannelli di ultima generazione hanno efficienze superiori al 22%, producendo più energia con meno spazio sul tetto.
+            </p>
+            <p className="text-muted-foreground leading-relaxed mb-4">
+              Gli incentivi fiscali sono ancora attivi: le detrazioni al 50% per i privati e il super ammortamento per le aziende rendono l'investimento ancora più competitivo. Il tempo medio di rientro dell'investimento è compreso tra 5 e 8 anni, con un rendimento annuo che può superare il 10%.
+            </p>
+            <p className="text-muted-foreground leading-relaxed mb-4">
+              Con i prezzi dell'energia che rimangono volatili e tendenzialmente in crescita, il fotovoltaico rappresenta una protezione contro i rincari futuri. Un impianto installato oggi continuerà a produrre energia gratuita per almeno 25-30 anni, con costi di manutenzione minimi.
+            </p>
+            <p className="text-muted-foreground leading-relaxed mb-8">
+              Se stai valutando l'installazione, <strong>non aspettare</strong>: gli incentivi potrebbero ridursi nei prossimi anni. <Link to="/contatti" className="text-primary hover:underline font-medium">Contattaci per un sopralluogo gratuito</Link> e scopri quanto puoi risparmiare.
+            </p>
+
+            {/* Internal linking block */}
+            <div className="bg-accent rounded-2xl p-6 border border-border not-prose">
+              <h3 className="text-lg font-heading font-light text-primary mb-4">Approfondimenti utili</h3>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                {[
+                  { to: "/fotovoltaico-privati", label: "Fotovoltaico per privati" },
+                  { to: "/fotovoltaico-aziende", label: "Fotovoltaico per aziende" },
+                  { to: "/agevolazioni/detrazioni-privati", label: "Detrazioni fiscali 50% privati" },
+                  { to: "/agevolazioni/agevolazioni-aziende", label: "Agevolazioni fiscali aziende" },
+                  { to: "/lavori-realizzati", label: "I nostri lavori realizzati" },
+                  { to: "/contatti", label: "Richiedi un sopralluogo gratuito" },
+                ].map((link) => (
+                  <Link key={link.to} to={link.to} className="flex items-center gap-2 text-sm text-primary hover:underline font-medium p-2 rounded-lg hover:bg-primary/5 transition-colors">
+                    <ArrowRight className="w-4 h-4 flex-shrink-0" />
+                    {link.label}
+                  </Link>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ══════════ FAQ ══════════ */}
+      <FAQSection faqs={seoFaqs} />
+
+      {/* ══════════ BOTTOM CTA ══════════ */}
+      <section className="py-16 bg-primary">
+        <div className="container-custom text-center text-primary-foreground">
+          <h2 className="text-3xl md:text-4xl font-heading font-light mb-4">
+            Pronto a scoprire quanto puoi risparmiare?
+          </h2>
+          <p className="text-primary-foreground/80 mb-8 max-w-lg mx-auto">
+            Usa il nostro simulatore gratuito oppure chiamaci per un sopralluogo senza impegno.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Button size="lg" className="rounded-full bg-primary-foreground text-primary hover:bg-primary-foreground/90 font-semibold" onClick={scrollToCalc}>
+              <Calculator className="w-5 h-5" />
+              Calcola il tuo risparmio
+            </Button>
+            <Button size="lg" className="rounded-full border-2 border-primary-foreground bg-transparent text-primary-foreground hover:bg-primary-foreground/10" asChild>
+              <a href="tel:+393356117388">
+                <Phone className="w-5 h-5" />
+                335 611 7388
+              </a>
+            </Button>
           </div>
         </div>
       </section>
