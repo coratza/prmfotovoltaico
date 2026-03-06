@@ -116,7 +116,30 @@ const SEOHead = ({ title, description, keywords, canonicalPath, breadcrumbs, faq
       scripts.push(script);
     }
 
-    return () => {
+    // SoftwareApplication schema
+    if (softwareApp) {
+      const appSchema = {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        name: softwareApp.name,
+        description: softwareApp.description,
+        url: softwareApp.url,
+        applicationCategory: softwareApp.category,
+        operatingSystem: "Web",
+        offers: {
+          "@type": "Offer",
+          price: "0",
+          priceCurrency: "EUR",
+        },
+      };
+      const script = document.createElement("script");
+      script.type = "application/ld+json";
+      script.text = JSON.stringify(appSchema);
+      document.head.appendChild(script);
+      scripts.push(script);
+    }
+
+
       document.title = "PRM Fotovoltaico | Impianti Fotovoltaici Bologna, Modena, Ferrara, Ravenna";
       scripts.forEach((s) => s.remove());
     };
