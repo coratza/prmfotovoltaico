@@ -10,6 +10,13 @@ interface FAQItem {
   answer: string;
 }
 
+interface SoftwareAppSchema {
+  name: string;
+  description: string;
+  url: string;
+  category: string;
+}
+
 interface SEOHeadProps {
   title: string;
   description: string;
@@ -17,11 +24,12 @@ interface SEOHeadProps {
   canonicalPath?: string;
   breadcrumbs?: BreadcrumbItem[];
   faqs?: FAQItem[];
+  softwareApp?: SoftwareAppSchema;
 }
 
 const SITE_URL = "https://prmfotovoltaico.com";
 
-const SEOHead = ({ title, description, keywords, canonicalPath, breadcrumbs, faqs }: SEOHeadProps) => {
+const SEOHead = ({ title, description, keywords, canonicalPath, breadcrumbs, faqs, softwareApp }: SEOHeadProps) => {
   useEffect(() => {
     document.title = title;
 
@@ -108,11 +116,34 @@ const SEOHead = ({ title, description, keywords, canonicalPath, breadcrumbs, faq
       scripts.push(script);
     }
 
+    // SoftwareApplication schema
+    if (softwareApp) {
+      const appSchema = {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        name: softwareApp.name,
+        description: softwareApp.description,
+        url: softwareApp.url,
+        applicationCategory: softwareApp.category,
+        operatingSystem: "Web",
+        offers: {
+          "@type": "Offer",
+          price: "0",
+          priceCurrency: "EUR",
+        },
+      };
+      const script = document.createElement("script");
+      script.type = "application/ld+json";
+      script.text = JSON.stringify(appSchema);
+      document.head.appendChild(script);
+      scripts.push(script);
+    }
+
     return () => {
       document.title = "PRM Fotovoltaico | Impianti Fotovoltaici Bologna, Modena, Ferrara, Ravenna";
       scripts.forEach((s) => s.remove());
     };
-  }, [title, description, keywords, canonicalPath, breadcrumbs, faqs]);
+  }, [title, description, keywords, canonicalPath, breadcrumbs, faqs, softwareApp]);
 
   return null;
 };
