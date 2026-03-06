@@ -139,11 +139,11 @@ const SEOHead = ({ title, description, keywords, canonicalPath, breadcrumbs, faq
       scripts.push(script);
     }
 
-
+    return () => {
       document.title = "PRM Fotovoltaico | Impianti Fotovoltaici Bologna, Modena, Ferrara, Ravenna";
       scripts.forEach((s) => s.remove());
     };
-  }, [title, description, keywords, canonicalPath, breadcrumbs, faqs]);
+  }, [title, description, keywords, canonicalPath, breadcrumbs, faqs, softwareApp]);
 
   return null;
 };
