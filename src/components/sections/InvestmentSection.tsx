@@ -1,7 +1,7 @@
 import { CheckCircle } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import villaSolar from "@/assets/villa-solar-opt.webp";
+import villaSolar from "@/assets/villa-solar-sm.webp";
 
 const points = [
   "Progettiamo impianti che durano",
