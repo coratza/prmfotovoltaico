@@ -1,7 +1,16 @@
-import { Phone, ArrowRight } from "lucide-react";
+import { Phone, ArrowRight, Shield, Users, Calendar } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
+
 const HeroSection = () => {
+  const scrollToForm = (e: React.MouseEvent) => {
+    e.preventDefault();
+    const form = document.getElementById("lead-form-section");
+    if (form) {
+      form.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
     <section className="relative min-h-[85vh] flex items-center">
       <div className="absolute inset-0">
@@ -24,23 +33,39 @@ const HeroSection = () => {
             Impianti Fotovoltaici a Bologna, Modena, Ferrara e Ravenna
           </h1>
 
-          <p className="text-lg md:text-xl text-primary-foreground/85 mb-10 leading-relaxed font-light max-w-2xl">
+          <p className="text-lg md:text-xl text-primary-foreground/85 mb-8 leading-relaxed font-light max-w-2xl">
             Riduci i costi energetici della tua casa o azienda. 
             Sopralluogo gratuito, installazione chiavi in mano, assistenza locale.
           </p>
 
+          {/* Social proof bar */}
+          <div className="flex flex-wrap gap-x-6 gap-y-3 mb-10">
+            <div className="flex items-center gap-2 text-primary-foreground/90">
+              <Users className="w-4 h-4" />
+              <span className="text-sm font-medium">200+ impianti installati</span>
+            </div>
+            <div className="flex items-center gap-2 text-primary-foreground/90">
+              <Calendar className="w-4 h-4" />
+              <span className="text-sm font-medium">Attivi dal 2010</span>
+            </div>
+            <div className="flex items-center gap-2 text-primary-foreground/90">
+              <Shield className="w-4 h-4" />
+              <span className="text-sm font-medium">Garanzia fino a 25 anni</span>
+            </div>
+          </div>
+
           <div className="flex flex-col sm:flex-row gap-4">
-            <Button variant="cta" size="lg" className="bg-primary-foreground text-foreground hover:bg-primary-foreground/90 rounded-full px-8" asChild>
+            <Button variant="cta" size="lg" className="rounded-full px-8" asChild>
+              <a href="#lead-form-section" onClick={scrollToForm}>
+                RICHIEDI SOPRALLUOGO GRATUITO
+                <ArrowRight className="w-5 h-5" />
+              </a>
+            </Button>
+            <Button size="lg" className="border-2 border-primary-foreground bg-transparent text-primary-foreground hover:bg-primary-foreground/10 rounded-full px-8" asChild>
               <a href="tel:+393356117388">
                 <Phone className="w-5 h-5" />
                 CHIAMA ORA
               </a>
-            </Button>
-            <Button size="lg" className="border-2 border-primary-foreground bg-transparent text-primary-foreground hover:bg-primary-foreground/10 rounded-full px-8" asChild>
-              <Link to="/contatti">
-                RICHIEDI UN SOPRALLUOGO
-                <ArrowRight className="w-5 h-5" />
-              </Link>
             </Button>
           </div>
         </div>

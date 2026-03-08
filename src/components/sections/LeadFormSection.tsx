@@ -79,7 +79,7 @@ const LeadFormSection = () => {
   };
 
   return (
-    <section className="section-padding">
+    <section id="lead-form-section" className="section-padding">
       <div className="container-custom">
         <div className="max-w-3xl mx-auto">
           <div className="text-center mb-10">
