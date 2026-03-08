@@ -11,6 +11,8 @@ const HeroSection = () => {
           src={heroImage}
           alt="Casa con impianto fotovoltaico a Bologna"
           className="w-full h-full object-cover"
+          width={1420}
+          height={799}
           fetchPriority="high"
           decoding="sync"
           loading="eager"

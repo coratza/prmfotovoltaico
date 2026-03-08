@@ -48,6 +48,8 @@ const WhyChooseUsSection = () => {
                 <div className="flex-shrink-0 w-full md:w-64 h-48 md:h-40 overflow-hidden rounded-2xl">
                   <img
                     src={reason.image}
+                    width={256}
+                    height={160}
                     alt={reason.title}
                     className="w-full h-full object-cover"
                     loading="lazy"
