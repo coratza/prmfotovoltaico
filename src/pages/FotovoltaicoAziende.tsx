@@ -3,7 +3,7 @@ import SEOHead from "@/components/SEOHead";
 import { Button } from "@/components/ui/button";
 import { Phone, ArrowRight, CheckCircle, TrendingDown, Zap, Award, Calculator } from "lucide-react";
 import { Link } from "react-router-dom";
-import industrialSolar from "@/assets/industrial-solar-opt.webp";
+import industrialSolar from "@/assets/industrial-solar-sm.webp";
 import LeadFormSection from "@/components/sections/LeadFormSection";
 import TestimonialsSection from "@/components/sections/TestimonialsSection";
 
