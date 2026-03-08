@@ -1,7 +1,7 @@
 import { CheckCircle } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import villaSolar from "@/assets/villa-solar-opt.webp";
+import villaSolar from "@/assets/villa-solar-sm.webp";
 
 const points = [
   "Progettiamo impianti che durano",
@@ -20,8 +20,9 @@ const InvestmentSection = () => {
               src={villaSolar}
               alt="Impianto fotovoltaico finito e pulito"
               className="rounded-3xl shadow-medium w-full object-cover aspect-[4/3]"
-              width="800"
-              height="600"
+              width="683"
+              height="512"
+              loading="lazy"
             />
           </div>
 

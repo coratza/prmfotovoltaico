@@ -3,7 +3,7 @@ import SEOHead from "@/components/SEOHead";
 import { Button } from "@/components/ui/button";
 import { Phone, ArrowRight, CheckCircle, Home, Lightbulb, Shield, Clock } from "lucide-react";
 import { Link } from "react-router-dom";
-import villaSolar from "@/assets/villa-solar-opt.webp";
+import villaSolar from "@/assets/villa-solar-sm.webp";
 import LeadFormSection from "@/components/sections/LeadFormSection";
 import TestimonialsSection from "@/components/sections/TestimonialsSection";
 

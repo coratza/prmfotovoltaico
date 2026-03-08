@@ -1,7 +1,7 @@
 import logoGrowatt from "@/assets/logo-growatt.png";
-import logoZucchetti from "@/assets/logo-zucchetti.png";
-import logoHuawei from "@/assets/logo-huawei.png";
-import logoSma from "@/assets/logo-sma.png";
+import logoZucchetti from "@/assets/logo-zucchetti-sm.webp";
+import logoHuawei from "@/assets/logo-huawei-sm.webp";
+import logoSma from "@/assets/logo-sma-sm.webp";
 
 const partners = [
   { name: "Growatt", logo: logoGrowatt },
