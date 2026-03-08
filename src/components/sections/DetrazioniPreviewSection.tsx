@@ -64,7 +64,7 @@ const DetrazioniPreviewSection = () => {
             </div>
             <div className="flex flex-col md:flex-row">
               <div className="md:w-1/2 h-56 md:h-auto overflow-hidden">
-                <img src={industrialSolar} alt="Agevolazioni fotovoltaico aziende" className="w-full h-full object-cover" />
+                <img src={industrialSolar} alt="Agevolazioni fotovoltaico aziende" className="w-full h-full object-cover" width={579} height={434} loading="lazy" />
               </div>
               <div className="p-6 md:p-8 md:w-1/2">
                 <h3 className="text-2xl font-heading font-normal text-primary mb-4">
