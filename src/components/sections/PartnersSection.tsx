@@ -36,8 +36,8 @@ const PartnersSection = () => {
                 src={partner.logo}
                 alt={`Logo ${partner.name}`}
                 className="max-h-16 max-w-full object-contain"
-                width={112}
-                height={64}
+                width="112"
+                height="64"
                 loading="lazy"
               />
             </div>
