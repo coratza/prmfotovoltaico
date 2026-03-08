@@ -20,6 +20,8 @@ const InvestmentSection = () => {
               src={villaSolar}
               alt="Impianto fotovoltaico finito e pulito"
               className="rounded-3xl shadow-medium w-full object-cover aspect-[4/3]"
+              width="800"
+              height="600"
             />
           </div>
 
