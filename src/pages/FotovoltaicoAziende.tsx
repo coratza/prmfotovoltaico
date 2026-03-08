@@ -4,6 +4,8 @@ import { Button } from "@/components/ui/button";
 import { Phone, ArrowRight, CheckCircle, TrendingDown, Zap, Award, Calculator } from "lucide-react";
 import { Link } from "react-router-dom";
 import industrialSolar from "@/assets/industrial-solar-opt.webp";
+import LeadFormSection from "@/components/sections/LeadFormSection";
+import TestimonialsSection from "@/components/sections/TestimonialsSection";
 
 const benefits = [
   { icon: TrendingDown, title: "Riduzione costi operativi", description: "L'energia è una voce importante per le aziende. Il fotovoltaico la abbatte sensibilmente." },
@@ -11,6 +13,12 @@ const benefits = [
   { icon: Zap, title: "Continuità operativa", description: "Con sistemi di accumulo, maggiore sicurezza anche in caso di blackout." },
   { icon: Award, title: "Immagine sostenibile", description: "Dimostra ai tuoi clienti il tuo impegno verso la sostenibilità." },
 ];
+
+const scrollToForm = (e: React.MouseEvent) => {
+  e.preventDefault();
+  const form = document.getElementById("lead-form-section");
+  if (form) form.scrollIntoView({ behavior: "smooth" });
+};
 
 const FotovoltaicoAziende = () => {
   return (
@@ -38,11 +46,14 @@ const FotovoltaicoAziende = () => {
               I costi energetici pesano sul bilancio? Un impianto fotovoltaico industriale è un investimento concreto con ritorno misurabile.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
-              <Button size="lg" className="rounded-full bg-primary-foreground text-foreground hover:bg-primary-foreground/90" asChild>
-                <a href="tel:+393356117388"><Phone className="w-5 h-5" />Chiama Ora</a>
+              <Button variant="cta" size="lg" className="rounded-full" asChild>
+                <a href="#lead-form-section" onClick={scrollToForm}>
+                  Richiedi Studio di Fattibilità
+                  <ArrowRight className="w-5 h-5" />
+                </a>
               </Button>
               <Button size="lg" className="rounded-full border-2 border-primary-foreground bg-transparent text-primary-foreground hover:bg-primary-foreground/10" asChild>
-                <Link to="/contatti">Richiedi Sopralluogo<ArrowRight className="w-4 h-4" /></Link>
+                <a href="tel:+393356117388"><Phone className="w-5 h-5" />Chiama Ora</a>
               </Button>
             </div>
           </div>
@@ -70,6 +81,9 @@ const FotovoltaicoAziende = () => {
           </div>
         </div>
       </section>
+
+      {/* Lead Form */}
+      <LeadFormSection />
 
       {/* Tipologie */}
       <section className="section-padding bg-accent">
@@ -113,6 +127,9 @@ const FotovoltaicoAziende = () => {
           </div>
         </div>
       </section>
+
+      {/* Testimonials */}
+      <TestimonialsSection />
 
       {/* CTA */}
       <section className="section-padding bg-gradient-hero">

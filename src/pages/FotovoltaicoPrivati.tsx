@@ -4,6 +4,8 @@ import { Button } from "@/components/ui/button";
 import { Phone, ArrowRight, CheckCircle, Home, Lightbulb, Shield, Clock } from "lucide-react";
 import { Link } from "react-router-dom";
 import villaSolar from "@/assets/villa-solar-opt.webp";
+import LeadFormSection from "@/components/sections/LeadFormSection";
+import TestimonialsSection from "@/components/sections/TestimonialsSection";
 
 const benefits = [
   { icon: Lightbulb, title: "Bollette più leggere", description: "Produci l'energia che consumi. Vedrai subito la differenza in bolletta." },
@@ -18,6 +20,12 @@ const process = [
   { step: "3", title: "Installazione", description: "Montiamo l'impianto in pochi giorni" },
   { step: "4", title: "Attivazione", description: "Ci occupiamo di tutte le pratiche" },
 ];
+
+const scrollToForm = (e: React.MouseEvent) => {
+  e.preventDefault();
+  const form = document.getElementById("lead-form-section");
+  if (form) form.scrollIntoView({ behavior: "smooth" });
+};
 
 const FotovoltaicoPrivati = () => {
   return (
@@ -45,11 +53,14 @@ const FotovoltaicoPrivati = () => {
               Hai una villa o una casa indipendente? Il fotovoltaico è la scelta giusta per ridurre le bollette e aumentare l'indipendenza energetica.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
-              <Button size="lg" className="rounded-full bg-primary-foreground text-foreground hover:bg-primary-foreground/90" asChild>
-                <a href="tel:+393356117388"><Phone className="w-5 h-5" />Chiama Ora</a>
+              <Button variant="cta" size="lg" className="rounded-full" asChild>
+                <a href="#lead-form-section" onClick={scrollToForm}>
+                  Richiedi Sopralluogo Gratuito
+                  <ArrowRight className="w-5 h-5" />
+                </a>
               </Button>
               <Button size="lg" className="rounded-full border-2 border-primary-foreground bg-transparent text-primary-foreground hover:bg-primary-foreground/10" asChild>
-                <Link to="/contatti">Richiedi Sopralluogo<ArrowRight className="w-4 h-4" /></Link>
+                <a href="tel:+393356117388"><Phone className="w-5 h-5" />Chiama Ora</a>
               </Button>
             </div>
           </div>
@@ -97,14 +108,17 @@ const FotovoltaicoPrivati = () => {
         </div>
       </section>
 
+      {/* Lead Form */}
+      <LeadFormSection />
+
       {/* Cosa include */}
-      <section className="section-padding">
+      <section className="section-padding bg-accent">
         <div className="container-custom">
           <div className="max-w-3xl mx-auto">
             <h2 className="text-3xl md:text-4xl font-heading font-light text-primary mb-8 text-center">Cosa Include il Nostro Servizio</h2>
             <div className="space-y-3">
               {["Sopralluogo gratuito e senza impegno","Progettazione su misura per la tua casa","Pannelli fotovoltaici di qualità europea","Inverter con garanzia estesa","Installazione professionale","Pratiche burocratiche e allaccio GSE","Collaudo e attivazione dell'impianto","Assistenza post-vendita locale"].map((item) => (
-                <div key={item} className="flex items-center gap-3 p-4 bg-accent rounded-xl">
+                <div key={item} className="flex items-center gap-3 p-4 bg-card rounded-xl">
                   <CheckCircle className="w-5 h-5 text-primary flex-shrink-0" />
                   <span className="text-foreground">{item}</span>
                 </div>
@@ -113,6 +127,9 @@ const FotovoltaicoPrivati = () => {
           </div>
         </div>
       </section>
+
+      {/* Testimonials */}
+      <TestimonialsSection />
 
       {/* CTA */}
       <section className="section-padding bg-gradient-hero">

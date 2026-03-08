@@ -53,13 +53,13 @@ const Index = () => {
       <HeroSection />
       <InvestmentSection />
       <WhyChooseUsSection />
+      <TestimonialsSection />
       <ServicesSection />
+      <LeadFormSection />
       <DetrazioniPreviewSection />
       <MethodSection />
       <ClaritySection />
       <PartnersSection />
-      <LeadFormSection />
-      <TestimonialsSection />
       <FAQSection faqs={homeFaqs} />
     </Layout>
   );
