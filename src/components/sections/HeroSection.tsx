@@ -6,7 +6,7 @@ const HeroSection = () => {
     <section className="relative min-h-[85vh] flex items-center">
       <div className="absolute inset-0">
         <img
-          src="/images/hero-solar-home.jpg"
+          src="/images/hero-solar-home.webp"
           alt="Casa con impianto fotovoltaico a Bologna"
           className="w-full h-full object-cover"
           width={1420}

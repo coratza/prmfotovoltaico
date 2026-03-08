@@ -1,8 +1,8 @@
 import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import villaSolar from "@/assets/villa-solar.jpg";
-import industrialSolar from "@/assets/industrial-solar.jpg";
+import villaSolar from "@/assets/villa-solar.webp";
+import industrialSolar from "@/assets/industrial-solar.webp";
 
 const TargetSection = () => {
   return (

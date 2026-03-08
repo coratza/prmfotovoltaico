@@ -3,8 +3,8 @@ import SEOHead from "@/components/SEOHead";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Phone, ArrowRight, CheckCircle, FileText, Wrench, BadgePercent, Home, Building2 } from "lucide-react";
-import villaSolar from "@/assets/villa-solar.jpg";
-import industrialSolar from "@/assets/industrial-solar.jpg";
+import villaSolar from "@/assets/villa-solar.webp";
+import industrialSolar from "@/assets/industrial-solar.webp";
 
 const provinces = ["Bologna", "Modena", "Ferrara", "Ravenna"];
 
