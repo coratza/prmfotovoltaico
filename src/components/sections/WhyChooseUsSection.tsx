@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import heroImage from "@/assets/hero-solar-home.webp";
-import teamImage from "@/assets/team-installation.webp";
-import villaSolar from "@/assets/villa-solar.webp";
-import industrialSolar from "@/assets/industrial-solar.webp";
+import heroImage from "@/assets/hero-solar-home-opt.webp";
+import teamImage from "@/assets/team-installation-opt.webp";
+import villaSolar from "@/assets/villa-solar-opt.webp";
+import industrialSolar from "@/assets/industrial-solar-opt.webp";
 
 const reasons = [
   {

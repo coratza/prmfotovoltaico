@@ -3,7 +3,7 @@ import SEOHead from "@/components/SEOHead";
 import { Button } from "@/components/ui/button";
 import { Phone, ArrowRight, CheckCircle, Home, Lightbulb, Shield, Clock } from "lucide-react";
 import { Link } from "react-router-dom";
-import villaSolar from "@/assets/villa-solar.webp";
+import villaSolar from "@/assets/villa-solar-opt.webp";
 
 const benefits = [
   { icon: Lightbulb, title: "Bollette più leggere", description: "Produci l'energia che consumi. Vedrai subito la differenza in bolletta." },
