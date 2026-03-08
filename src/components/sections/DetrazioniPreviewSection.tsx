@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import villaSolar from "@/assets/villa-solar-opt.webp";
-import industrialSolar from "@/assets/industrial-solar-opt.webp";
+import villaSolar from "@/assets/villa-solar-sm.webp";
+import industrialSolar from "@/assets/industrial-solar-sm.webp";
 
 const DetrazioniPreviewSection = () => {
   return (
