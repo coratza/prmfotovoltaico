@@ -3,7 +3,7 @@ import SEOHead from "@/components/SEOHead";
 import { Button } from "@/components/ui/button";
 import { Phone, ArrowRight, CheckCircle, TrendingDown, Zap, Award, Calculator } from "lucide-react";
 import { Link } from "react-router-dom";
-import industrialSolar from "@/assets/industrial-solar.webp";
+import industrialSolar from "@/assets/industrial-solar-opt.webp";
 
 const benefits = [
   { icon: TrendingDown, title: "Riduzione costi operativi", description: "L'energia è una voce importante per le aziende. Il fotovoltaico la abbatte sensibilmente." },

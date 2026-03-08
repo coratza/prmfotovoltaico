@@ -3,7 +3,7 @@ import SEOHead from "@/components/SEOHead";
 import { Button } from "@/components/ui/button";
 import { Phone, ArrowRight, MapPin, Users, Heart, Wrench } from "lucide-react";
 import { Link } from "react-router-dom";
-import teamImage from "@/assets/team-installation.webp";
+import teamImage from "@/assets/team-installation-opt.webp";
 
 const values = [
   {
