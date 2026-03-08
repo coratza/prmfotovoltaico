@@ -1,14 +1,12 @@
 import { Phone, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import heroImage from "@/assets/hero-solar-home.jpg";
-
 const HeroSection = () => {
   return (
     <section className="relative min-h-[85vh] flex items-center">
       <div className="absolute inset-0">
         <img
-          src={heroImage}
+          src="/images/hero-solar-home.jpg"
           alt="Casa con impianto fotovoltaico a Bologna"
           className="w-full h-full object-cover"
           width={1420}
