@@ -25,7 +25,7 @@ const ServicesSection = () => {
           <div className="blue-card">
             <div className="flex flex-col gap-6">
               <div className="overflow-hidden rounded-2xl h-56">
-                <img src={villaSolar} alt="Fotovoltaico per privati" className="w-full h-full object-cover" />
+                <img src={villaSolar} alt="Fotovoltaico per privati" className="w-full h-full object-cover" width="533" height="300" loading="lazy" />
               </div>
               <div>
                 <h3 className="text-2xl font-heading font-normal text-primary-foreground mb-3">
