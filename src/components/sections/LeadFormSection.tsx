@@ -82,11 +82,11 @@ const LeadFormSection = () => {
     <section id="lead-form-section" className="section-padding">
       <div className="container-custom">
         <div className="max-w-3xl mx-auto">
-          <div className="text-center mb-10">
-            <h2 className="text-3xl md:text-4xl font-heading font-light text-primary mb-4">
+          <div className="text-center mb-8 md:mb-10">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-heading font-light text-primary mb-3 md:mb-4">
               Vuoi capire se il fotovoltaico è adatto al tuo caso?
             </h2>
-            <p className="text-muted-foreground leading-relaxed">
+            <p className="text-muted-foreground leading-relaxed text-sm sm:text-base">
               Compila il modulo per una prima valutazione.
               <br />
               Ti ricontattiamo per analizzare la situazione in modo concreto.
@@ -94,43 +94,43 @@ const LeadFormSection = () => {
           </div>
 
           {isSubmitted ? (
-            <div className="text-center py-12 bg-card rounded-3xl shadow-soft border border-border">
-              <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                <CheckCircle className="w-8 h-8 text-primary" />
+            <div className="text-center py-10 md:py-12 bg-card rounded-2xl sm:rounded-3xl shadow-soft border border-border">
+              <div className="w-14 h-14 md:w-16 md:h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                <CheckCircle className="w-7 h-7 md:w-8 md:h-8 text-primary" />
               </div>
-              <h3 className="text-xl font-heading text-foreground mb-2">Richiesta inviata!</h3>
-              <p className="text-muted-foreground">Ti ricontatteremo al più presto.</p>
+              <h3 className="text-lg md:text-xl font-heading text-foreground mb-2">Richiesta inviata!</h3>
+              <p className="text-muted-foreground text-sm sm:text-base">Ti ricontatteremo al più presto.</p>
             </div>
           ) : (
-            <form onSubmit={handleSubmit} className="bg-card rounded-3xl shadow-soft border border-border p-6 md:p-10 space-y-5">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+            <form onSubmit={handleSubmit} className="bg-card rounded-2xl sm:rounded-3xl shadow-soft border border-border p-5 sm:p-6 md:p-10 space-y-4 md:space-y-5">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-5">
                 <div>
                   <label htmlFor="lead-name" className="block text-sm font-medium text-foreground mb-1.5">
                     Nome e Cognome *
                   </label>
-                  <Input id="lead-name" name="name" required placeholder="Mario Rossi" className="h-12 rounded-xl" maxLength={200} />
+                  <Input id="lead-name" name="name" required placeholder="Mario Rossi" className="h-11 md:h-12 rounded-xl" maxLength={200} />
                 </div>
                 <div>
                   <label htmlFor="lead-company" className="block text-sm font-medium text-foreground mb-1.5">
                     Nome dell'azienda
                   </label>
-                  <Input id="lead-company" name="company" placeholder="(opzionale)" className="h-12 rounded-xl" />
+                  <Input id="lead-company" name="company" placeholder="(opzionale)" className="h-11 md:h-12 rounded-xl" />
                 </div>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-5">
                 <div>
                   <label htmlFor="lead-email" className="block text-sm font-medium text-foreground mb-1.5">
                     Email
                   </label>
-                  <Input id="lead-email" name="email" type="email" placeholder="mario@email.it" className="h-12 rounded-xl" />
+                  <Input id="lead-email" name="email" type="email" placeholder="mario@email.it" className="h-11 md:h-12 rounded-xl" />
                   {emailError && <p className="text-sm text-destructive mt-1">{emailError}</p>}
                 </div>
                 <div>
                   <label htmlFor="lead-phone" className="block text-sm font-medium text-foreground mb-1.5">
                     Telefono *
                   </label>
-                  <Input id="lead-phone" name="phone" type="tel" required placeholder="333 1234567" className="h-12 rounded-xl" maxLength={30} />
+                  <Input id="lead-phone" name="phone" type="tel" required placeholder="333 1234567" className="h-11 md:h-12 rounded-xl" maxLength={30} />
                   {phoneError && <p className="text-sm text-destructive mt-1">{phoneError}</p>}
                 </div>
               </div>
@@ -139,7 +139,7 @@ const LeadFormSection = () => {
                 <label className="block text-sm font-medium text-foreground mb-2">
                   Di quale servizio vuoi usufruire?
                 </label>
-                <div className="flex gap-4">
+                <div className="flex gap-3 sm:gap-4">
                   <button
                     type="button"
                     onClick={() => setClientType("privato")}
@@ -169,7 +169,7 @@ const LeadFormSection = () => {
                 <label htmlFor="lead-details" className="block text-sm font-medium text-foreground mb-1.5">
                   Fornisci maggiori dettagli sulla tua attività e su come possiamo aiutarti
                 </label>
-                <Textarea id="lead-details" name="details" rows={4} placeholder="Descrivi brevemente la tua situazione..." className="rounded-xl" />
+                <Textarea id="lead-details" name="details" rows={3} placeholder="Descrivi brevemente la tua situazione..." className="rounded-xl" />
               </div>
 
               <Button
