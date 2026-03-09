@@ -24,7 +24,7 @@ const HeroSection = () => {
           loading="eager"
         />
         {/* Mobile: gradient covers full width for readability. Desktop: fade to right */}
-        <div className="absolute inset-0 bg-foreground/60 md:bg-gradient-to-r md:from-foreground/85 md:via-foreground/60 md:to-foreground/15" />
+        <div className="absolute inset-0 bg-foreground/60 md:bg-gradient-to-r md:from-foreground/65 md:via-foreground/50 md:to-foreground/10" />
       </div>
 
       <div className="container-custom relative z-10 py-12 md:py-0">
