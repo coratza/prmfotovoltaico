@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Phone, Menu, X, ChevronDown } from "lucide-react";
+import { Phone, Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import prmLogoRound from "@/assets/prm-logo-round.png";
 
@@ -24,9 +24,9 @@ const Header = () => {
   return (
     <header className="sticky top-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border">
       <div className="container-custom">
-        <div className="flex items-center justify-between h-16 md:h-20">
+        <div className="flex items-center justify-between h-14 md:h-20">
           <Link to="/" className="flex items-center">
-            <img src={prmLogoRound} alt="PRM Fotovoltaico" className="h-16 w-16 md:h-20 md:w-20" width={80} height={80} />
+            <img src={prmLogoRound} alt="PRM Fotovoltaico" className="h-12 w-12 md:h-20 md:w-20" width={80} height={80} />
           </Link>
 
           <nav className="hidden lg:flex items-center gap-1">
@@ -58,14 +58,14 @@ const Header = () => {
         </div>
 
         {isMenuOpen && (
-          <nav className="lg:hidden py-4 border-t border-border animate-fade-in">
-            <div className="flex flex-col gap-1">
+          <nav className="lg:hidden py-3 border-t border-border animate-fade-in">
+            <div className="flex flex-col gap-0.5">
               {navLinks.map((link) => (
                 <Link
                   key={link.href}
                   to={link.href}
                   onClick={() => setIsMenuOpen(false)}
-                  className={`px-4 py-3 rounded-md font-medium transition-colors ${
+                  className={`px-4 py-2.5 rounded-md font-medium transition-colors text-sm ${
                     isActive(link.href) ? "text-primary font-semibold" : "text-muted-foreground hover:text-foreground"
                   }`}
                 >
@@ -73,7 +73,7 @@ const Header = () => {
                 </Link>
               ))}
             </div>
-            <div className="mt-4 pt-4 border-t border-border">
+            <div className="mt-3 pt-3 border-t border-border">
               <Button variant="cta" size="lg" className="w-full rounded-full" asChild>
                 <a href="tel:+393356117388">
                   <Phone className="w-5 h-5" />

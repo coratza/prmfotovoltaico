@@ -14,28 +14,28 @@ const PartnersSection = () => {
   return (
     <section className="section-padding bg-accent">
       <div className="container-custom">
-        <div className="text-center max-w-3xl mx-auto mb-12">
-          <h2 className="text-3xl md:text-4xl font-heading font-light text-primary mb-4">
+        <div className="text-center max-w-3xl mx-auto mb-8 md:mb-12">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-heading font-light text-primary mb-3 md:mb-4">
             I Partner Tecnologici
           </h2>
-          <p className="text-muted-foreground leading-relaxed">
+          <p className="text-muted-foreground leading-relaxed text-sm sm:text-base">
             Per i nostri impianti utilizziamo le componenti
             dei migliori produttori nel settore fotovoltaico.
-            <br />
+            <br className="hidden sm:block" />
             La scelta dei materiali è parte integrante del progetto.
           </p>
         </div>
 
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 max-w-4xl mx-auto">
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-6 max-w-4xl mx-auto">
           {partners.map((partner) => (
             <div
               key={partner.name}
-              className="bg-card border border-border rounded-2xl p-8 flex items-center justify-center h-32 shadow-soft"
+              className="bg-card border border-border rounded-2xl p-5 sm:p-8 flex items-center justify-center h-24 sm:h-32 shadow-soft"
             >
               <img
                 src={partner.logo}
                 alt={`Logo ${partner.name}`}
-                className="max-h-16 max-w-full object-contain"
+                className="max-h-12 sm:max-h-16 max-w-full object-contain"
                 width="112"
                 height="64"
                 loading="lazy"
