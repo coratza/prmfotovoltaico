@@ -50,7 +50,7 @@ const HeroSection = () => {
             </div>
             <div className="flex items-center gap-2 text-primary-foreground/90">
               <Shield className="w-4 h-4 flex-shrink-0" />
-              <span className="text-sm font-medium">Garanzia fino a 25 anni</span>
+              <span className="text-sm font-medium">Componenti di qualità certificata</span>
             </div>
           </div>
 
