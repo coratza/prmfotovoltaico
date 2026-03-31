@@ -1,3 +1,5 @@
+import SectionCTA from "./SectionCTA";
+
 const steps = [
   { num: "1", title: "Primo contatto:", description: "Raccogliamo le informazioni essenziali." },
   { num: "2", title: "Sopralluogo tecnico:", description: "Analizziamo tetto, struttura e consumi." },
@@ -24,6 +26,8 @@ const MethodSection = () => {
             </div>
           ))}
         </div>
+
+        <SectionCTA text="Inizia dal sopralluogo gratuito" />
       </div>
     </section>
   );
