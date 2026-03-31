@@ -79,9 +79,9 @@
     --muted-foreground: 215 10% 70%;
     --accent: 199 76% 18%;
     --accent-foreground: 199 76% 82%;
-    --cta: 210 16% 92%;
-    --cta-foreground: 222 22% 8%;
-    --cta-hover: 210 16% 86%;
+    --cta: 142 50% 45%;
+    --cta-foreground: 0 0% 100%;
+    --cta-hover: 142 50% 38%;
     --destructive: 0 62% 50%;
     --destructive-foreground: 0 0% 100%;
     --border: 220 14% 20%;
