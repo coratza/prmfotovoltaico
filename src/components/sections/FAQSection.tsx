@@ -5,6 +5,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import SectionCTA from "./SectionCTA";
 
 interface FAQItem {
   question: string;
@@ -43,6 +44,18 @@ const FAQSection = ({ faqs }: FAQSectionProps) => {
               </AccordionItem>
             ))}
           </Accordion>
+
+          {/* CTA finale forte dopo le FAQ */}
+          <div className="mt-10 md:mt-14 text-center bg-primary rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-10">
+            <h3 className="text-xl sm:text-2xl font-heading font-light text-primary-foreground mb-2 md:mb-3">
+              Hai ancora dubbi? Parliamone.
+            </h3>
+            <p className="text-primary-foreground/80 text-sm sm:text-base mb-5 md:mb-6 max-w-lg mx-auto">
+              Un sopralluogo gratuito vale più di mille risposte online.
+              Ti diamo numeri concreti sulla tua situazione reale.
+            </p>
+            <SectionCTA text="Richiedi Sopralluogo Gratuito" className="mt-0" />
+          </div>
         </div>
       </div>
     </section>
