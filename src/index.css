@@ -51,7 +51,7 @@
     --shadow-soft: 0 4px 20px -4px hsl(222 22% 14% / 0.08);
     --shadow-medium: 0 8px 30px -6px hsl(222 22% 14% / 0.12);
     --shadow-strong: 0 12px 40px -8px hsl(222 22% 14% / 0.18);
-    --shadow-cta: 0 10px 26px -10px hsl(222 22% 14% / 0.35);
+    --shadow-cta: 0 10px 26px -10px hsl(142 64% 38% / 0.35);
 
     --sidebar-background: 210 20% 97%;
     --sidebar-foreground: 222 22% 18%;
