@@ -31,10 +31,10 @@
     --accent: 210 20% 96%;
     --accent-foreground: 207 72% 33%;
 
-    /* CTA neutro scuro */
-    --cta: 222 22% 14%;
+    /* CTA verde conversione */
+    --cta: 142 64% 38%;
     --cta-foreground: 0 0% 100%;
-    --cta-hover: 222 22% 10%;
+    --cta-hover: 142 64% 32%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
