@@ -31,10 +31,10 @@
     --accent: 210 20% 96%;
     --accent-foreground: 207 72% 33%;
 
-    /* CTA neutro scuro */
-    --cta: 222 22% 14%;
+    /* CTA verde conversione */
+    --cta: 142 64% 38%;
     --cta-foreground: 0 0% 100%;
-    --cta-hover: 222 22% 10%;
+    --cta-hover: 142 64% 32%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
@@ -51,7 +51,7 @@
     --shadow-soft: 0 4px 20px -4px hsl(222 22% 14% / 0.08);
     --shadow-medium: 0 8px 30px -6px hsl(222 22% 14% / 0.12);
     --shadow-strong: 0 12px 40px -8px hsl(222 22% 14% / 0.18);
-    --shadow-cta: 0 10px 26px -10px hsl(222 22% 14% / 0.35);
+    --shadow-cta: 0 10px 26px -10px hsl(142 64% 38% / 0.35);
 
     --sidebar-background: 210 20% 97%;
     --sidebar-foreground: 222 22% 18%;
@@ -79,9 +79,9 @@
     --muted-foreground: 215 10% 70%;
     --accent: 199 76% 18%;
     --accent-foreground: 199 76% 82%;
-    --cta: 210 16% 92%;
-    --cta-foreground: 222 22% 8%;
-    --cta-hover: 210 16% 86%;
+    --cta: 142 50% 45%;
+    --cta-foreground: 0 0% 100%;
+    --cta-hover: 142 50% 38%;
     --destructive: 0 62% 50%;
     --destructive-foreground: 0 0% 100%;
     --border: 220 14% 20%;
