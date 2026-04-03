@@ -57,6 +57,16 @@ const Contatti = () => {
         });
       } else {
         setIsSubmitted(true);
+
+        // Google Ads conversion tracking via GTM dataLayer
+        if (typeof window !== "undefined" && (window as any).dataLayer) {
+          (window as any).dataLayer.push({
+            event: "form_submission",
+            conversionId: "AW-17965756122",
+            conversionLabel: "-seBCPTI4JMcENrd3vZC",
+          });
+        }
+
         toast({
           title: "Richiesta inviata!",
           description: "Ti ricontatteremo al più presto.",
