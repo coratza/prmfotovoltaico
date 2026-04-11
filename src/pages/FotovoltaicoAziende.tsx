@@ -41,12 +41,12 @@ const FotovoltaicoAziende = () => {
         </div>
         <div className="container-custom relative z-10">
           <div className="max-w-2xl text-primary-foreground">
-            <h1 className="text-4xl md:text-5xl font-heading font-light mb-6">Fotovoltaico per la Tua Azienda</h1>
-            <p className="text-xl text-primary-foreground/90 mb-8">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-heading font-light mb-6">Fotovoltaico per la Tua Azienda</h1>
+            <p className="text-base sm:text-xl text-primary-foreground/90 mb-6 md:mb-8">
               I costi energetici pesano sul bilancio? Un impianto fotovoltaico industriale è un investimento concreto con ritorno misurabile.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
-              <Button variant="cta" size="lg" className="rounded-full" asChild>
+              <Button variant="cta" size="lg" className="rounded-full text-sm sm:text-base" asChild>
                 <a href="#lead-form-section" onClick={scrollToForm}>
                   Richiedi Studio di Fattibilità
                   <ArrowRight className="w-5 h-5" />
