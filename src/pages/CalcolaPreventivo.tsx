@@ -468,7 +468,7 @@ const CalcolaPreventivo = () => {
                   <Button variant="outline" size="lg" className="rounded-full" onClick={() => setStep("contatto")}>
                     <ArrowLeft className="w-4 h-4" /> Indietro
                   </Button>
-                  <Button variant="cta" size="lg" className="rounded-full" onClick={handleCalcola} disabled={!canProceedStep2 || (isAzienda && haImpiantoEsistente)}>
+                  <Button variant="cta" size="lg" className="rounded-full text-sm sm:text-base" onClick={handleCalcola} disabled={!canProceedStep2 || (isAzienda && haImpiantoEsistente)}>
                     <Calculator className="w-5 h-5" /> Calcola il tuo risparmio
                   </Button>
                 </div>

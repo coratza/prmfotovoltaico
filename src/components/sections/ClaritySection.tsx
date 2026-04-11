@@ -47,7 +47,7 @@ const ClaritySection = () => {
             Non farti fregare da chi ti fa promesse troppo belle per essere vere, perché molto spesso non lo sono.
           </p>
 
-          <Button variant="cta" size="lg" className="rounded-full" asChild>
+          <Button variant="cta" size="lg" className="rounded-full text-sm sm:text-base" asChild>
             <a href="tel:+393356117388">
               <Phone className="w-5 h-5 flex-shrink-0" />
               Prenota una chiamata GRATIS
