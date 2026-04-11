@@ -46,16 +46,16 @@ const ChiSiamo = () => {
         <div className="container-custom">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
-              <h1 className="text-4xl md:text-5xl font-serif font-bold text-foreground mb-6">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl font-serif font-bold text-foreground mb-6">
                 Chi Siamo
               </h1>
-              <p className="text-xl text-muted-foreground mb-6">
+              <p className="text-base sm:text-xl text-muted-foreground mb-6">
                 Siamo un'azienda artigiana di San Lazzaro di Savena, fondata dall'Ing. Navone Riccardo, specializzata nell'installazione di impianti fotovoltaici dal 2010.
               </p>
               <p className="text-muted-foreground mb-8">
                 Lavoriamo con un approccio artigiano: pochi impianti, fatti bene. Ti seguiamo direttamente, dalla prima telefonata al collaudo, con una presenza reale sul territorio.
               </p>
-              <Button variant="cta" size="lg" asChild>
+              <Button variant="cta" size="lg" className="text-sm sm:text-base" asChild>
                 <a href="tel:+393356117388">
                   <Phone className="w-5 h-5" />
                   Parlaci del tuo progetto
