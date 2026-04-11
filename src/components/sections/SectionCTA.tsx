@@ -17,9 +17,9 @@ const SectionCTA = ({ text = "Richiedi Sopralluogo Gratuito", className = "" }: 
 
   return (
     <div className={`text-center mt-6 md:mt-8 ${className}`}>
-      <Button variant="cta" size="lg" className="rounded-full px-6 sm:px-8" asChild>
-        <a href="#lead-form-section" onClick={scrollToForm}>
-          {text}
+      <Button variant="cta" size="lg" className="rounded-full px-5 sm:px-8 text-sm sm:text-base max-w-full" asChild>
+        <a href="#lead-form-section" onClick={scrollToForm} className="inline-flex items-center gap-2">
+          <span className="truncate">{text}</span>
           <ArrowRight className="w-5 h-5 flex-shrink-0" />
         </a>
       </Button>
