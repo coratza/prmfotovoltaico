@@ -21,6 +21,25 @@ const process = [
   { step: "4", title: "Attivazione", description: "Ci occupiamo di tutte le pratiche" },
 ];
 
+const seoFaqs = [
+  {
+    question: "Quanto costa un impianto fotovoltaico per una casa?",
+    answer: "Il costo di un impianto fotovoltaico residenziale dipende dalla potenza: un impianto da 3 kWp parte da circa 5.000€ (al netto delle detrazioni), mentre un 6 kWp si aggira intorno ai 9.000-11.000€. Con le detrazioni fiscali del 50%, il costo effettivo si dimezza. Richiedi un sopralluogo gratuito per un preventivo personalizzato.",
+  },
+  {
+    question: "Quanto risparmio in bolletta con il fotovoltaico?",
+    answer: "Con un impianto fotovoltaico ben dimensionato, una famiglia media può risparmiare tra il 50% e il 70% sulla bolletta elettrica. Il risparmio effettivo dipende dai consumi, dalla quota di autoconsumo e dall'eventuale sistema di accumulo a batterie.",
+  },
+  {
+    question: "Quanto dura un impianto fotovoltaico residenziale?",
+    answer: "I pannelli fotovoltaici moderni hanno una vita utile di 25-30 anni con garanzia di produzione minima all'80% dopo 25 anni. Gli inverter durano mediamente 10-15 anni. La manutenzione è minima: una pulizia periodica e un controllo annuale sono sufficienti.",
+  },
+  {
+    question: "Le detrazioni fiscali per il fotovoltaico sono ancora attive?",
+    answer: "Sì, nel 2025 le detrazioni fiscali del 50% per l'installazione di impianti fotovoltaici su abitazioni sono ancora attive. La detrazione viene recuperata in 10 anni nella dichiarazione dei redditi, dimezzando di fatto il costo dell'investimento.",
+  },
+];
+
 const scrollToForm = (e: React.MouseEvent) => {
   e.preventDefault();
   const form = document.getElementById("lead-form-section");
@@ -31,14 +50,15 @@ const FotovoltaicoPrivati = () => {
   return (
     <Layout>
       <SEOHead
-        title="Fotovoltaico Residenziale Bologna | Installazione Chiavi in Mano | PRM Fotovoltaico"
-        description="Installa un impianto fotovoltaico residenziale a Bologna e provincia. Sopralluogo gratuito, pannelli di qualità, pratiche incluse. PRM Fotovoltaico, installatore locale dal 2010."
-        keywords="fotovoltaico residenziale Bologna, fotovoltaico casa, pannelli solari villa, impianto fotovoltaico privato, fotovoltaico con accumulo, installazione fotovoltaico chiavi in mano"
+        title="Fotovoltaico Residenziale Bologna | Pannelli Solari Casa | PRM Fotovoltaico"
+        description="Installa un impianto fotovoltaico sulla tua casa a Bologna e provincia. Risparmia fino al 70% in bolletta con detrazioni fiscali al 50%. Sopralluogo gratuito, installazione chiavi in mano. PRM Fotovoltaico."
+        keywords="fotovoltaico residenziale Bologna, pannelli solari casa, impianto fotovoltaico privato Bologna, fotovoltaico con accumulo, installazione fotovoltaico chiavi in mano, costo fotovoltaico casa, detrazioni fotovoltaico 50%, fotovoltaico villa, quanto costa fotovoltaico casa, risparmio bolletta fotovoltaico"
         canonicalPath="/fotovoltaico-privati"
         breadcrumbs={[
           { name: "Home", href: "/" },
           { name: "Fotovoltaico Privati", href: "/fotovoltaico-privati" },
         ]}
+        faqs={seoFaqs}
       />
       {/* Hero */}
       <section className="relative py-20 md:py-32">
@@ -48,9 +68,9 @@ const FotovoltaicoPrivati = () => {
         </div>
         <div className="container-custom relative z-10">
           <div className="max-w-2xl text-primary-foreground">
-            <h1 className="text-3xl sm:text-4xl md:text-5xl font-heading font-light mb-6">Fotovoltaico per la Tua Casa</h1>
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-heading font-light mb-6">Fotovoltaico per la Tua Casa a Bologna</h1>
             <p className="text-base sm:text-xl text-primary-foreground/90 mb-6 md:mb-8">
-              Hai una villa o una casa indipendente? Il fotovoltaico è la scelta giusta per ridurre le bollette e aumentare l'indipendenza energetica.
+              Riduci la bolletta fino al 70% e aumenta il valore della tua casa con un impianto fotovoltaico su misura. Detrazioni fiscali al 50% incluse.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <Button variant="cta" size="lg" className="rounded-full text-sm sm:text-base" asChild>
@@ -71,8 +91,8 @@ const FotovoltaicoPrivati = () => {
       <section className="section-padding">
         <div className="container-custom">
           <div className="text-center max-w-2xl mx-auto mb-12">
-            <h2 className="text-3xl md:text-4xl font-heading font-light text-primary mb-4">Perché Installare il Fotovoltaico?</h2>
-            <p className="text-lg text-muted-foreground">Non servono calcoli complicati. Ecco cosa ottieni con un impianto fotovoltaico.</p>
+            <h2 className="text-3xl md:text-4xl font-heading font-light text-primary mb-4">Perché Installare il Fotovoltaico sulla Tua Casa</h2>
+            <p className="text-lg text-muted-foreground">Un investimento che si ripaga da solo e protegge dai rincari energetici.</p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {benefits.map((b) => (
@@ -95,7 +115,7 @@ const FotovoltaicoPrivati = () => {
       {/* Processo */}
       <section className="section-padding bg-accent">
         <div className="container-custom">
-          <h2 className="text-3xl md:text-4xl font-heading font-light text-primary text-center mb-12">Come Funziona</h2>
+          <h2 className="text-3xl md:text-4xl font-heading font-light text-primary text-center mb-12">Come Funziona l'Installazione</h2>
           <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
             {process.map((item) => (
               <div key={item.step} className="bg-card rounded-2xl p-6 shadow-soft border border-border text-center">
@@ -136,9 +156,14 @@ const FotovoltaicoPrivati = () => {
         <div className="container-custom text-center text-primary-foreground">
           <h2 className="text-3xl md:text-4xl font-heading font-light mb-4">Vuoi Sapere se il Fotovoltaico Fa per Te?</h2>
           <p className="text-xl text-primary-foreground/90 mb-8">Chiamaci o richiedi un sopralluogo. Ti spieghiamo tutto senza impegno.</p>
-          <Button size="lg" className="rounded-full bg-primary-foreground text-foreground hover:bg-primary-foreground/90" asChild>
-            <a href="tel:+393356117388"><Phone className="w-6 h-6" />Chiama Ora: 335 611 7388</a>
-          </Button>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Button size="lg" className="rounded-full bg-primary-foreground text-foreground hover:bg-primary-foreground/90" asChild>
+              <a href="tel:+393356117388"><Phone className="w-6 h-6" />Chiama Ora: 335 611 7388</a>
+            </Button>
+            <Button size="lg" className="rounded-full border-2 border-primary-foreground bg-transparent text-primary-foreground hover:bg-primary-foreground/10" asChild>
+              <Link to="/calcola-rendimento">Calcola il tuo rendimento <ArrowRight className="w-5 h-5" /></Link>
+            </Button>
+          </div>
         </div>
       </section>
     </Layout>
