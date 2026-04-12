@@ -132,7 +132,18 @@ const CalcolaPreventivo = () => {
           payback_anni: output.paybackAnni,
         },
       });
-      if (error) console.error("Errore invio lead:", error);
+      if (error) {
+        console.error("Errore invio lead:", error);
+      } else {
+        // Google Ads conversion tracking via GTM dataLayer
+        if (typeof window !== "undefined" && (window as any).dataLayer) {
+          (window as any).dataLayer.push({
+            event: "form_submission",
+            conversionId: "AW-17965756122",
+            conversionLabel: "-seBCPTI4JMcENrd3vZC",
+          });
+        }
+      }
     } catch (err) {
       console.error("Errore invio lead:", err);
     } finally {
