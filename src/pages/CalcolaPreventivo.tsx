@@ -14,7 +14,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 import FAQSection from "@/components/sections/FAQSection";
 
-type Step = "contatto" | "impianto" | "risultati";
+type Step = "impianto" | "contatto" | "risultati";
 
 const seoFaqs = [
   {
@@ -45,7 +45,7 @@ const seoFaqs = [
 
 const CalcolaPreventivo = () => {
   const { toast } = useToast();
-  const [step, setStep] = useState<Step>("contatto");
+  const [step, setStep] = useState<Step>("impianto");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [risultati, setRisultati] = useState<CalcoloOutput | null>(null);
 
@@ -71,15 +71,19 @@ const CalcolaPreventivo = () => {
   // Qualifica 180% (post-risultato, solo aziende)
   const [qualifica, setQualifica] = useState<Record<string, string>>({});
 
+  // Step 1: Impianto → Step 2: Contatto
   const handleStep1Next = () => {
+    if (canProceedStep1) setStep("contatto");
+  };
+
+  // Step 2: Contatto → Calcola e mostra risultati
+  const handleCalcola = async () => {
     const pErr = validatePhone(telefono);
     const eErr = validateEmail(email);
     setPhoneError(pErr);
     setEmailError(eErr);
-    if (!pErr && !eErr) setStep("impianto");
-  };
+    if (pErr || eErr) return;
 
-  const handleCalcola = async () => {
     if (tipologia === "azienda" && haImpiantoEsistente) return;
 
     const input: CalcoloInput = {
@@ -170,9 +174,9 @@ const CalcolaPreventivo = () => {
     }
   };
 
-  const canProceedStep1 = nome.trim().length > 0 && telefono.trim().length >= 6;
-  const canProceedStep2 = Number(consumoAnnuo) > 0 && Number(spesaAnnua) > 0 &&
+  const canProceedStep1 = Number(consumoAnnuo) > 0 && Number(spesaAnnua) > 0 &&
     (tipologia === "privato" || Number(mqTetto) > 0);
+  const canProceedStep2 = nome.trim().length > 0 && telefono.trim().length >= 6;
 
   const isAzienda = tipologia === "azienda";
 
@@ -191,18 +195,18 @@ const CalcolaPreventivo = () => {
   return (
     <Layout>
       <SEOHead
-        title="Simulatore Fotovoltaico Gratuito | Calcola Risparmio e Rendimento | PRM Fotovoltaico"
-        description="Calcola gratis quanto risparmi con il fotovoltaico: produzione, risparmio annuo, ROI e tempo di rientro. Simulatore online per privati e aziende a Bologna, Modena, Ferrara e Ravenna."
-        keywords="simulatore fotovoltaico, calcolo fotovoltaico, rendimento fotovoltaico, quanto rende fotovoltaico, quanto produce impianto fotovoltaico, quanto si risparmia con fotovoltaico, conviene fotovoltaico, calcolo rendimento pannelli solari, preventivo fotovoltaico gratuito, quanto produce impianto 6kw"
+        title="Calcolo Rendimento Fotovoltaico Gratis | Simulatore ROI Online | PRM Fotovoltaico"
+        description="Calcola gratis il rendimento del tuo impianto fotovoltaico: produzione kWh, risparmio annuo, ROI e payback. Simulatore online per privati e aziende in Emilia-Romagna."
+        keywords="calcolo rendimento fotovoltaico, rendimento fotovoltaico, simulatore fotovoltaico gratis, quanto rende fotovoltaico, calcolo ROI fotovoltaico, quanto produce impianto fotovoltaico, quanto si risparmia con pannelli solari, simulazione fotovoltaico online, preventivo fotovoltaico gratuito, rendimento pannelli solari, calcolo risparmio fotovoltaico, fotovoltaico conviene"
         canonicalPath="/calcola-rendimento"
         breadcrumbs={[
           { name: "Home", href: "/" },
-          { name: "Simulatore Fotovoltaico", href: "/calcola-rendimento" },
+          { name: "Calcolo Rendimento Fotovoltaico", href: "/calcola-rendimento" },
         ]}
         faqs={seoFaqs}
         softwareApp={{
-          name: "Simulatore Fotovoltaico PRM",
-          description: "Calcola gratis quanto risparmi con il fotovoltaico: produzione annua, risparmio in bolletta, ROI e tempo di rientro dell'investimento.",
+          name: "Calcolo Rendimento Fotovoltaico – Simulatore Gratuito PRM",
+          description: "Calcola gratis il rendimento del tuo impianto fotovoltaico: produzione annua in kWh, risparmio in bolletta, ROI e tempo di rientro dell'investimento. Simulatore online per privati e aziende.",
           url: "https://prmfotovoltaico.com/calcola-rendimento",
           category: "UtilitiesApplication",
         }}
@@ -220,13 +224,13 @@ const CalcolaPreventivo = () => {
             <div className="text-primary-foreground">
               <div className="inline-flex items-center gap-2 bg-primary-foreground/15 rounded-full px-4 py-1.5 mb-6 text-sm font-medium">
                 <Calculator className="w-4 h-4" />
-                Simulazione gratuita in 30 secondi
+                Calcolo gratuito — risultato immediato
               </div>
               <h1 className="text-3xl md:text-4xl lg:text-5xl font-heading font-light leading-tight mb-5">
-                Scopri quanto puoi risparmiare con il fotovoltaico sul tuo tetto
+                Calcola il rendimento del fotovoltaico sul tuo tetto
               </h1>
               <p className="text-lg text-primary-foreground/85 mb-8 leading-relaxed max-w-xl">
-                Calcolo gratuito in 30 secondi. Scopri produzione, risparmio e costo stimato dell'impianto.
+                Inserisci i dati del tuo immobile e scopri subito produzione, risparmio e tempo di rientro dell'investimento.
               </p>
 
               {/* Micro-benefits */}
@@ -252,14 +256,14 @@ const CalcolaPreventivo = () => {
                 onClick={scrollToCalc}
               >
                 <Calculator className="w-5 h-5" />
-                Calcola il tuo risparmio
+                Calcola il tuo rendimento
               </Button>
             </div>
 
             {/* Right: social proof summary */}
             <div className="hidden lg:block">
               <div className="bg-primary-foreground/10 backdrop-blur-sm rounded-3xl p-8 border border-primary-foreground/15">
-                <p className="text-primary-foreground/70 text-sm uppercase tracking-wider mb-6 font-medium">Con la simulazione scopri:</p>
+                <p className="text-primary-foreground/70 text-sm uppercase tracking-wider mb-6 font-medium">Con il calcolo scopri:</p>
                 <div className="space-y-5">
                   {[
                     { icon: Zap, title: "Produzione energetica", desc: "Stima personalizzata basata sulla tua posizione e consumi reali" },
@@ -291,19 +295,19 @@ const CalcolaPreventivo = () => {
             {/* Progress */}
             <div className="flex items-center justify-center gap-2 mb-10">
               {[
-                { key: "contatto", label: "Dati" },
-                { key: "impianto", label: "Impianto" },
+                { key: "impianto", label: "Immobile" },
+                { key: "contatto", label: "Contatto" },
                 { key: "risultati", label: "Risultati" },
               ].map((s, i) => (
                 <div key={s.key} className="flex items-center gap-2">
                   <div className={`w-9 h-9 rounded-full flex items-center justify-center text-sm font-semibold transition-colors ${
                     step === s.key
                       ? "bg-primary text-primary-foreground"
-                      : (["contatto", "impianto", "risultati"].indexOf(step) > i
+                      : (["impianto", "contatto", "risultati"].indexOf(step) > i
                         ? "bg-primary/20 text-primary"
                         : "bg-muted text-muted-foreground")
                   }`}>
-                    {["contatto", "impianto", "risultati"].indexOf(step) > i ? (
+                    {["impianto", "contatto", "risultati"].indexOf(step) > i ? (
                       <CheckCircle className="w-5 h-5" />
                     ) : (
                       i + 1
@@ -315,47 +319,12 @@ const CalcolaPreventivo = () => {
               ))}
             </div>
 
-            {/* Step 1: Contatto */}
-            {step === "contatto" && (
-              <div className="bg-card rounded-2xl p-6 md:p-8 shadow-medium border border-border animate-fade-in">
-                <div className="text-center mb-6">
-                  <h2 className="text-2xl font-heading font-light text-primary mb-2">Iniziamo dal tuo contatto</h2>
-                  <p className="text-sm text-muted-foreground">Ti servono solo 30 secondi. I tuoi dati sono al sicuro.</p>
-                </div>
-                <div className="space-y-4">
-                  <div>
-                    <label className="block text-sm font-medium text-foreground mb-1">Nome e Cognome *</label>
-                    <Input value={nome} onChange={(e) => setNome(e.target.value)} placeholder="Mario Rossi" className="h-12" maxLength={200} />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-foreground mb-1">Telefono *</label>
-                    <Input value={telefono} onChange={(e) => { setTelefono(e.target.value); setPhoneError(null); }} type="tel" placeholder="333 1234567" className="h-12" maxLength={30} />
-                    {phoneError && <p className="text-sm text-destructive mt-1">{phoneError}</p>}
-                    <p className="text-xs text-muted-foreground mt-1">Per inviarti il report e fissare il sopralluogo gratuito.</p>
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-foreground mb-1">Email (opzionale)</label>
-                    <Input value={email} onChange={(e) => { setEmail(e.target.value); setEmailError(null); }} type="email" placeholder="mario@email.it" className="h-12" maxLength={255} />
-                    {emailError && <p className="text-sm text-destructive mt-1">{emailError}</p>}
-                  </div>
-                </div>
-                <div className="mt-8 flex justify-end">
-                  <Button variant="cta" size="lg" className="rounded-full w-full sm:w-auto" onClick={handleStep1Next} disabled={!canProceedStep1}>
-                    Avanti <ArrowRight className="w-4 h-4" />
-                  </Button>
-                </div>
-                <p className="text-xs text-muted-foreground text-center mt-4 flex items-center justify-center gap-1">
-                  <Shield className="w-3 h-3" /> Nessun impegno. Dati protetti e mai condivisi con terzi.
-                </p>
-              </div>
-            )}
-
-            {/* Step 2: Impianto */}
+            {/* ══════════ Step 1: Dati Immobile ══════════ */}
             {step === "impianto" && (
               <div className="bg-card rounded-2xl p-6 md:p-8 shadow-medium border border-border animate-fade-in">
                 <div className="text-center mb-6">
-                  <h2 className="text-2xl font-heading font-light text-primary mb-2">Dati del tuo impianto</h2>
-                  <p className="text-sm text-muted-foreground">Inserisci i dati che trovi sulla tua bolletta elettrica.</p>
+                  <h2 className="text-2xl font-heading font-light text-primary mb-2">Inserisci i dati del tuo immobile</h2>
+                  <p className="text-sm text-muted-foreground">Trovi questi dati sulla tua bolletta elettrica. Ci vogliono 30 secondi.</p>
                 </div>
                 <div className="space-y-5">
                   {/* Tipologia */}
@@ -475,18 +444,71 @@ const CalcolaPreventivo = () => {
                   )}
                 </div>
 
-                <div className="mt-8 flex flex-col sm:flex-row justify-between gap-3">
-                  <Button variant="outline" size="lg" className="rounded-full" onClick={() => setStep("contatto")}>
-                    <ArrowLeft className="w-4 h-4" /> Indietro
-                  </Button>
-                  <Button variant="cta" size="lg" className="rounded-full text-sm sm:text-base" onClick={handleCalcola} disabled={!canProceedStep2 || (isAzienda && haImpiantoEsistente)}>
-                    <Calculator className="w-5 h-5" /> Calcola il tuo risparmio
+                <div className="mt-8 flex justify-end">
+                  <Button variant="cta" size="lg" className="rounded-full w-full sm:w-auto" onClick={handleStep1Next} disabled={!canProceedStep1 || (isAzienda && haImpiantoEsistente)}>
+                    Avanti <ArrowRight className="w-4 h-4" />
                   </Button>
                 </div>
               </div>
             )}
 
-            {/* Step 3: Risultati */}
+            {/* ══════════ Step 2: Contatto ══════════ */}
+            {step === "contatto" && (
+              <div className="bg-card rounded-2xl p-6 md:p-8 shadow-medium border border-border animate-fade-in">
+                <div className="text-center mb-6">
+                  <h2 className="text-2xl font-heading font-light text-primary mb-2">Ultimo passaggio: i tuoi dati</h2>
+                  <p className="text-sm text-muted-foreground">Inserisci il tuo contatto per ricevere il calcolo del rendimento e il report personalizzato.</p>
+                </div>
+
+                {/* Anticipazione valore */}
+                <div className="bg-primary/5 border border-primary/15 rounded-xl p-4 mb-6">
+                  <div className="flex items-start gap-3">
+                    <BarChart3 className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
+                    <div>
+                      <p className="text-sm font-medium text-foreground">Il tuo calcolo è quasi pronto</p>
+                      <p className="text-xs text-muted-foreground mt-0.5">
+                        Vedrai subito: produzione kWh, risparmio annuo, ROI e tempo di rientro dell'investimento.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="space-y-4">
+                  <div>
+                    <label className="block text-sm font-medium text-foreground mb-1">Nome e Cognome *</label>
+                    <Input value={nome} onChange={(e) => setNome(e.target.value)} placeholder="Mario Rossi" className="h-12" maxLength={200} />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-foreground mb-1">Telefono *</label>
+                    <Input value={telefono} onChange={(e) => { setTelefono(e.target.value); setPhoneError(null); }} type="tel" placeholder="333 1234567" className="h-12" maxLength={30} />
+                    {phoneError && <p className="text-sm text-destructive mt-1">{phoneError}</p>}
+                    <p className="text-xs text-muted-foreground mt-1">Per inviarti il report e fissare il sopralluogo gratuito.</p>
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-foreground mb-1">Email <span className="text-muted-foreground font-normal">(opzionale)</span></label>
+                    <Input value={email} onChange={(e) => { setEmail(e.target.value); setEmailError(null); }} type="email" placeholder="mario@email.it" className="h-12" maxLength={255} />
+                    {emailError && <p className="text-sm text-destructive mt-1">{emailError}</p>}
+                  </div>
+                </div>
+                <div className="mt-8 flex flex-col sm:flex-row justify-between gap-3">
+                  <Button variant="outline" size="lg" className="rounded-full" onClick={() => setStep("impianto")}>
+                    <ArrowLeft className="w-4 h-4" /> Indietro
+                  </Button>
+                  <Button variant="cta" size="lg" className="rounded-full text-sm sm:text-base" onClick={handleCalcola} disabled={!canProceedStep2 || isSubmitting}>
+                    {isSubmitting ? "Calcolo in corso..." : (
+                      <>
+                        <Calculator className="w-5 h-5" /> Scopri il tuo rendimento
+                      </>
+                    )}
+                  </Button>
+                </div>
+                <p className="text-xs text-muted-foreground text-center mt-4 flex items-center justify-center gap-1">
+                  <Shield className="w-3 h-3" /> Nessun impegno. Dati protetti e mai condivisi con terzi.
+                </p>
+              </div>
+            )}
+
+            {/* ══════════ Step 3: Risultati ══════════ */}
             {step === "risultati" && risultati && (
               <div className="animate-fade-in space-y-6">
                 {/* Avviso dati incoerenti */}
@@ -674,65 +696,65 @@ const CalcolaPreventivo = () => {
         <div className="container-custom">
           <div className="max-w-3xl mx-auto prose-custom">
             <h2 className="text-3xl font-heading font-light text-primary mb-6">
-              Come funziona il calcolo del rendimento fotovoltaico
+              Come calcolare il rendimento di un impianto fotovoltaico
             </h2>
             <p className="text-muted-foreground leading-relaxed mb-4">
-              Il rendimento di un impianto fotovoltaico dipende da diversi fattori che interagiscono tra loro. Il nostro simulatore tiene conto dei principali parametri per fornirti una stima realistica e personalizzata del risparmio che puoi ottenere.
+              Il <strong>rendimento di un impianto fotovoltaico</strong> dipende da diversi fattori che interagiscono tra loro. Il nostro simulatore tiene conto dei principali parametri per fornirti una stima realistica e personalizzata del risparmio che puoi ottenere con il fotovoltaico.
             </p>
             <p className="text-muted-foreground leading-relaxed mb-4">
-              Il calcolo parte dai tuoi consumi reali e dalla tua bolletta per dimensionare l'impianto in modo ottimale. Viene poi stimata la produzione energetica in base alla <strong>producibilità specifica della tua zona</strong> (espressa in kWh per kWp installato), che varia da provincia a provincia in Emilia-Romagna.
+              Il calcolo parte dai tuoi <strong>consumi reali</strong> e dalla tua bolletta per dimensionare l'impianto in modo ottimale. Viene poi stimata la produzione energetica in base alla <strong>producibilità specifica della tua zona</strong> (espressa in kWh per kWp installato), che varia da provincia a provincia in Emilia-Romagna.
             </p>
             <p className="text-muted-foreground leading-relaxed mb-8">
-              La quota di autoconsumo — ovvero l'energia prodotta e utilizzata direttamente — è il fattore più importante per il risparmio economico. Maggiore è l'autoconsumo, più rapido è il ritorno sull'investimento. Per le aziende con profilo di consumo diurno, l'autoconsumo può raggiungere l'80%, rendendo il fotovoltaico particolarmente conveniente.
+              La quota di autoconsumo — ovvero l'energia prodotta e utilizzata direttamente — è il fattore più importante per il <strong>risparmio economico del fotovoltaico</strong>. Maggiore è l'autoconsumo, più rapido è il ritorno sull'investimento. Per le aziende con profilo di consumo diurno, l'autoconsumo può raggiungere l'80%, rendendo il fotovoltaico particolarmente conveniente.
             </p>
 
             <h2 className="text-3xl font-heading font-light text-primary mb-6">
-              Quanto produce un impianto fotovoltaico in Italia
+              Quanto produce un impianto fotovoltaico in Emilia-Romagna
             </h2>
             <p className="text-muted-foreground leading-relaxed mb-4">
-              La produzione di un impianto fotovoltaico dipende principalmente dalla <strong>posizione geografica</strong>, dall'<strong>orientamento dei pannelli</strong> (ideale è il sud), dall'<strong>inclinazione</strong> (tra 25° e 35° è ottimale) e dalla presenza di eventuali ombreggiamenti.
+              La <strong>produzione di un impianto fotovoltaico</strong> dipende principalmente dalla posizione geografica, dall'orientamento dei pannelli (ideale è il sud), dall'inclinazione (tra 25° e 35° è ottimale) e dalla presenza di eventuali ombreggiamenti.
             </p>
             <p className="text-muted-foreground leading-relaxed mb-4">
-              In Emilia-Romagna, la producibilità media si attesta intorno ai 1.200–1.270 kWh per kWp installato all'anno. Questo significa che un impianto da 6 kWp a Bologna produce mediamente circa 7.500 kWh all'anno, sufficienti a coprire i consumi di una famiglia di 4 persone.
+              In Emilia-Romagna, la producibilità media si attesta intorno ai <strong>1.200–1.270 kWh per kWp</strong> installato all'anno. Questo significa che un <strong>impianto da 6 kWp a Bologna</strong> produce mediamente circa 7.500 kWh all'anno, sufficienti a coprire i consumi di una famiglia di 4 persone.
             </p>
             <p className="text-muted-foreground leading-relaxed mb-8">
-              Le province con la migliore irradiazione in regione sono Modena (1.270 kWh/kWp) e Bologna (1.250 kWh/kWp), seguite da Ferrara (1.230 kWh/kWp) e Ravenna (1.200 kWh/kWp). Queste differenze, seppur contenute, influenzano il dimensionamento ottimale dell'impianto.
+              Le province con la migliore irradiazione in regione sono <strong>Modena</strong> (1.270 kWh/kWp) e <strong>Bologna</strong> (1.250 kWh/kWp), seguite da Ferrara (1.230 kWh/kWp) e Ravenna (1.200 kWh/kWp). Queste differenze, seppur contenute, influenzano il dimensionamento ottimale dell'impianto.
             </p>
 
             <h2 className="text-3xl font-heading font-light text-primary mb-6">
               Quanto si risparmia con il fotovoltaico
             </h2>
             <p className="text-muted-foreground leading-relaxed mb-4">
-              Il risparmio economico con il fotovoltaico deriva dalla <strong>riduzione della bolletta elettrica</strong> attraverso l'autoconsumo dell'energia prodotta. Ogni kWh che produci e consumi direttamente è un kWh che non acquisti dalla rete, al prezzo variabile della tua tariffa.
+              Il <strong>risparmio con il fotovoltaico</strong> deriva dalla riduzione della bolletta elettrica attraverso l'autoconsumo dell'energia prodotta. Ogni kWh che produci e consumi direttamente è un kWh che non acquisti dalla rete, al prezzo variabile della tua tariffa.
             </p>
             <p className="text-muted-foreground leading-relaxed mb-4">
               L'energia prodotta in eccesso viene immessa in rete e remunerata attraverso lo <strong>Scambio Sul Posto</strong> o il <strong>Ritiro Dedicato</strong>, con un ricavo parziale. Per massimizzare il risparmio, è fondamentale ottimizzare l'autoconsumo: spostare i carichi energetici (lavatrice, lavastoviglie, ricarica auto elettrica) nelle ore di produzione solare.
             </p>
             <p className="text-muted-foreground leading-relaxed mb-8">
-              Per un'analisi completa del tuo potenziale risparmio, il nostro simulatore calcola il beneficio annuo combinando risparmio da autoconsumo e ricavo da immissione in rete, fornendoti anche il <strong>tempo di rientro dell'investimento</strong> e il <strong>rendimento annuo (IRR)</strong> a 25 anni.
+              Per un'analisi completa del tuo potenziale risparmio, il nostro <strong>calcolatore di rendimento fotovoltaico</strong> calcola il beneficio annuo combinando risparmio da autoconsumo e ricavo da immissione in rete, fornendoti anche il <strong>tempo di rientro dell'investimento</strong> e il <strong>rendimento annuo (IRR)</strong> a 25 anni.
             </p>
 
             <h2 className="text-3xl font-heading font-light text-primary mb-6">
-              Quanto costa un impianto fotovoltaico
+              Quanto costa un impianto fotovoltaico nel 2025
             </h2>
             <p className="text-muted-foreground leading-relaxed mb-4">
-              Il costo di un impianto fotovoltaico dipende dalla potenza installata, dalla tipologia di pannelli, dalla complessità dell'installazione e dagli accessori scelti (come sistemi di accumulo a batterie o ottimizzatori di potenza).
+              Il <strong>costo di un impianto fotovoltaico</strong> dipende dalla potenza installata, dalla tipologia di pannelli, dalla complessità dell'installazione e dagli accessori scelti (come sistemi di accumulo a batterie o ottimizzatori di potenza).
             </p>
             <p className="text-muted-foreground leading-relaxed mb-4">
               Il costo unitario (€/kWp) diminuisce all'aumentare della potenza dell'impianto, rendendo gli impianti più grandi proporzionalmente più convenienti. Per i privati, sono disponibili le <Link to="/agevolazioni/detrazioni-privati" className="text-primary hover:underline font-medium">detrazioni fiscali del 50%</Link> che dimezzano il costo effettivo dell'investimento. Per le aziende, il <Link to="/agevolazioni/agevolazioni-aziende" className="text-primary hover:underline font-medium">super ammortamento al 180%</Link> offre un significativo vantaggio fiscale.
             </p>
             <p className="text-muted-foreground leading-relaxed mb-8">
-              Per conoscere il costo specifico per il tuo caso, utilizza il simulatore sopra o <Link to="/contatti" className="text-primary hover:underline font-medium">richiedi un sopralluogo gratuito</Link>. Ogni impianto è progettato su misura per massimizzare il rendimento e il risparmio.
+              Per conoscere il costo specifico per il tuo caso, utilizza il <strong>calcolatore di rendimento</strong> qui sopra o <Link to="/contatti" className="text-primary hover:underline font-medium">richiedi un sopralluogo gratuito</Link>. Ogni impianto è progettato su misura per massimizzare il rendimento e il risparmio.
             </p>
 
             <h2 className="text-3xl font-heading font-light text-primary mb-6">
               Conviene installare il fotovoltaico nel 2025?
             </h2>
             <p className="text-muted-foreground leading-relaxed mb-4">
-              Sì, il 2025 è un anno particolarmente favorevole per investire nel fotovoltaico. Il costo dei pannelli solari è sceso drasticamente negli ultimi anni, mentre l'efficienza è aumentata. I pannelli di ultima generazione hanno efficienze superiori al 22%, producendo più energia con meno spazio sul tetto.
+              Sì, il 2025 è un anno particolarmente favorevole per investire nel fotovoltaico. Il <strong>costo dei pannelli solari</strong> è sceso drasticamente negli ultimi anni, mentre l'efficienza è aumentata. I pannelli di ultima generazione hanno efficienze superiori al 22%, producendo più energia con meno spazio sul tetto.
             </p>
             <p className="text-muted-foreground leading-relaxed mb-4">
-              Gli incentivi fiscali sono ancora attivi: le detrazioni al 50% per i privati e il super ammortamento per le aziende rendono l'investimento ancora più competitivo. Il tempo medio di rientro dell'investimento è compreso tra 5 e 8 anni, con un rendimento annuo che può superare il 10%.
+              Gli <strong>incentivi fiscali</strong> sono ancora attivi: le detrazioni al 50% per i privati e il super ammortamento per le aziende rendono l'investimento ancora più competitivo. Il tempo medio di rientro dell'investimento è compreso tra 5 e 8 anni, con un rendimento annuo che può superare il 10%.
             </p>
             <p className="text-muted-foreground leading-relaxed mb-4">
               Con i prezzi dell'energia che rimangono volatili e tendenzialmente in crescita, il fotovoltaico rappresenta una protezione contro i rincari futuri. Un impianto installato oggi continuerà a produrre energia gratuita per almeno 25-30 anni, con costi di manutenzione minimi.
@@ -771,15 +793,15 @@ const CalcolaPreventivo = () => {
       <section className="py-16 bg-primary">
         <div className="container-custom text-center text-primary-foreground">
           <h2 className="text-3xl md:text-4xl font-heading font-light mb-4">
-            Pronto a scoprire quanto puoi risparmiare?
+            Pronto a scoprire quanto rende il fotovoltaico?
           </h2>
           <p className="text-primary-foreground/80 mb-8 max-w-lg mx-auto">
-            Usa il nostro simulatore gratuito oppure chiamaci per un sopralluogo senza impegno.
+            Usa il nostro calcolatore gratuito oppure chiamaci per un sopralluogo senza impegno.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button size="lg" className="rounded-full bg-primary-foreground text-primary hover:bg-primary-foreground/90 font-semibold" onClick={scrollToCalc}>
               <Calculator className="w-5 h-5" />
-              Calcola il tuo risparmio
+              Calcola il tuo rendimento
             </Button>
             <Button size="lg" className="rounded-full border-2 border-primary-foreground bg-transparent text-primary-foreground hover:bg-primary-foreground/10" asChild>
               <a href="tel:+393356117388">

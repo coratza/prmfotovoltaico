@@ -14,6 +14,25 @@ const benefits = [
   { icon: Award, title: "Immagine sostenibile", description: "Dimostra ai tuoi clienti il tuo impegno verso la sostenibilità." },
 ];
 
+const seoFaqs = [
+  {
+    question: "Quanto costa un impianto fotovoltaico per un'azienda?",
+    answer: "Il costo di un impianto fotovoltaico industriale varia in base alla potenza: da 20 kWp a oltre 200 kWp. Il costo unitario diminuisce con la dimensione dell'impianto. Con il super ammortamento al 180% (Transizione 5.0), il beneficio fiscale è significativo. Richiedi un'analisi di fattibilità gratuita per il tuo caso specifico.",
+  },
+  {
+    question: "Quanto risparmia un'azienda con il fotovoltaico?",
+    answer: "Un'azienda con consumi diurni può risparmiare fino all'80% sui costi energetici grazie all'elevata quota di autoconsumo. Il risparmio effettivo dipende dal profilo di consumo, dalla dimensione dell'impianto e dalle tariffe energetiche. Il ROI medio è compreso tra il 10% e il 20% annuo.",
+  },
+  {
+    question: "Cos'è il super ammortamento 180% per il fotovoltaico?",
+    answer: "Il super ammortamento al 180% è un'agevolazione fiscale prevista dal Piano Transizione 5.0 che consente alle aziende di dedurre fiscalmente il 180% del costo dell'impianto fotovoltaico, riducendo significativamente il carico fiscale e accelerando il rientro dell'investimento.",
+  },
+  {
+    question: "Quanto tempo ci vuole per installare un impianto fotovoltaico aziendale?",
+    answer: "L'installazione di un impianto fotovoltaico aziendale richiede mediamente 2-4 settimane per impianti da 20-100 kWp. L'intero processo, dalla progettazione all'allaccio GSE, dura circa 2-3 mesi. L'installazione avviene senza interrompere l'attività produttiva.",
+  },
+];
+
 const scrollToForm = (e: React.MouseEvent) => {
   e.preventDefault();
   const form = document.getElementById("lead-form-section");
@@ -24,14 +43,15 @@ const FotovoltaicoAziende = () => {
   return (
     <Layout>
       <SEOHead
-        title="Fotovoltaico Aziendale e Industriale Emilia-Romagna | PRM Fotovoltaico"
-        description="Impianti fotovoltaici per aziende e industrie in Emilia-Romagna. Riduci i costi energetici con un investimento concreto. PRM Fotovoltaico, installatore specializzato."
-        keywords="fotovoltaico aziendale Bologna, fotovoltaico industriale, fotovoltaico per imprese, fotovoltaico per industria, fotovoltaico capannone, impianto fotovoltaico azienda Emilia Romagna"
+        title="Fotovoltaico Aziende Emilia-Romagna | Impianti Industriali | PRM Fotovoltaico"
+        description="Impianti fotovoltaici per aziende e industrie in Emilia-Romagna. Riduci i costi energetici fino all'80% con super ammortamento 180%. Studio di fattibilità gratuito. PRM Fotovoltaico, installatore specializzato."
+        keywords="fotovoltaico aziendale Bologna, fotovoltaico industriale Emilia-Romagna, fotovoltaico per aziende, fotovoltaico capannone, impianto fotovoltaico azienda, super ammortamento 180% fotovoltaico, rendimento fotovoltaico aziende, costo fotovoltaico industriale, ROI fotovoltaico azienda, Transizione 5.0 fotovoltaico"
         canonicalPath="/fotovoltaico-aziende"
         breadcrumbs={[
           { name: "Home", href: "/" },
           { name: "Fotovoltaico Aziende", href: "/fotovoltaico-aziende" },
         ]}
+        faqs={seoFaqs}
       />
       {/* Hero */}
       <section className="relative py-20 md:py-32">
@@ -41,9 +61,9 @@ const FotovoltaicoAziende = () => {
         </div>
         <div className="container-custom relative z-10">
           <div className="max-w-2xl text-primary-foreground">
-            <h1 className="text-3xl sm:text-4xl md:text-5xl font-heading font-light mb-6">Fotovoltaico per la Tua Azienda</h1>
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-heading font-light mb-6">Fotovoltaico per la Tua Azienda in Emilia-Romagna</h1>
             <p className="text-base sm:text-xl text-primary-foreground/90 mb-6 md:mb-8">
-              I costi energetici pesano sul bilancio? Un impianto fotovoltaico industriale è un investimento concreto con ritorno misurabile.
+              Riduci i costi energetici fino all'80% e beneficia del super ammortamento al 180%. ROI medio tra il 10% e il 20% annuo.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <Button variant="cta" size="lg" className="rounded-full text-sm sm:text-base" asChild>
@@ -88,7 +108,7 @@ const FotovoltaicoAziende = () => {
       {/* Tipologie */}
       <section className="section-padding bg-accent">
         <div className="container-custom">
-          <h2 className="text-3xl md:text-4xl font-heading font-light text-primary text-center mb-12">Soluzioni per Ogni Esigenza</h2>
+          <h2 className="text-3xl md:text-4xl font-heading font-light text-primary text-center mb-12">Soluzioni per Ogni Esigenza Aziendale</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {[
               { title: "Capannoni Industriali", desc: "Sfruttiamo le ampie superfici dei tetti industriali per massimizzare la produzione energetica.", items: ["Impianti da 20 a 200+ kWp","Strutture per tetti piani","Ottimizzazione autoconsumo"] },
@@ -135,10 +155,15 @@ const FotovoltaicoAziende = () => {
       <section className="section-padding bg-gradient-hero">
         <div className="container-custom text-center text-primary-foreground">
           <h2 className="text-3xl md:text-4xl font-heading font-light mb-4">Riduci i Costi Energetici della Tua Azienda</h2>
-          <p className="text-xl text-primary-foreground/90 mb-8">Richiedi uno studio di fattibilità gratuito.</p>
-          <Button size="lg" className="rounded-full bg-primary-foreground text-foreground hover:bg-primary-foreground/90" asChild>
-            <a href="tel:+393356117388"><Phone className="w-6 h-6" />Chiama Ora: 335 611 7388</a>
-          </Button>
+          <p className="text-xl text-primary-foreground/90 mb-8">Richiedi uno studio di fattibilità gratuito. Calcola il rendimento del fotovoltaico per la tua azienda.</p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Button size="lg" className="rounded-full bg-primary-foreground text-foreground hover:bg-primary-foreground/90" asChild>
+              <a href="tel:+393356117388"><Phone className="w-6 h-6" />Chiama Ora: 335 611 7388</a>
+            </Button>
+            <Button size="lg" className="rounded-full border-2 border-primary-foreground bg-transparent text-primary-foreground hover:bg-primary-foreground/10" asChild>
+              <Link to="/calcola-rendimento">Calcola il rendimento <ArrowRight className="w-5 h-5" /></Link>
+            </Button>
+          </div>
         </div>
       </section>
     </Layout>
