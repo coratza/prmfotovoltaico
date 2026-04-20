@@ -1,4 +1,4 @@
-import { MessageCircle } from "lucide-react";
+import whatsappLogo from "@/assets/whatsapp-round.png";
 import { trackWhatsAppClick } from "@/lib/tracking";
 
 const WhatsAppButton = () => {
@@ -9,9 +9,9 @@ const WhatsAppButton = () => {
       rel="noopener noreferrer"
       aria-label="Contattaci su WhatsApp"
       onClick={() => trackWhatsAppClick("whatsapp_floating")}
-      className="fixed bottom-16 md:bottom-6 right-4 z-50 w-14 h-14 bg-[#25D366] hover:bg-[#20BD5A] text-white rounded-full flex items-center justify-center shadow-strong transition-transform hover:scale-110 active:scale-95"
+      className="fixed bottom-16 md:bottom-6 right-4 z-50 w-14 h-14 rounded-full shadow-strong transition-transform hover:scale-110 active:scale-95"
     >
-      <MessageCircle className="w-7 h-7" />
+      <img src={whatsappLogo} alt="WhatsApp" className="w-full h-full object-contain" width={56} height={56} />
     </a>
   );
 };
