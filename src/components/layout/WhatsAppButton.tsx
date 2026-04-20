@@ -9,9 +9,16 @@ const WhatsAppButton = () => {
       rel="noopener noreferrer"
       aria-label="Contattaci su WhatsApp"
       onClick={() => trackWhatsAppClick("whatsapp_floating")}
-      className="fixed bottom-16 md:bottom-6 right-4 z-50 w-14 h-14 rounded-full shadow-strong transition-transform hover:scale-110 active:scale-95"
+      className="fixed bottom-20 md:bottom-8 right-4 md:right-6 z-50 w-16 h-16 md:w-20 md:h-20 rounded-full overflow-hidden shadow-strong transition-transform hover:scale-110 active:scale-95"
     >
-      <img src={whatsappLogo} alt="WhatsApp" className="w-full h-full object-contain" width={56} height={56} />
+      <img
+        src={whatsappLogo}
+        alt="WhatsApp"
+        className="w-full h-full object-cover"
+        width={80}
+        height={80}
+        loading="lazy"
+      />
     </a>
   );
 };
