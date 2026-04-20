@@ -6,6 +6,7 @@ import { CheckCircle, Shield, Clock, Phone } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 import { validatePhone, validateEmail } from "@/lib/validation";
+import { trackLeadSubmission } from "@/lib/tracking";
 
 const trustBadges = [
   { icon: Shield, text: "Nessun impegno" },
@@ -70,13 +71,7 @@ const LeadFormSection = () => {
         setIsSubmitted(true);
 
         // Google Ads conversion tracking via GTM dataLayer
-        if (typeof window !== "undefined" && (window as any).dataLayer) {
-          (window as any).dataLayer.push({
-            event: "form_submission",
-            conversionId: "AW-17965756122",
-            conversionLabel: "-seBCPTI4JMcENrd3vZC",
-          });
-        }
+        trackLeadSubmission({ source: "lead_form_section", clientType });
 
         toast({
           title: "Richiesta inviata!",
