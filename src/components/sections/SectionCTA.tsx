@@ -1,5 +1,6 @@
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { trackCtaClick } from "@/lib/tracking";
 
 interface SectionCTAProps {
   text?: string;
@@ -9,6 +10,7 @@ interface SectionCTAProps {
 const SectionCTA = ({ text = "Richiedi Sopralluogo Gratuito", className = "" }: SectionCTAProps) => {
   const scrollToForm = (e: React.MouseEvent) => {
     e.preventDefault();
+    trackCtaClick(text, "section_cta");
     const form = document.getElementById("lead-form-section");
     if (form) {
       form.scrollIntoView({ behavior: "smooth" });
