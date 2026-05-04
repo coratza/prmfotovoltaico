@@ -40,12 +40,23 @@ function validateEmail(email: string): string | null {
   return null;
 }
 
-async function sendWhatsAppNotification(lead: Record<string, unknown>) {
+async function sendWhatsAppNotification(
+  supabase: ReturnType<typeof createClient>,
+  leadId: string,
+  lead: Record<string, unknown>,
+): Promise<void> {
   const phone = Deno.env.get("WHATSAPP_PHONE");
   const apikey = Deno.env.get("CALLMEBOT_APIKEY");
-  
+
   if (!phone || !apikey) {
     console.log("WhatsApp credentials not configured, skipping notification");
+    await supabase
+      .from("leads_preventivo")
+      .update({
+        whatsapp_status: "not_configured",
+        whatsapp_error: "WHATSAPP_PHONE or CALLMEBOT_APIKEY non configurati",
+      })
+      .eq("id", leadId);
     return;
   }
 
@@ -72,8 +83,41 @@ async function sendWhatsAppNotification(lead: Record<string, unknown>) {
     const res = await fetch(url);
     const text = await res.text();
     console.log("WhatsApp notification sent:", res.status, text);
+
+    // CallMeBot returns 200 even on failure; check for "queued" / "sent" in response
+    const lower = text.toLowerCase();
+    const success = res.status === 200 && (lower.includes("queued") || lower.includes("sent") || lower.includes("message"));
+
+    if (success) {
+      await supabase
+        .from("leads_preventivo")
+        .update({
+          whatsapp_status: "sent",
+          whatsapp_sent_at: new Date().toISOString(),
+          whatsapp_response: text.slice(0, 1000),
+          whatsapp_error: null,
+        })
+        .eq("id", leadId);
+    } else {
+      await supabase
+        .from("leads_preventivo")
+        .update({
+          whatsapp_status: "failed",
+          whatsapp_error: `HTTP ${res.status}: ${text.slice(0, 500)}`,
+          whatsapp_response: text.slice(0, 1000),
+        })
+        .eq("id", leadId);
+    }
   } catch (err) {
-    console.error("WhatsApp notification failed:", err);
+    const errMsg = err instanceof Error ? err.message : String(err);
+    console.error("WhatsApp notification failed:", errMsg);
+    await supabase
+      .from("leads_preventivo")
+      .update({
+        whatsapp_status: "failed",
+        whatsapp_error: errMsg.slice(0, 500),
+      })
+      .eq("id", leadId);
   }
 }
 
@@ -180,7 +224,7 @@ Deno.serve(async (req) => {
     await recordRequest(supabase, ip);
 
 
-    const { error } = await supabase.from("leads_preventivo").insert({
+    const { data: inserted, error } = await supabase.from("leads_preventivo").insert({
       nome: body.nome,
       telefono: body.telefono,
       email: body.email || null,
@@ -210,9 +254,10 @@ Deno.serve(async (req) => {
       costo_netto: body.costo_netto,
       payback_anni: body.payback_anni,
       qualifica_180: body.qualifica_180 || null,
-    });
+      whatsapp_status: "pending",
+    }).select("id").single();
 
-    if (error) {
+    if (error || !inserted) {
       console.error("Supabase insert error:", error);
       return new Response(
         JSON.stringify({ error: "Errore nel salvataggio dei dati" }),
@@ -220,8 +265,8 @@ Deno.serve(async (req) => {
       );
     }
 
-    // Send WhatsApp notification (non-blocking)
-    sendWhatsAppNotification(body).catch((err) =>
+    // Send WhatsApp notification (non-blocking, updates lead row with status)
+    sendWhatsAppNotification(supabase, inserted.id as string, body).catch((err) =>
       console.error("WhatsApp background error:", err)
     );
 

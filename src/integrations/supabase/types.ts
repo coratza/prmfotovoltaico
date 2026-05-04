@@ -52,6 +52,10 @@ export type Database = {
           telefono: string
           tipo_immobile: string
           tipologia: string
+          whatsapp_error: string | null
+          whatsapp_response: string | null
+          whatsapp_sent_at: string | null
+          whatsapp_status: string
         }
         Insert: {
           accumulo?: boolean | null
@@ -90,6 +94,10 @@ export type Database = {
           telefono: string
           tipo_immobile: string
           tipologia: string
+          whatsapp_error?: string | null
+          whatsapp_response?: string | null
+          whatsapp_sent_at?: string | null
+          whatsapp_status?: string
         }
         Update: {
           accumulo?: boolean | null
@@ -128,6 +136,10 @@ export type Database = {
           telefono?: string
           tipo_immobile?: string
           tipologia?: string
+          whatsapp_error?: string | null
+          whatsapp_response?: string | null
+          whatsapp_sent_at?: string | null
+          whatsapp_status?: string
         }
         Relationships: []
       }
