@@ -40,12 +40,23 @@ function validateEmail(email: string): string | null {
   return null;
 }
 
-async function sendWhatsAppNotification(lead: Record<string, unknown>) {
+async function sendWhatsAppNotification(
+  supabase: ReturnType<typeof createClient>,
+  leadId: string,
+  lead: Record<string, unknown>,
+): Promise<void> {
   const phone = Deno.env.get("WHATSAPP_PHONE");
   const apikey = Deno.env.get("CALLMEBOT_APIKEY");
-  
+
   if (!phone || !apikey) {
     console.log("WhatsApp credentials not configured, skipping notification");
+    await supabase
+      .from("leads_preventivo")
+      .update({
+        whatsapp_status: "not_configured",
+        whatsapp_error: "WHATSAPP_PHONE or CALLMEBOT_APIKEY non configurati",
+      })
+      .eq("id", leadId);
     return;
   }
 
@@ -72,8 +83,41 @@ async function sendWhatsAppNotification(lead: Record<string, unknown>) {
     const res = await fetch(url);
     const text = await res.text();
     console.log("WhatsApp notification sent:", res.status, text);
+
+    // CallMeBot returns 200 even on failure; check for "queued" / "sent" in response
+    const lower = text.toLowerCase();
+    const success = res.status === 200 && (lower.includes("queued") || lower.includes("sent") || lower.includes("message"));
+
+    if (success) {
+      await supabase
+        .from("leads_preventivo")
+        .update({
+          whatsapp_status: "sent",
+          whatsapp_sent_at: new Date().toISOString(),
+          whatsapp_response: text.slice(0, 1000),
+          whatsapp_error: null,
+        })
+        .eq("id", leadId);
+    } else {
+      await supabase
+        .from("leads_preventivo")
+        .update({
+          whatsapp_status: "failed",
+          whatsapp_error: `HTTP ${res.status}: ${text.slice(0, 500)}`,
+          whatsapp_response: text.slice(0, 1000),
+        })
+        .eq("id", leadId);
+    }
   } catch (err) {
-    console.error("WhatsApp notification failed:", err);
+    const errMsg = err instanceof Error ? err.message : String(err);
+    console.error("WhatsApp notification failed:", errMsg);
+    await supabase
+      .from("leads_preventivo")
+      .update({
+        whatsapp_status: "failed",
+        whatsapp_error: errMsg.slice(0, 500),
+      })
+      .eq("id", leadId);
   }
 }
 
