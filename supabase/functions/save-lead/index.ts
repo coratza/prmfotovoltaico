@@ -224,7 +224,7 @@ Deno.serve(async (req) => {
     await recordRequest(supabase, ip);
 
 
-    const { error } = await supabase.from("leads_preventivo").insert({
+    const { data: inserted, error } = await supabase.from("leads_preventivo").insert({
       nome: body.nome,
       telefono: body.telefono,
       email: body.email || null,
@@ -254,9 +254,10 @@ Deno.serve(async (req) => {
       costo_netto: body.costo_netto,
       payback_anni: body.payback_anni,
       qualifica_180: body.qualifica_180 || null,
-    });
+      whatsapp_status: "pending",
+    }).select("id").single();
 
-    if (error) {
+    if (error || !inserted) {
       console.error("Supabase insert error:", error);
       return new Response(
         JSON.stringify({ error: "Errore nel salvataggio dei dati" }),
@@ -264,8 +265,8 @@ Deno.serve(async (req) => {
       );
     }
 
-    // Send WhatsApp notification (non-blocking)
-    sendWhatsAppNotification(body).catch((err) =>
+    // Send WhatsApp notification (non-blocking, updates lead row with status)
+    sendWhatsAppNotification(supabase, inserted.id as string, body).catch((err) =>
       console.error("WhatsApp background error:", err)
     );
 
