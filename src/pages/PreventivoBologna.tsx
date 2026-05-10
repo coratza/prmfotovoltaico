@@ -320,7 +320,7 @@ const PreventivoBologna = () => {
                 style={{ fontSize: "16px" }}
               >
                 {submitting ? "Invio in corso..." : (
-                  <>Invia Richiesta — Preventivo Gratuito <ArrowRight className="h-5 w-5" /></>
+                  <>Invia Richiesta Gratuita <ArrowRight className="h-5 w-5" /></>
                 )}
               </button>
 
