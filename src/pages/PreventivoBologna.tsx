@@ -363,6 +363,18 @@ const PreventivoBologna = () => {
         </div>
       </section>
 
+      {/* WHATSAPP FLOATING */}
+      <a
+        href="https://wa.me/393356117388?text=Buongiorno%2C%20vorrei%20un%20preventivo%20fotovoltaico%20a%20Bologna."
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Contattaci su WhatsApp"
+        onClick={() => trackWhatsAppClick("landing_bologna_whatsapp")}
+        className="fixed bottom-5 right-5 z-50 w-16 h-16 rounded-full overflow-hidden shadow-strong transition-transform hover:scale-110 active:scale-95"
+      >
+        <img src={whatsappLogo} alt="WhatsApp" className="w-full h-full object-cover" width={64} height={64} loading="lazy" />
+      </a>
+
       {/* MINIMAL FOOTER */}
       <footer className="bg-slate-900 text-white px-4 py-6">
         <div className="max-w-3xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3 text-sm text-center sm:text-left">
