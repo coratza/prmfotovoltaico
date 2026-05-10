@@ -26,6 +26,7 @@ const AgevolazioniAziendeModena = lazy(() => import("./pages/agevolazioni/Agevol
 const AgevolazioniAziendeFerrara = lazy(() => import("./pages/agevolazioni/AgevolazioniAziendeFerrara"));
 const AgevolazioniAziendeRavenna = lazy(() => import("./pages/agevolazioni/AgevolazioniAziendeRavenna"));
 const Admin = lazy(() => import("./pages/Admin"));
+const PreventivoBologna = lazy(() => import("./pages/PreventivoBologna"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
 const queryClient = new QueryClient();
