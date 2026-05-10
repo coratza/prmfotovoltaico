@@ -26,6 +26,7 @@ const AgevolazioniAziendeModena = lazy(() => import("./pages/agevolazioni/Agevol
 const AgevolazioniAziendeFerrara = lazy(() => import("./pages/agevolazioni/AgevolazioniAziendeFerrara"));
 const AgevolazioniAziendeRavenna = lazy(() => import("./pages/agevolazioni/AgevolazioniAziendeRavenna"));
 const Admin = lazy(() => import("./pages/Admin"));
+const PreventivoBologna = lazy(() => import("./pages/PreventivoBologna"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
 const queryClient = new QueryClient();
@@ -58,6 +59,7 @@ const App = () => (
             <Route path="/agevolazioni/agevolazioni-aziende-ferrara" element={<AgevolazioniAziendeFerrara />} />
             <Route path="/agevolazioni/agevolazioni-aziende-ravenna" element={<AgevolazioniAziendeRavenna />} />
             <Route path="/admin" element={<Admin />} />
+            <Route path="/preventivo-bologna" element={<PreventivoBologna />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
