@@ -3,7 +3,9 @@ import { Phone, Home, Euro, Award, Clock, CheckCircle2, Star, ArrowRight, Chevro
 import SEOHead from "@/components/SEOHead";
 import { supabase } from "@/integrations/supabase/client";
 import { validatePhone } from "@/lib/validation";
+import { trackWhatsAppClick } from "@/lib/tracking";
 import prmLogo from "@/assets/prm-logo-round.png";
+import whatsappLogo from "@/assets/whatsapp-round.png";
 
 const PHONE_DISPLAY = "335 611 7388";
 const PHONE_TEL = "+393356117388";
@@ -123,10 +125,8 @@ const PreventivoBologna = () => {
             className="inline-flex items-center gap-2 bg-cta text-cta-foreground font-bold rounded-lg px-3 sm:px-4 py-2 text-sm sm:text-base shadow-cta hover:bg-cta-hover transition-colors min-h-[44px] whitespace-nowrap"
             aria-label="Chiama ora"
           >
-            <Phone className="h-4 w-4" />
-            <span className="hidden xs:inline">Chiama</span>
-            <span className="hidden sm:inline">Ora</span>
-            <span className="sm:hidden">Ora</span>
+            <Phone className="h-4 w-4" fill="currentColor" />
+            <span>Chiama Ora</span>
           </a>
         </div>
       </header>
@@ -362,6 +362,18 @@ const PreventivoBologna = () => {
           </div>
         </div>
       </section>
+
+      {/* WHATSAPP FLOATING */}
+      <a
+        href="https://wa.me/393356117388?text=Buongiorno%2C%20vorrei%20un%20preventivo%20fotovoltaico%20a%20Bologna."
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Contattaci su WhatsApp"
+        onClick={() => trackWhatsAppClick("landing_bologna_whatsapp")}
+        className="fixed bottom-5 right-5 z-50 w-16 h-16 rounded-full overflow-hidden shadow-strong transition-transform hover:scale-110 active:scale-95"
+      >
+        <img src={whatsappLogo} alt="WhatsApp" className="w-full h-full object-cover" width={64} height={64} loading="lazy" />
+      </a>
 
       {/* MINIMAL FOOTER */}
       <footer className="bg-slate-900 text-white px-4 py-6">
