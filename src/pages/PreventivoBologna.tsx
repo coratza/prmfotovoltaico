@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { Phone, Home, Euro, Award, Clock, CheckCircle2, Star, ArrowRight, ChevronDown } from "lucide-react";
 import SEOHead from "@/components/SEOHead";
 import { supabase } from "@/integrations/supabase/client";
