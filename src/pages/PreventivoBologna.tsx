@@ -41,7 +41,26 @@ const PreventivoBologna = () => {
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const handleCallClick = () => pushDL({ event: "call_click", page: "landing_preventivo_bologna" });
+  const utm = useMemo(() => {
+    if (typeof window === "undefined") return { utm_source: "", utm_medium: "", utm_campaign: "", utm_term: "" };
+    const p = new URLSearchParams(window.location.search);
+    return {
+      utm_source: p.get("utm_source") || "",
+      utm_medium: p.get("utm_medium") || "",
+      utm_campaign: p.get("utm_campaign") || "",
+      utm_term: p.get("utm_term") || "",
+    };
+  }, []);
+
+  useEffect(() => {
+    pushDL({
+      event: "page_view_landing",
+      ...utm,
+      page: "landing_preventivo_bologna",
+    });
+  }, [utm]);
+
+  const handleCallClick = () => pushDL({ event: "call_click", page: "landing_preventivo_bologna", ...utm });
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
