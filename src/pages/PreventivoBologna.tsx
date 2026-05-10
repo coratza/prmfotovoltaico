@@ -125,10 +125,8 @@ const PreventivoBologna = () => {
             className="inline-flex items-center gap-2 bg-cta text-cta-foreground font-bold rounded-lg px-3 sm:px-4 py-2 text-sm sm:text-base shadow-cta hover:bg-cta-hover transition-colors min-h-[44px] whitespace-nowrap"
             aria-label="Chiama ora"
           >
-            <Phone className="h-4 w-4" />
-            <span className="hidden xs:inline">Chiama</span>
-            <span className="hidden sm:inline">Ora</span>
-            <span className="sm:hidden">Ora</span>
+            <Phone className="h-4 w-4" fill="currentColor" />
+            <span>Chiama Ora</span>
           </a>
         </div>
       </header>
