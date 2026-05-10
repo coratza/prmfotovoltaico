@@ -111,6 +111,7 @@ const PreventivoBologna = () => {
         pushDL({
           event: "lead_form_submit",
           page: "landing_preventivo_bologna",
+          ...utm,
           conversionId: "AW-17965756122",
           conversionLabel: "-seBCPTI4JMcENrd3vZC",
         });
