@@ -1,0 +1,27 @@
+# PRM Fotovoltaico
+
+> Azienda artigiana di San Lazzaro di Savena (BO) specializzata nell'installazione di impianti fotovoltaici chiavi in mano a Bologna, Modena, Ferrara, Ravenna e in tutta l'Emilia-Romagna. Attiva dal 2010, titolare Ing. Riccardo Navone.
+
+## Pagine principali
+
+- [Home](/): Panoramica servizi, vantaggi e aree servite.
+- [Fotovoltaico Privati](/fotovoltaico-privati): Impianti residenziali con accumulo per abitazioni.
+- [Fotovoltaico Aziende](/fotovoltaico-aziende): Soluzioni per imprese, capannoni e attività agricole.
+- [Calcola Rendimento](/calcola-rendimento): Stima rapida di risparmio e ritorno dell'investimento.
+- [Lavori Realizzati](/lavori-realizzati): Portfolio di impianti installati in Emilia-Romagna.
+- [Chi Siamo](/chi-siamo): Storia dell'azienda, valori e team tecnico.
+- [Contatti](/contatti): Telefono, email e modulo per sopralluogo gratuito.
+
+## Agevolazioni
+
+- [Agevolazioni](/agevolazioni): Detrazioni e incentivi disponibili nel 2025.
+- [Detrazioni Privati](/agevolazioni/detrazioni-privati): Detrazione 50% per abitazioni.
+- [Detrazioni Privati Bologna](/agevolazioni/detrazioni-privati-bologna): Versione locale Bologna.
+- [Detrazioni Privati Modena](/agevolazioni/detrazioni-privati-modena): Versione locale Modena.
+- [Detrazioni Privati Ferrara](/agevolazioni/detrazioni-privati-ferrara): Versione locale Ferrara.
+- [Detrazioni Privati Ravenna](/agevolazioni/detrazioni-privati-ravenna): Versione locale Ravenna.
+- [Agevolazioni Aziende](/agevolazioni/agevolazioni-aziende): Super ammortamento e incentivi imprese.
+- [Agevolazioni Aziende Bologna](/agevolazioni/agevolazioni-aziende-bologna): Versione locale Bologna.
+- [Agevolazioni Aziende Modena](/agevolazioni/agevolazioni-aziende-modena): Versione locale Modena.
+- [Agevolazioni Aziende Ferrara](/agevolazioni/agevolazioni-aziende-ferrara): Versione locale Ferrara.
+- [Agevolazioni Aziende Ravenna](/agevolazioni/agevolazioni-aziende-ravenna): Versione locale Ravenna.

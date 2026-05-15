@@ -54,6 +54,9 @@ const SEOHead = ({ title, description, keywords, canonicalPath, breadcrumbs, faq
     setMeta("property", "og:type", "website");
     setMeta("property", "og:site_name", "PRM Fotovoltaico");
     setMeta("property", "og:locale", "it_IT");
+    if (canonicalPath) {
+      setMeta("property", "og:url", `${SITE_URL}${canonicalPath}`);
+    }
 
     // Twitter
     setMeta("name", "twitter:title", title);
