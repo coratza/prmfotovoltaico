@@ -51,7 +51,7 @@ const FotovoltaicoPrivati = () => {
     <Layout>
       <SEOHead
         title="Fotovoltaico Residenziale Bologna | Pannelli Solari Casa | PRM Fotovoltaico"
-        description="Installa un impianto fotovoltaico sulla tua casa a Bologna e provincia. Risparmia fino al 70% in bolletta con detrazioni fiscali al 50%. Sopralluogo gratuito, installazione chiavi in mano. PRM Fotovoltaico."
+        description="Impianto fotovoltaico per la tua casa a Bologna. Risparmia fino al 70% in bolletta con detrazioni 50%. Sopralluogo gratuito, chiavi in mano."
         keywords="fotovoltaico residenziale Bologna, pannelli solari casa, impianto fotovoltaico privato Bologna, fotovoltaico con accumulo, installazione fotovoltaico chiavi in mano, costo fotovoltaico casa, detrazioni fotovoltaico 50%, fotovoltaico villa, quanto costa fotovoltaico casa, risparmio bolletta fotovoltaico"
         canonicalPath="/fotovoltaico-privati"
         breadcrumbs={[

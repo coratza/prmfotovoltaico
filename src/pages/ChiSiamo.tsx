@@ -32,7 +32,7 @@ const ChiSiamo = () => {
   return (
     <Layout>
       <SEOHead
-        title="Chi Siamo - Installatore Fotovoltaico Bologna | PRM Fotovoltaico"
+        title="Chi Siamo | Installatore Fotovoltaico Bologna - PRM"
         description="PRM Fotovoltaico: azienda artigiana di San Lazzaro di Savena, specializzata in impianti fotovoltaici dal 2010. Oltre 200 installazioni a Bologna e Emilia-Romagna."
         keywords="PRM Fotovoltaico chi siamo, installatore fotovoltaico Bologna, azienda fotovoltaico San Lazzaro di Savena, fotovoltaico artigiano Emilia Romagna"
         canonicalPath="/chi-siamo"

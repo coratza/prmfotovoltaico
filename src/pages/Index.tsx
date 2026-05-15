@@ -43,8 +43,8 @@ const Index = () => {
   return (
     <Layout>
       <SEOHead
-        title="PRM Fotovoltaico | Impianti Fotovoltaici Bologna, Modena, Ferrara, Ravenna"
-        description="PRM Fotovoltaico: installazione impianti fotovoltaici chiavi in mano a Bologna, Modena, Ferrara e Ravenna. Sopralluogo gratuito, preventivo personalizzato. Azienda artigiana dal 2010, Ing. Navone Riccardo."
+        title="Fotovoltaico Bologna, Modena, Ferrara, Ravenna | PRM"
+        description="Impianti fotovoltaici chiavi in mano a Bologna, Modena, Ferrara e Ravenna. Sopralluogo e preventivo gratuiti. Azienda artigiana dal 2010."
         keywords="PRM Fotovoltaico, PRM fotovoltaico Bologna, fotovoltaico Bologna, impianti fotovoltaici Bologna, installazione fotovoltaico Modena, fotovoltaico Ferrara, fotovoltaico Ravenna, fotovoltaico Emilia Romagna, pannelli solari, energia solare, rendimento investimento fotovoltaico"
         canonicalPath="/"
         breadcrumbs={[{ name: "Home", href: "/" }]}
