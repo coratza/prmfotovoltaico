@@ -272,16 +272,48 @@ const PreventivoBologna = () => {
           {submitted ? (
             <div className="bg-green-50 border-2 border-green-500 rounded-xl p-6 text-center">
               <CheckCircle2 className="h-12 w-12 text-green-600 mx-auto mb-3" />
-              <p className="text-lg font-semibold text-green-900 mb-2">
-                ✅ Richiesta inviata! Ti contatteremo entro poche ore.
+              <h3 className="text-xl font-bold text-green-900 mb-3">
+                ✅ Richiesta inviata correttamente!
+              </h3>
+              <p className="text-base text-green-900 mb-2 leading-relaxed">
+                Grazie {form.nome.split(" ")[0] || ""}! Abbiamo ricevuto la tua richiesta per <strong>{form.comune || "Bologna"}</strong>.
               </p>
-              <p className="text-base text-green-800">
-                Nel frattempo puoi chiamarci al{" "}
-                <a href={`tel:${PHONE_TEL}`} onClick={() => handleCallClick("success")} className="font-bold underline">
-                  {PHONE_DISPLAY}
-                </a>.
+              <p className="text-base text-green-900 mb-4 leading-relaxed">
+                Il nostro ingegnere <strong>ti ricontatterà entro poche ore</strong> (orari ufficio: lun–ven 9:00–18:00) per fissare il sopralluogo gratuito.
               </p>
+              <div className="flex flex-col sm:flex-row gap-3 justify-center mb-4">
+                <a
+                  href={`tel:${PHONE_TEL}`}
+                  onClick={() => handleCallClick("success")}
+                  className="inline-flex items-center justify-center gap-2 bg-cta hover:bg-cta-hover text-cta-foreground font-bold rounded-lg px-5 py-3 min-h-[52px] text-base shadow-cta transition-colors"
+                >
+                  <Phone className="h-5 w-5" fill="currentColor" /> Chiama {PHONE_DISPLAY}
+                </a>
+                <a
+                  href={WA_FORM}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => handleWhatsAppClick("success")}
+                  className="inline-flex items-center justify-center gap-2 bg-green-600 hover:bg-green-700 text-white font-bold rounded-lg px-5 py-3 min-h-[52px] text-base transition-colors"
+                >
+                  <MessageCircle className="h-5 w-5" fill="currentColor" /> WhatsApp
+                </a>
+              </div>
+              <button
+                type="button"
+                onClick={() => {
+                  setSubmitted(false);
+                  setStep(1);
+                  setForm({ nome: "", telefono: "", comune: "", tipo: "", bolletta: "", note: "" });
+                  setError(null);
+                  document.getElementById("form-preventivo")?.scrollIntoView({ behavior: "smooth" });
+                }}
+                className="text-sm font-semibold text-primary underline hover:no-underline"
+              >
+                Invia un'altra richiesta
+              </button>
             </div>
+
           ) : (
             <div className="bg-white rounded-xl p-5 sm:p-6 shadow-md border border-border">
               {/* Progress bar */}
