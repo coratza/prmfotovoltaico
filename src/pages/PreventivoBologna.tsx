@@ -173,7 +173,8 @@ const PreventivoBologna = () => {
       >
         <div className="max-w-3xl mx-auto text-center">
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold leading-tight mb-4">
-            Impianto Fotovoltaico a Bologna — Preventivo Gratuito Entro 24h
+            <span className="block">Impianto Fotovoltaico a Bologna</span>
+            <span className="block">Preventivo Gratuito Entro 24h</span>
           </h1>
           <p className="text-base sm:text-lg md:text-xl text-white/90 mb-6 leading-relaxed">
             Installatori certificati a Bologna e provincia. Impianti chiavi in mano, sopralluogo gratuito, finanziamento disponibile.
