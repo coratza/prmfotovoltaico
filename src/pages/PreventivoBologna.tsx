@@ -317,7 +317,7 @@ const PreventivoBologna = () => {
                   </div>
 
                   {error && (
-                    <div className="bg-red-50 border border-red-300 rounded-lg p-3 text-red-800 text-sm">{error}</div>
+                    <div className="bg-red-50 border border-red-300 rounded-lg p-3 text-red-800" style={{ fontSize: "16px" }} role="alert" aria-live="polite">{error}</div>
                   )}
 
                   <button
@@ -361,7 +361,7 @@ const PreventivoBologna = () => {
                   </div>
 
                   {error && (
-                    <div className="bg-red-50 border border-red-300 rounded-lg p-3 text-red-800 text-sm">{error}</div>
+                    <div className="bg-red-50 border border-red-300 rounded-lg p-3 text-red-800" style={{ fontSize: "16px" }} role="alert" aria-live="polite">{error}</div>
                   )}
 
                   <div className="flex gap-3">
