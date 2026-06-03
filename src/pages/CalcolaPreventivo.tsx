@@ -144,9 +144,10 @@ const CalcolaPreventivo = () => {
           (window as any).dataLayer.push({
             event: "form_submission",
             conversionId: "AW-17965756122",
-            conversionLabel: "-seBCPTI4JMcENrd3vZC",
+            conversionLabel: "bjZICKmLw58cENrd3vZC",
           });
         }
+        fireGoogleAdsLeadConversion();
       }
     } catch (err) {
       console.error("Errore invio lead:", err);

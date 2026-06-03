@@ -125,8 +125,9 @@ const PreventivoBologna = () => {
           page: "landing_preventivo_bologna",
           ...utm,
           conversionId: "AW-17965756122",
-          conversionLabel: "-seBCPTI4JMcENrd3vZC",
+          conversionLabel: "bjZICKmLw58cENrd3vZC",
         });
+        fireGoogleAdsLeadConversion();
       }
     } catch (err) {
       console.error(err);
