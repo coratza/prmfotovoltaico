@@ -8,6 +8,7 @@ import { Phone, Mail, MapPin, Clock, CheckCircle, Shield, Users, Calendar } from
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 import { validatePhone, validateEmail } from "@/lib/validation";
+import { fireGoogleAdsLeadConversion } from "@/lib/tracking";
 
 const Contatti = () => {
   const { toast } = useToast();

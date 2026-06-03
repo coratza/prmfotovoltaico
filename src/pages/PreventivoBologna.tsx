@@ -3,6 +3,7 @@ import { Phone, Home, Euro, Award, Clock, CheckCircle2, Star, ArrowRight, Chevro
 import SEOHead from "@/components/SEOHead";
 import { supabase } from "@/integrations/supabase/client";
 import { validatePhone } from "@/lib/validation";
+import { fireGoogleAdsLeadConversion } from "@/lib/tracking";
 import prmLogo from "@/assets/prm-logo-round.png";
 
 const PHONE_DISPLAY = "335 611 7388";
