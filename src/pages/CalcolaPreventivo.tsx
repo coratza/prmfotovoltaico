@@ -11,6 +11,7 @@ import {
 import { calcolaROI, type CalcoloInput, type CalcoloOutput } from "@/lib/roiCalculator";
 import { validatePhone, validateEmail } from "@/lib/validation";
 import { supabase } from "@/integrations/supabase/client";
+import { fireGoogleAdsLeadConversion } from "@/lib/tracking";
 import { useToast } from "@/hooks/use-toast";
 import FAQSection from "@/components/sections/FAQSection";
 
