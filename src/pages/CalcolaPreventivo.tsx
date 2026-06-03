@@ -11,6 +11,7 @@ import {
 import { calcolaROI, type CalcoloInput, type CalcoloOutput } from "@/lib/roiCalculator";
 import { validatePhone, validateEmail } from "@/lib/validation";
 import { supabase } from "@/integrations/supabase/client";
+import { fireGoogleAdsLeadConversion } from "@/lib/tracking";
 import { useToast } from "@/hooks/use-toast";
 import FAQSection from "@/components/sections/FAQSection";
 
@@ -144,9 +145,10 @@ const CalcolaPreventivo = () => {
           (window as any).dataLayer.push({
             event: "form_submission",
             conversionId: "AW-17965756122",
-            conversionLabel: "-seBCPTI4JMcENrd3vZC",
+            conversionLabel: "bjZICKmLw58cENrd3vZC",
           });
         }
+        fireGoogleAdsLeadConversion();
       }
     } catch (err) {
       console.error("Errore invio lead:", err);

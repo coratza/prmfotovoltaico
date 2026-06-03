@@ -2,7 +2,20 @@
 // Sends events to dataLayer for GTM (GTM-5J8J6VVJ) and Google Ads (AW-17965756122)
 
 const CONVERSION_ID = "AW-17965756122";
-const CONVERSION_LABEL = "-seBCPTI4JMcENrd3vZC";
+const CONVERSION_LABEL = "bjZICKmLw58cENrd3vZC";
+
+/** Fires a direct Google Ads conversion via gtag.js (independent from GTM config). */
+export const fireGoogleAdsLeadConversion = () => {
+  if (typeof window === "undefined") return;
+  const gtag = (window as unknown as { gtag?: (...args: unknown[]) => void }).gtag;
+  if (typeof gtag === "function") {
+    gtag("event", "conversion", {
+      send_to: `${CONVERSION_ID}/${CONVERSION_LABEL}`,
+      value: 1.0,
+      currency: "EUR",
+    });
+  }
+};
 
 type DataLayerEvent = Record<string, unknown> & { event: string };
 
