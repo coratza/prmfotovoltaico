@@ -1,5 +1,6 @@
 import { useState, useEffect, useMemo } from "react";
-import { Phone, Home, Euro, Award, Clock, CheckCircle2, ArrowRight, MessageCircle } from "lucide-react";
+import { Phone, Home, Euro, Award, Clock, CheckCircle2, ArrowRight, MessageCircle, FileText, Sun } from "lucide-react";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import SEOHead from "@/components/SEOHead";
 import { supabase } from "@/integrations/supabase/client";
 import { validatePhone } from "@/lib/validation";
