@@ -425,24 +425,21 @@ const PreventivoBologna = () => {
 
       {/* TESTIMONIALS */}
       <section className="bg-white px-4 py-10 md:py-14">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-2xl sm:text-3xl font-bold text-center text-primary mb-8">
-            Cosa dicono i nostri clienti
+        <div className="max-w-3xl mx-auto text-center">
+          <h2 className="text-2xl sm:text-3xl font-bold text-primary mb-4">
+            Cosa dicono di noi
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {[
-              { t: "Ho scelto PRM dopo tre preventivi. Sono stati chiari sui costi, veloci nell'installazione e il risparmio sulla bolletta è reale. Impianto da 6kW installato in 3 settimane.", a: "Marco T., Bologna" },
-              { t: "Ottima esperienza dall'inizio alla fine. L'ingegnere ci ha spiegato tutto in modo comprensibile. Zero pensieri, impianto perfettamente funzionante.", a: "Famiglia Rossi, San Lazzaro di Savena" },
-            ].map((r) => (
-              <div key={r.a} className="border border-border rounded-xl p-5 bg-card">
-                <div className="flex gap-0.5 mb-2 text-yellow-400">
-                  {[0, 1, 2, 3, 4].map((i) => (<Star key={i} className="h-5 w-5 fill-current" />))}
-                </div>
-                <p className="text-base text-foreground italic mb-3 leading-relaxed">"{r.t}"</p>
-                <p className="text-sm font-semibold text-muted-foreground">— {r.a}</p>
-              </div>
-            ))}
-          </div>
+          <p className="text-base sm:text-lg text-foreground leading-relaxed mb-3">
+            Oltre 50 impianti installati a Bologna e provincia. Valutazione media <span className="text-yellow-500 font-semibold">5★</span> su Google.
+          </p>
+          <a
+            href="#"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-sm text-primary underline hover:no-underline font-medium"
+          >
+            Leggi le recensioni →
+          </a>
         </div>
       </section>
 
