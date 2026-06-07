@@ -244,8 +244,8 @@ const PreventivoBologna = () => {
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {[
-              { Icon: Award, t: "Un Ingegnere, Non un Venditore", d: "Riccardo Navone segue personalmente ogni progetto. Non parliamo con te una volta per vendere e poi sparire — siamo presenti dalla progettazione al giorno in cui il tuo impianto va in funzione." },
-              { Icon: Euro, t: "Prezzi Chiari, Nessuna Sorpresa", d: "Il preventivo che firmi è quello che paghi. Niente voci che lievitano a lavoro iniziato, niente costi nascosti. Se emerge qualcosa di imprevisto, te lo diciamo prima — non dopo." },
+              { Icon: Award, t: "Un Ingegnere, Non un Venditore", d: "Riccardo Navone segue personalmente ogni progetto. Non parliamo con te una volta per vendere e poi sparire. Siamo presenti dalla progettazione al giorno in cui il tuo impianto va in funzione." },
+              { Icon: Euro, t: "Prezzi Chiari, Nessuna Sorpresa", d: "Il preventivo che firmi è quello che paghi. Niente voci che lievitano a lavoro iniziato, niente costi nascosti. Se emerge qualcosa di imprevisto, te lo diciamo prima, non dopo." },
               { Icon: Home, t: "Siamo di Bologna, Non Passiamo e Basta", d: "Non siamo una grande azienda che manda squadre da fuori regione. Siamo un'azienda bolognese con un numero diretto e una persona responsabile. Se hai un problema dopo l'installazione, rispondiamo." },
               { Icon: Clock, t: "Assistenza Reale Dopo l'Installazione", d: "Molti installatori finiscono il lavoro e spariscono. Noi no. Monitoraggio, manutenzione, assistenza tecnica: siamo il tuo punto di riferimento per tutta la vita dell'impianto." },
             ].map(({ Icon, t, d }) => (
