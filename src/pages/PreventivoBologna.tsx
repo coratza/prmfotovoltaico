@@ -1,5 +1,5 @@
 import { useState, useEffect, useMemo } from "react";
-import { Phone, Home, Euro, Award, Clock, CheckCircle2, Star, ArrowRight, ChevronDown, MessageCircle } from "lucide-react";
+import { Phone, Home, Euro, Award, Clock, CheckCircle2, ArrowRight, MessageCircle } from "lucide-react";
 import SEOHead from "@/components/SEOHead";
 import { supabase } from "@/integrations/supabase/client";
 import { validatePhone } from "@/lib/validation";
@@ -145,7 +145,7 @@ const PreventivoBologna = () => {
     <div className="min-h-screen bg-background text-foreground pb-20 md:pb-0">
       <SEOHead
         title="Preventivo Fotovoltaico Bologna Gratis | PRM Fotovoltaico"
-        description="Impianto fotovoltaico a Bologna chiavi in mano. Sopralluogo gratuito, preventivo personalizzato entro 24h. Ingegnere certificato. Chiama o scrivi."
+        description="Impianto fotovoltaico a Bologna chiavi in mano. Ingegnere dedicato, prezzi fissi, sopralluogo gratuito. Ti richiamiamo entro poche ore."
         canonicalPath="/preventivo-bologna"
       />
 
@@ -175,11 +175,10 @@ const PreventivoBologna = () => {
       >
         <div className="max-w-3xl mx-auto text-center">
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold leading-tight mb-4">
-            <span className="block">Impianto Fotovoltaico a Bologna</span>
-            <span className="block">Preventivo Gratuito Entro 24h</span>
+            Fotovoltaico a Bologna — Con un Ingegnere Vero, Non un Call Center
           </h1>
           <p className="text-base sm:text-lg md:text-xl text-white/90 mb-6 leading-relaxed">
-            Installatori certificati a Bologna e provincia. Impianti chiavi in mano, sopralluogo gratuito, finanziamento disponibile.
+            PRM segue ogni impianto dall'inizio alla fine. Preventivo trasparente, nessuna sorpresa sul prezzo, assistenza reale dopo l'installazione. Siamo di Bologna, ci trovi sempre.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center mb-6">
@@ -196,24 +195,17 @@ const PreventivoBologna = () => {
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => handleWhatsAppClick("hero")}
-              className="inline-flex items-center justify-center gap-2 bg-green-600 hover:bg-green-700 text-white font-bold rounded-lg px-6 text-base sm:text-lg shadow-strong min-h-[56px] transition-colors"
+              className="inline-flex items-center justify-center gap-2 bg-white/10 hover:bg-white/20 border-2 border-white text-white font-bold rounded-lg px-6 text-base sm:text-lg min-h-[56px] transition-colors"
             >
               <MessageCircle className="h-5 w-5" fill="currentColor" />
               Scrivici su WhatsApp
             </a>
-            <a
-              href="#form-preventivo"
-              className="inline-flex items-center justify-center gap-2 bg-white/10 hover:bg-white/20 border-2 border-white text-white font-bold rounded-lg px-6 text-base sm:text-lg min-h-[56px] transition-colors"
-            >
-              Preventivo in 1 Minuto
-              <ChevronDown className="h-5 w-5" />
-            </a>
           </div>
 
           <div className="flex flex-wrap justify-center gap-x-5 gap-y-2 text-sm sm:text-base text-white/95">
-            <span className="inline-flex items-center gap-1.5"><CheckCircle2 className="h-4 w-4 text-green-300" /> Sopralluogo Gratuito</span>
-            <span className="inline-flex items-center gap-1.5"><CheckCircle2 className="h-4 w-4 text-green-300" /> Preventivo in 24h</span>
-            <span className="inline-flex items-center gap-1.5"><CheckCircle2 className="h-4 w-4 text-green-300" /> Ingegnere Certificato</span>
+            <span className="inline-flex items-center gap-1.5"><CheckCircle2 className="h-4 w-4 text-green-300" /> Ingegnere dedicato a te</span>
+            <span className="inline-flex items-center gap-1.5"><CheckCircle2 className="h-4 w-4 text-green-300" /> Prezzi fissi, zero sorprese</span>
+            <span className="inline-flex items-center gap-1.5"><CheckCircle2 className="h-4 w-4 text-green-300" /> Assistenza post-installazione</span>
           </div>
           <p className="mt-3 text-xs sm:text-sm text-white/85">
             📍 Azienda di Bologna — non un call center nazionale
@@ -223,17 +215,22 @@ const PreventivoBologna = () => {
 
       {/* SOCIAL PROOF */}
       <section className="bg-slate-50 px-4 py-8">
-        <div className="max-w-3xl mx-auto grid grid-cols-3 gap-3 sm:gap-6 text-center">
-          {[
-            { n: "50+", l: "Impianti Installati" },
-            { n: "5★", l: "Valutazione Media" },
-            { n: "10+", l: "Anni di Esperienza" },
-          ].map((s) => (
-            <div key={s.l} className="bg-white rounded-xl p-4 sm:p-6 shadow-sm border border-border">
-              <div className="text-2xl sm:text-4xl font-extrabold text-primary">{s.n}</div>
-              <div className="text-xs sm:text-base text-muted-foreground mt-1">{s.l}</div>
-            </div>
-          ))}
+        <div className="max-w-3xl mx-auto">
+          <div className="grid grid-cols-3 gap-3 sm:gap-6 text-center">
+            {[
+              { n: "50+", l: "Impianti Installati" },
+              { n: "5★", l: "Valutazione Media" },
+              { n: "10+", l: "Anni di Esperienza" },
+            ].map((s) => (
+              <div key={s.l} className="bg-white rounded-xl p-4 sm:p-6 shadow-sm border border-border">
+                <div className="text-2xl sm:text-4xl font-extrabold text-primary">{s.n}</div>
+                <div className="text-xs sm:text-base text-muted-foreground mt-1">{s.l}</div>
+              </div>
+            ))}
+          </div>
+          <p className="text-center text-sm sm:text-base text-muted-foreground mt-5">
+            Ogni cliente ha un riferimento diretto. Nessun ticket, nessun call center.
+          </p>
         </div>
       </section>
 
@@ -245,10 +242,10 @@ const PreventivoBologna = () => {
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {[
-              { Icon: Home, t: "Chiavi in Mano a Bologna", d: "Gestiamo tutto noi: progettazione, pratiche burocratiche, installazione e allaccio alla rete. Tu non devi fare nulla." },
-              { Icon: Euro, t: "Risparmio Reale sulla Bolletta", d: "Un impianto da 6kW può azzerare oltre il 70% della bolletta elettrica. Calcoliamo il tuo risparmio esatto in fase di preventivo." },
-              { Icon: Award, t: "Ingegnere Progettista Dedicato", d: "Ing. Riccardo Navone segue personalmente ogni impianto. Non sei un numero — sei un cliente." },
-              { Icon: Clock, t: "Installazione in Tempi Rapidi", d: "Dalla firma del contratto all'impianto in funzione in meno di 30 giorni. Sopralluogo gratuito entro 48h dalla richiesta." },
+              { Icon: Award, t: "Un Ingegnere, Non un Venditore", d: "Riccardo Navone segue personalmente ogni progetto. Non parliamo con te una volta per vendere e poi sparire — siamo presenti dalla progettazione al giorno in cui il tuo impianto va in funzione." },
+              { Icon: Euro, t: "Prezzi Chiari, Nessuna Sorpresa", d: "Il preventivo che firmi è quello che paghi. Niente voci che lievitano a lavoro iniziato, niente costi nascosti. Se emerge qualcosa di imprevisto, te lo diciamo prima — non dopo." },
+              { Icon: Home, t: "Siamo di Bologna, Non Passiamo e Basta", d: "Non siamo una grande azienda che manda squadre da fuori regione. Siamo un'azienda bolognese con un numero diretto e una persona responsabile. Se hai un problema dopo l'installazione, rispondiamo." },
+              { Icon: Clock, t: "Assistenza Reale Dopo l'Installazione", d: "Molti installatori finiscono il lavoro e spariscono. Noi no. Monitoraggio, manutenzione, assistenza tecnica: siamo il tuo punto di riferimento per tutta la vita dell'impianto." },
             ].map(({ Icon, t, d }) => (
               <div key={t} className="border border-border rounded-xl p-5 bg-card hover:shadow-md transition-shadow">
                 <div className="inline-flex items-center justify-center h-12 w-12 rounded-lg bg-primary/10 text-primary mb-3">
@@ -319,19 +316,17 @@ const PreventivoBologna = () => {
 
           ) : (
             <div className="bg-white rounded-xl p-5 sm:p-6 shadow-md border border-border">
-              {/* Progress bar */}
-              <div className="mb-5">
-                <div className="flex justify-between text-xs font-semibold text-muted-foreground mb-1.5">
-                  <span>Passo {step} di 2</span>
-                  <span>{step === 1 ? "50%" : "100%"}</span>
+              {/* Progress bar — solo allo step 2 */}
+              {step === 2 && (
+                <div className="mb-5">
+                  <div className="text-xs font-semibold text-muted-foreground mb-1.5">
+                    Passo 2 di 2
+                  </div>
+                  <div className="h-2 w-full bg-slate-200 rounded-full overflow-hidden">
+                    <div className="h-full bg-primary transition-all duration-300" style={{ width: "100%" }} />
+                  </div>
                 </div>
-                <div className="h-2 w-full bg-slate-200 rounded-full overflow-hidden">
-                  <div
-                    className="h-full bg-primary transition-all duration-300"
-                    style={{ width: step === 1 ? "50%" : "100%" }}
-                  />
-                </div>
-              </div>
+              )}
 
               {step === 1 ? (
                 <form onSubmit={goToStep2} className="space-y-4">
@@ -430,24 +425,21 @@ const PreventivoBologna = () => {
 
       {/* TESTIMONIALS */}
       <section className="bg-white px-4 py-10 md:py-14">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-2xl sm:text-3xl font-bold text-center text-primary mb-8">
-            Cosa dicono i nostri clienti
+        <div className="max-w-3xl mx-auto text-center">
+          <h2 className="text-2xl sm:text-3xl font-bold text-primary mb-4">
+            Cosa dicono di noi
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {[
-              { t: "Ho scelto PRM dopo tre preventivi. Sono stati chiari sui costi, veloci nell'installazione e il risparmio sulla bolletta è reale. Impianto da 6kW installato in 3 settimane.", a: "Marco T., Bologna" },
-              { t: "Ottima esperienza dall'inizio alla fine. L'ingegnere ci ha spiegato tutto in modo comprensibile. Zero pensieri, impianto perfettamente funzionante.", a: "Famiglia Rossi, San Lazzaro di Savena" },
-            ].map((r) => (
-              <div key={r.a} className="border border-border rounded-xl p-5 bg-card">
-                <div className="flex gap-0.5 mb-2 text-yellow-400">
-                  {[0, 1, 2, 3, 4].map((i) => (<Star key={i} className="h-5 w-5 fill-current" />))}
-                </div>
-                <p className="text-base text-foreground italic mb-3 leading-relaxed">"{r.t}"</p>
-                <p className="text-sm font-semibold text-muted-foreground">— {r.a}</p>
-              </div>
-            ))}
-          </div>
+          <p className="text-base sm:text-lg text-foreground leading-relaxed mb-3">
+            Oltre 50 impianti installati a Bologna e provincia. Valutazione media <span className="text-yellow-500 font-semibold">5★</span> su Google.
+          </p>
+          <a
+            href="#"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-sm text-primary underline hover:no-underline font-medium"
+          >
+            Leggi le recensioni →
+          </a>
         </div>
       </section>
 
