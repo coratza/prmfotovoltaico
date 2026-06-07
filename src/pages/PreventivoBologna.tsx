@@ -316,19 +316,17 @@ const PreventivoBologna = () => {
 
           ) : (
             <div className="bg-white rounded-xl p-5 sm:p-6 shadow-md border border-border">
-              {/* Progress bar */}
-              <div className="mb-5">
-                <div className="flex justify-between text-xs font-semibold text-muted-foreground mb-1.5">
-                  <span>Passo {step} di 2</span>
-                  <span>{step === 1 ? "50%" : "100%"}</span>
+              {/* Progress bar — solo allo step 2 */}
+              {step === 2 && (
+                <div className="mb-5">
+                  <div className="text-xs font-semibold text-muted-foreground mb-1.5">
+                    Passo 2 di 2
+                  </div>
+                  <div className="h-2 w-full bg-slate-200 rounded-full overflow-hidden">
+                    <div className="h-full bg-primary transition-all duration-300" style={{ width: "100%" }} />
+                  </div>
                 </div>
-                <div className="h-2 w-full bg-slate-200 rounded-full overflow-hidden">
-                  <div
-                    className="h-full bg-primary transition-all duration-300"
-                    style={{ width: step === 1 ? "50%" : "100%" }}
-                  />
-                </div>
-              </div>
+              )}
 
               {step === 1 ? (
                 <form onSubmit={goToStep2} className="space-y-4">
