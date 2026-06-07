@@ -1,5 +1,6 @@
 import { useState, useEffect, useMemo } from "react";
-import { Phone, Home, Euro, Award, Clock, CheckCircle2, ArrowRight, MessageCircle } from "lucide-react";
+import { Phone, Home, Euro, Award, Clock, CheckCircle2, ArrowRight, MessageCircle, FileText, Sun } from "lucide-react";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import SEOHead from "@/components/SEOHead";
 import { supabase } from "@/integrations/supabase/client";
 import { validatePhone } from "@/lib/validation";
@@ -260,6 +261,109 @@ const PreventivoBologna = () => {
           </div>
         </div>
       </section>
+
+      {/* COME FUNZIONA */}
+      <section className="bg-white px-4 py-10 md:py-14">
+        <div className="max-w-5xl mx-auto">
+          <h2 className="text-2xl sm:text-3xl font-bold text-center text-primary mb-8">
+            Dalla prima chiamata all'impianto in funzione
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-4 sm:gap-6">
+            {[
+              { Icon: Phone, t: "Ci contatti", d: "Chiamata o WhatsApp: ci racconti la tua situazione in 5 minuti." },
+              { Icon: Home, t: "Sopralluogo gratuito", d: "Riccardo viene da te, valuta il tetto e i tuoi consumi. Nessun impegno." },
+              { Icon: FileText, t: "Preventivo fisso e trasparente", d: "Ricevi un preventivo dettagliato. Quel numero non cambia." },
+              { Icon: Sun, t: "Impianto in funzione", d: "Installiamo in 1-2 giorni. Gestiamo tutte le pratiche burocratiche al posto tuo." },
+            ].map(({ Icon, t, d }, i) => (
+              <div key={t} className="relative border border-border rounded-xl p-5 bg-card text-center">
+                <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-primary text-primary-foreground text-sm font-bold rounded-full h-7 w-7 flex items-center justify-center shadow-sm">
+                  {i + 1}
+                </div>
+                <div className="inline-flex items-center justify-center h-14 w-14 rounded-full bg-primary/10 text-primary mb-3 mt-2">
+                  <Icon className="h-7 w-7" />
+                </div>
+                <h3 className="font-bold text-base sm:text-lg mb-1.5 text-foreground">{t}</h3>
+                <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">{d}</p>
+              </div>
+            ))}
+          </div>
+          <div className="text-center mt-8">
+            <a
+              href={`tel:${PHONE_TEL}`}
+              onClick={() => handleCallClick("come_funziona")}
+              className="inline-flex items-center justify-center gap-2 bg-cta hover:bg-cta-hover text-cta-foreground font-bold rounded-lg px-6 py-3 min-h-[52px] text-base shadow-cta transition-colors"
+            >
+              <Phone className="h-5 w-5" fill="currentColor" />
+              Chiama Ora, Sopralluogo Gratuito
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* PRIMA / DOPO BOLLETTA */}
+      <section className="bg-slate-50 px-4 py-10 md:py-14">
+        <div className="max-w-3xl mx-auto">
+          <h2 className="text-2xl sm:text-3xl font-bold text-center text-primary mb-8">
+            Cosa cambia davvero in bolletta
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
+            <div className="rounded-xl p-6 text-center border-2 border-red-200 bg-red-50">
+              <div className="text-sm font-semibold uppercase tracking-wide text-red-700 mb-2">Prima</div>
+              <div className="text-3xl sm:text-4xl font-extrabold text-red-700 mb-1">€ 220 / mese</div>
+              <div className="text-sm text-red-900/80">Bolletta media famiglia Bologna</div>
+            </div>
+            <div className="rounded-xl p-6 text-center border-2 border-green-300 bg-green-50">
+              <div className="text-sm font-semibold uppercase tracking-wide text-green-700 mb-2">Dopo</div>
+              <div className="text-3xl sm:text-4xl font-extrabold text-green-700 mb-1">€ 30 / mese</div>
+              <div className="text-sm text-green-900/80">Con impianto PRM da 6kW + accumulo</div>
+            </div>
+          </div>
+          <p className="text-center text-sm text-muted-foreground mt-5 max-w-2xl mx-auto leading-relaxed">
+            Il risparmio esatto dipende dai tuoi consumi e dalla dimensione dell'impianto. Lo calcoliamo insieme nel sopralluogo gratuito.
+          </p>
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <section className="bg-white px-4 py-10 md:py-14">
+        <div className="max-w-3xl mx-auto">
+          <h2 className="text-2xl sm:text-3xl font-bold text-center text-primary mb-8">
+            Le domande più frequenti
+          </h2>
+          <Accordion type="single" collapsible className="w-full">
+            {[
+              { q: "Ho un appartamento, posso installare il fotovoltaico?", a: "Dipende dalla situazione. Se hai accesso esclusivo al tetto o una superficie disponibile, spesso è possibile. Valutiamo insieme nel sopralluogo: è gratuito e senza impegno." },
+              { q: "Quanto tempo richiede l'installazione?", a: "L'installazione tipica dura 1-2 giorni lavorativi. Devi essere presente solo per farci accedere. Le pratiche burocratiche le gestiamo noi completamente." },
+              { q: "Cosa succede se si rompe qualcosa dopo l'installazione?", a: "Siamo di Bologna e ci trovi sempre. Assistenza tecnica, manutenzione e supporto post-vendita sono parte del nostro servizio. Non spariremo dopo aver installato." },
+              { q: "Il preventivo può cambiare dopo la firma?", a: "No. Il preventivo che firmi è quello che paghi. Se emergono imprevisti tecnici te li comunichiamo prima di procedere, mai dopo." },
+              { q: "Ci sono finanziamenti disponibili?", a: "Sì, offriamo soluzioni di finanziamento per dilazionare l'investimento. Ne parliamo nel dettaglio durante il sopralluogo." },
+            ].map((item, i) => (
+              <AccordionItem key={i} value={`item-${i}`} className="border-border">
+                <AccordionTrigger className="text-left text-base sm:text-lg font-semibold text-foreground hover:text-primary py-4 min-h-[52px]">
+                  {item.q}
+                </AccordionTrigger>
+                <AccordionContent className="text-base text-muted-foreground leading-relaxed pb-4">
+                  {item.a}
+                </AccordionContent>
+              </AccordionItem>
+            ))}
+          </Accordion>
+          <div className="text-center mt-8">
+            <a
+              href="https://wa.me/393356117388?text=Ciao%2C+ho+alcune+domande+sul+fotovoltaico"
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => handleWhatsAppClick("faq")}
+              className="inline-flex items-center justify-center gap-2 bg-green-600 hover:bg-green-700 text-white font-bold rounded-lg px-6 py-3 min-h-[52px] text-base shadow-md transition-colors"
+            >
+              <MessageCircle className="h-5 w-5" fill="currentColor" />
+              Hai altre domande? Scrivici su WhatsApp
+            </a>
+          </div>
+        </div>
+      </section>
+
+
 
       {/* FORM */}
       <section id="form-preventivo" className="px-4 py-10 md:py-14" style={{ backgroundColor: "#eff6ff" }}>
