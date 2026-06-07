@@ -215,17 +215,22 @@ const PreventivoBologna = () => {
 
       {/* SOCIAL PROOF */}
       <section className="bg-slate-50 px-4 py-8">
-        <div className="max-w-3xl mx-auto grid grid-cols-3 gap-3 sm:gap-6 text-center">
-          {[
-            { n: "50+", l: "Impianti Installati" },
-            { n: "5★", l: "Valutazione Media" },
-            { n: "10+", l: "Anni di Esperienza" },
-          ].map((s) => (
-            <div key={s.l} className="bg-white rounded-xl p-4 sm:p-6 shadow-sm border border-border">
-              <div className="text-2xl sm:text-4xl font-extrabold text-primary">{s.n}</div>
-              <div className="text-xs sm:text-base text-muted-foreground mt-1">{s.l}</div>
-            </div>
-          ))}
+        <div className="max-w-3xl mx-auto">
+          <div className="grid grid-cols-3 gap-3 sm:gap-6 text-center">
+            {[
+              { n: "50+", l: "Impianti Installati" },
+              { n: "5★", l: "Valutazione Media" },
+              { n: "10+", l: "Anni di Esperienza" },
+            ].map((s) => (
+              <div key={s.l} className="bg-white rounded-xl p-4 sm:p-6 shadow-sm border border-border">
+                <div className="text-2xl sm:text-4xl font-extrabold text-primary">{s.n}</div>
+                <div className="text-xs sm:text-base text-muted-foreground mt-1">{s.l}</div>
+              </div>
+            ))}
+          </div>
+          <p className="text-center text-sm sm:text-base text-muted-foreground mt-5">
+            Ogni cliente ha un riferimento diretto. Nessun ticket, nessun call center.
+          </p>
         </div>
       </section>
 
@@ -237,10 +242,10 @@ const PreventivoBologna = () => {
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {[
-              { Icon: Home, t: "Chiavi in Mano a Bologna", d: "Gestiamo tutto noi: progettazione, pratiche burocratiche, installazione e allaccio alla rete. Tu non devi fare nulla." },
-              { Icon: Euro, t: "Risparmio Reale sulla Bolletta", d: "Un impianto da 6kW può azzerare oltre il 70% della bolletta elettrica. Calcoliamo il tuo risparmio esatto in fase di preventivo." },
-              { Icon: Award, t: "Ingegnere Progettista Dedicato", d: "Ing. Riccardo Navone segue personalmente ogni impianto. Non sei un numero — sei un cliente." },
-              { Icon: Clock, t: "Installazione in Tempi Rapidi", d: "Dalla firma del contratto all'impianto in funzione in meno di 30 giorni. Sopralluogo gratuito entro 48h dalla richiesta." },
+              { Icon: Award, t: "Un Ingegnere, Non un Venditore", d: "Riccardo Navone segue personalmente ogni progetto. Non parliamo con te una volta per vendere e poi sparire — siamo presenti dalla progettazione al giorno in cui il tuo impianto va in funzione." },
+              { Icon: Euro, t: "Prezzi Chiari, Nessuna Sorpresa", d: "Il preventivo che firmi è quello che paghi. Niente voci che lievitano a lavoro iniziato, niente costi nascosti. Se emerge qualcosa di imprevisto, te lo diciamo prima — non dopo." },
+              { Icon: Home, t: "Siamo di Bologna, Non Passiamo e Basta", d: "Non siamo una grande azienda che manda squadre da fuori regione. Siamo un'azienda bolognese con un numero diretto e una persona responsabile. Se hai un problema dopo l'installazione, rispondiamo." },
+              { Icon: Clock, t: "Assistenza Reale Dopo l'Installazione", d: "Molti installatori finiscono il lavoro e spariscono. Noi no. Monitoraggio, manutenzione, assistenza tecnica: siamo il tuo punto di riferimento per tutta la vita dell'impianto." },
             ].map(({ Icon, t, d }) => (
               <div key={t} className="border border-border rounded-xl p-5 bg-card hover:shadow-md transition-shadow">
                 <div className="inline-flex items-center justify-center h-12 w-12 rounded-lg bg-primary/10 text-primary mb-3">
