@@ -175,7 +175,9 @@ const PreventivoBologna = () => {
       >
         <div className="max-w-3xl mx-auto text-center">
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold leading-tight mb-4">
-            Fotovoltaico a Bologna — Con un Ingegnere Vero, Non un Call Center
+            <span className="block">Fotovoltaico a Bologna</span>
+            <span className="block">Con un Ingegnere Vero,</span>
+            <span className="block">Non un Call Center</span>
           </h1>
           <p className="text-base sm:text-lg md:text-xl text-white/90 mb-6 leading-relaxed">
             PRM segue ogni impianto dall'inizio alla fine. Preventivo trasparente, nessuna sorpresa sul prezzo, assistenza reale dopo l'installazione. Siamo di Bologna, ci trovi sempre.
