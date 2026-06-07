@@ -210,7 +210,7 @@ const PreventivoBologna = () => {
             <span className="inline-flex items-center gap-1.5"><CheckCircle2 className="h-4 w-4 text-green-300" /> Assistenza post-installazione</span>
           </div>
           <p className="mt-3 text-xs sm:text-sm text-white/85">
-            📍 Azienda di Bologna — non un call center nazionale
+            📍 Azienda di Bologna, non un call center nazionale
           </p>
         </div>
       </section>
