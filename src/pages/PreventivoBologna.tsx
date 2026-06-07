@@ -145,7 +145,7 @@ const PreventivoBologna = () => {
     <div className="min-h-screen bg-background text-foreground pb-20 md:pb-0">
       <SEOHead
         title="Preventivo Fotovoltaico Bologna Gratis | PRM Fotovoltaico"
-        description="Impianto fotovoltaico a Bologna chiavi in mano. Sopralluogo gratuito, preventivo personalizzato entro 24h. Ingegnere certificato. Chiama o scrivi."
+        description="Impianto fotovoltaico a Bologna chiavi in mano. Ingegnere dedicato, prezzi fissi, sopralluogo gratuito. Ti richiamiamo entro poche ore."
         canonicalPath="/preventivo-bologna"
       />
 
