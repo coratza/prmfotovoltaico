@@ -175,11 +175,10 @@ const PreventivoBologna = () => {
       >
         <div className="max-w-3xl mx-auto text-center">
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold leading-tight mb-4">
-            <span className="block">Impianto Fotovoltaico a Bologna</span>
-            <span className="block">Preventivo Gratuito Entro 24h</span>
+            Fotovoltaico a Bologna — Con un Ingegnere Vero, Non un Call Center
           </h1>
           <p className="text-base sm:text-lg md:text-xl text-white/90 mb-6 leading-relaxed">
-            Installatori certificati a Bologna e provincia. Impianti chiavi in mano, sopralluogo gratuito, finanziamento disponibile.
+            PRM segue ogni impianto dall'inizio alla fine. Preventivo trasparente, nessuna sorpresa sul prezzo, assistenza reale dopo l'installazione. Siamo di Bologna, ci trovi sempre.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center mb-6">
@@ -196,24 +195,17 @@ const PreventivoBologna = () => {
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => handleWhatsAppClick("hero")}
-              className="inline-flex items-center justify-center gap-2 bg-green-600 hover:bg-green-700 text-white font-bold rounded-lg px-6 text-base sm:text-lg shadow-strong min-h-[56px] transition-colors"
+              className="inline-flex items-center justify-center gap-2 bg-white/10 hover:bg-white/20 border-2 border-white text-white font-bold rounded-lg px-6 text-base sm:text-lg min-h-[56px] transition-colors"
             >
               <MessageCircle className="h-5 w-5" fill="currentColor" />
               Scrivici su WhatsApp
             </a>
-            <a
-              href="#form-preventivo"
-              className="inline-flex items-center justify-center gap-2 bg-white/10 hover:bg-white/20 border-2 border-white text-white font-bold rounded-lg px-6 text-base sm:text-lg min-h-[56px] transition-colors"
-            >
-              Preventivo in 1 Minuto
-              <ChevronDown className="h-5 w-5" />
-            </a>
           </div>
 
           <div className="flex flex-wrap justify-center gap-x-5 gap-y-2 text-sm sm:text-base text-white/95">
-            <span className="inline-flex items-center gap-1.5"><CheckCircle2 className="h-4 w-4 text-green-300" /> Sopralluogo Gratuito</span>
-            <span className="inline-flex items-center gap-1.5"><CheckCircle2 className="h-4 w-4 text-green-300" /> Preventivo in 24h</span>
-            <span className="inline-flex items-center gap-1.5"><CheckCircle2 className="h-4 w-4 text-green-300" /> Ingegnere Certificato</span>
+            <span className="inline-flex items-center gap-1.5"><CheckCircle2 className="h-4 w-4 text-green-300" /> Ingegnere dedicato a te</span>
+            <span className="inline-flex items-center gap-1.5"><CheckCircle2 className="h-4 w-4 text-green-300" /> Prezzi fissi, zero sorprese</span>
+            <span className="inline-flex items-center gap-1.5"><CheckCircle2 className="h-4 w-4 text-green-300" /> Assistenza post-installazione</span>
           </div>
           <p className="mt-3 text-xs sm:text-sm text-white/85">
             📍 Azienda di Bologna — non un call center nazionale
