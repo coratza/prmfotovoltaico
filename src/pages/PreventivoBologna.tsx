@@ -175,7 +175,9 @@ const PreventivoBologna = () => {
       >
         <div className="max-w-3xl mx-auto text-center">
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold leading-tight mb-4">
-            Fotovoltaico a Bologna — Con un Ingegnere Vero, Non un Call Center
+            <span className="block">Fotovoltaico a Bologna</span>
+            <span className="block">Con un Ingegnere Vero,</span>
+            <span className="block">Non un Call Center</span>
           </h1>
           <p className="text-base sm:text-lg md:text-xl text-white/90 mb-6 leading-relaxed">
             PRM segue ogni impianto dall'inizio alla fine. Preventivo trasparente, nessuna sorpresa sul prezzo, assistenza reale dopo l'installazione. Siamo di Bologna, ci trovi sempre.
@@ -208,7 +210,7 @@ const PreventivoBologna = () => {
             <span className="inline-flex items-center gap-1.5"><CheckCircle2 className="h-4 w-4 text-green-300" /> Assistenza post-installazione</span>
           </div>
           <p className="mt-3 text-xs sm:text-sm text-white/85">
-            📍 Azienda di Bologna — non un call center nazionale
+            📍 Azienda di Bologna, non un call center nazionale
           </p>
         </div>
       </section>
@@ -242,8 +244,8 @@ const PreventivoBologna = () => {
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {[
-              { Icon: Award, t: "Un Ingegnere, Non un Venditore", d: "Riccardo Navone segue personalmente ogni progetto. Non parliamo con te una volta per vendere e poi sparire — siamo presenti dalla progettazione al giorno in cui il tuo impianto va in funzione." },
-              { Icon: Euro, t: "Prezzi Chiari, Nessuna Sorpresa", d: "Il preventivo che firmi è quello che paghi. Niente voci che lievitano a lavoro iniziato, niente costi nascosti. Se emerge qualcosa di imprevisto, te lo diciamo prima — non dopo." },
+              { Icon: Award, t: "Un Ingegnere, Non un Venditore", d: "Riccardo Navone segue personalmente ogni progetto. Non parliamo con te una volta per vendere e poi sparire. Siamo presenti dalla progettazione al giorno in cui il tuo impianto va in funzione." },
+              { Icon: Euro, t: "Prezzi Chiari, Nessuna Sorpresa", d: "Il preventivo che firmi è quello che paghi. Niente voci che lievitano a lavoro iniziato, niente costi nascosti. Se emerge qualcosa di imprevisto, te lo diciamo prima, non dopo." },
               { Icon: Home, t: "Siamo di Bologna, Non Passiamo e Basta", d: "Non siamo una grande azienda che manda squadre da fuori regione. Siamo un'azienda bolognese con un numero diretto e una persona responsabile. Se hai un problema dopo l'installazione, rispondiamo." },
               { Icon: Clock, t: "Assistenza Reale Dopo l'Installazione", d: "Molti installatori finiscono il lavoro e spariscono. Noi no. Monitoraggio, manutenzione, assistenza tecnica: siamo il tuo punto di riferimento per tutta la vita dell'impianto." },
             ].map(({ Icon, t, d }) => (
