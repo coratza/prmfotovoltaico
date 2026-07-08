@@ -1,11 +1,14 @@
 import { useState, useEffect, useMemo } from "react";
-import { Phone, Home, Euro, Award, Clock, CheckCircle2, ArrowRight, MessageCircle, FileText, Sun } from "lucide-react";
+import { Phone, Home, Euro, Award, Clock, CheckCircle2, ArrowRight, MessageCircle, FileText, Sun, Shield, Star } from "lucide-react";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import SEOHead from "@/components/SEOHead";
 import { supabase } from "@/integrations/supabase/client";
-import { validatePhone } from "@/lib/validation";
+import { validatePhone, validateEmail } from "@/lib/validation";
 import { fireGoogleAdsLeadConversion } from "@/lib/tracking";
 import prmLogo from "@/assets/prm-logo-round.png";
+import heroRooftop from "@/assets/hero-bologna-rooftop.jpg";
+import ingegnereCantiere from "@/assets/ingegnere-cantiere.jpg";
+import pannelliDettaglio from "@/assets/pannelli-dettaglio.jpg";
 
 const PHONE_DISPLAY = "335 611 7388";
 const PHONE_TEL = "+393356117388";
@@ -39,6 +42,13 @@ const tipoToValues = (v: string): { tipologia: "privato" | "azienda"; tipo_immob
 };
 
 const PreventivoBologna = () => {
+  // Hero short form state
+  const [heroForm, setHeroForm] = useState({ nome: "", telefono: "", email: "" });
+  const [heroSubmitting, setHeroSubmitting] = useState(false);
+  const [heroSubmitted, setHeroSubmitted] = useState(false);
+  const [heroError, setHeroError] = useState<string | null>(null);
+
+  // Long form (below) state
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -73,8 +83,69 @@ const PreventivoBologna = () => {
   const handleWhatsAppClick = (source: string) =>
     pushDL({ event: "whatsapp_click", page: "landing_preventivo_bologna", source, ...utm });
 
+  const updateHero = (k: keyof typeof heroForm) => (e: React.ChangeEvent<HTMLInputElement>) =>
+    setHeroForm((f) => ({ ...f, [k]: e.target.value }));
+
   const updateField = (k: keyof typeof form) => (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) =>
     setForm((f) => ({ ...f, [k]: e.target.value }));
+
+  // Short hero form: only nome + telefono + email (optional)
+  const handleHeroSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setHeroError(null);
+
+    const nome = heroForm.nome.trim();
+    const telefono = heroForm.telefono.trim();
+    const email = heroForm.email.trim();
+
+    if (!nome || !telefono) {
+      setHeroError("Inserisci nome e numero di telefono.");
+      return;
+    }
+    if (nome.length > 200) { setHeroError("Nome troppo lungo."); return; }
+    if (telefono.length > 30) { setHeroError("Numero non valido."); return; }
+    const pErr = validatePhone(telefono);
+    if (pErr) { setHeroError(pErr); return; }
+    if (email) {
+      const eErr = validateEmail(email);
+      if (eErr) { setHeroError(eErr); return; }
+    }
+
+    setHeroSubmitting(true);
+    try {
+      const payload: Record<string, unknown> = {
+        nome,
+        telefono,
+        email: email || null,
+        tipologia: "privato",
+        provincia: "bologna",
+        tipo_immobile: "da_definire",
+        consumo_annuo: 3600,
+        spesa_annua: 1800,
+        note: `[Landing Bologna - Form Hero Corto] Email: ${email || "non fornita"}`,
+      };
+      const { error: fnErr } = await supabase.functions.invoke("save-lead", { body: payload });
+      if (fnErr) {
+        setHeroError("Errore nell'invio. Riprova o chiamaci direttamente.");
+      } else {
+        setHeroSubmitted(true);
+        pushDL({
+          event: "lead_form_submit",
+          page: "landing_preventivo_bologna",
+          form: "hero_short",
+          ...utm,
+          conversionId: "AW-17965756122",
+          conversionLabel: "bjZICKmLw58cENrd3vZC",
+        });
+        fireGoogleAdsLeadConversion();
+      }
+    } catch (err) {
+      console.error(err);
+      setHeroError("Errore di connessione. Riprova o chiamaci direttamente.");
+    } finally {
+      setHeroSubmitting(false);
+    }
+  };
 
   const goToStep2 = (e: React.FormEvent) => {
     e.preventDefault();
@@ -125,6 +196,7 @@ const PreventivoBologna = () => {
         pushDL({
           event: "lead_form_submit",
           page: "landing_preventivo_bologna",
+          form: "long_2step",
           ...utm,
           conversionId: "AW-17965756122",
           conversionLabel: "bjZICKmLw58cENrd3vZC",
@@ -152,7 +224,7 @@ const PreventivoBologna = () => {
 
       {/* STICKY HEADER */}
       <header className="sticky top-0 z-40 bg-white border-b border-border shadow-sm">
-        <div className="max-w-5xl mx-auto px-4 py-3 flex items-center justify-between gap-3">
+        <div className="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between gap-3">
           <div className="flex items-center gap-2 min-w-0">
             <img src={prmLogo} alt="PRM Fotovoltaico" className="h-10 w-10 rounded-full" loading="eager" />
             <span className="font-bold text-primary text-base sm:text-lg truncate">PRM Fotovoltaico</span>
@@ -164,65 +236,183 @@ const PreventivoBologna = () => {
             aria-label="Chiama ora"
           >
             <Phone className="h-4 w-4" fill="currentColor" />
-            <span>Chiama Ora</span>
+            <span>{PHONE_DISPLAY}</span>
           </a>
         </div>
       </header>
 
-      {/* HERO */}
-      <section
-        className="text-white px-4 py-10 md:py-16"
-        style={{ background: "linear-gradient(135deg, #1e3a5f 0%, #2563eb 100%)" }}
-      >
-        <div className="max-w-3xl mx-auto text-center">
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold leading-tight mb-4">
-            <span className="block">Fotovoltaico a Bologna</span>
-            <span className="block">Con un Ingegnere Vero,</span>
-            <span className="block">Non un Call Center</span>
-          </h1>
-          <p className="text-base sm:text-lg md:text-xl text-white/90 mb-6 leading-relaxed">
-            PRM segue ogni impianto dall'inizio alla fine. Preventivo trasparente, nessuna sorpresa sul prezzo, assistenza reale dopo l'installazione. Siamo di Bologna, ci trovi sempre.
-          </p>
+      {/* HERO — split layout with short lead form */}
+      <section className="relative text-white overflow-hidden">
+        {/* Background image */}
+        <div className="absolute inset-0">
+          <img
+            src={heroRooftop}
+            alt="Impianto fotovoltaico installato su tetto a Bologna"
+            className="w-full h-full object-cover"
+            loading="eager"
+            width={1600}
+            height={1200}
+          />
+          <div
+            className="absolute inset-0"
+            style={{ background: "linear-gradient(135deg, rgba(30,58,95,0.92) 0%, rgba(37,99,235,0.82) 100%)" }}
+          />
+        </div>
 
-          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center mb-6">
-            <a
-              href={`tel:${PHONE_TEL}`}
-              onClick={() => handleCallClick("hero")}
-              className="inline-flex items-center justify-center gap-2 bg-cta hover:bg-cta-hover text-cta-foreground font-bold rounded-lg px-6 text-base sm:text-lg shadow-strong min-h-[56px] transition-colors"
-            >
-              <Phone className="h-5 w-5" />
-              Chiama Subito
-            </a>
-            <a
-              href={WA_HERO}
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={() => handleWhatsAppClick("hero")}
-              className="inline-flex items-center justify-center gap-2 bg-white/10 hover:bg-white/20 border-2 border-white text-white font-bold rounded-lg px-6 text-base sm:text-lg min-h-[56px] transition-colors"
-            >
-              <MessageCircle className="h-5 w-5" fill="currentColor" />
-              Scrivici su WhatsApp
-            </a>
-          </div>
+        <div className="relative max-w-6xl mx-auto px-4 py-10 md:py-16 lg:py-20">
+          <div className="grid lg:grid-cols-[1.1fr_1fr] gap-8 lg:gap-12 items-center">
+            {/* LEFT — Copy */}
+            <div className="text-center lg:text-left">
+              <div className="inline-flex items-center gap-2 bg-white/15 backdrop-blur-sm border border-white/20 rounded-full px-3 py-1.5 mb-4 text-xs sm:text-sm font-semibold">
+                <Star className="h-3.5 w-3.5 fill-yellow-300 text-yellow-300" />
+                <span>5★ su Google · 50+ impianti a Bologna</span>
+              </div>
 
-          <div className="flex flex-wrap justify-center gap-x-5 gap-y-2 text-sm sm:text-base text-white/95">
-            <span className="inline-flex items-center gap-1.5"><CheckCircle2 className="h-4 w-4 text-green-300" /> Ingegnere dedicato a te</span>
-            <span className="inline-flex items-center gap-1.5"><CheckCircle2 className="h-4 w-4 text-green-300" /> Prezzi fissi, zero sorprese</span>
-            <span className="inline-flex items-center gap-1.5"><CheckCircle2 className="h-4 w-4 text-green-300" /> Assistenza post-installazione</span>
+              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold leading-tight mb-4">
+                <span className="block">Preventivo Fotovoltaico</span>
+                <span className="block">a Bologna in 24h.</span>
+                <span className="block text-yellow-300">Con un Ingegnere, Non un Call Center.</span>
+              </h1>
+
+              <p className="text-base sm:text-lg text-white/90 mb-5 leading-relaxed max-w-xl mx-auto lg:mx-0">
+                Ing. Riccardo Navone segue personalmente ogni impianto. Prezzo fisso, zero sorprese, assistenza reale dopo l'installazione.
+              </p>
+
+              {/* Trust bullets */}
+              <ul className="grid sm:grid-cols-2 gap-2 text-sm sm:text-base max-w-xl mx-auto lg:mx-0">
+                <li className="inline-flex items-center gap-2"><CheckCircle2 className="h-4 w-4 text-green-300 flex-shrink-0" /> Sopralluogo gratuito</li>
+                <li className="inline-flex items-center gap-2"><CheckCircle2 className="h-4 w-4 text-green-300 flex-shrink-0" /> Nessun impegno</li>
+                <li className="inline-flex items-center gap-2"><CheckCircle2 className="h-4 w-4 text-green-300 flex-shrink-0" /> Prezzo fisso garantito</li>
+                <li className="inline-flex items-center gap-2"><CheckCircle2 className="h-4 w-4 text-green-300 flex-shrink-0" /> Azienda locale di Bologna</li>
+              </ul>
+            </div>
+
+            {/* RIGHT — Short lead form card */}
+            <div id="hero-form" className="w-full max-w-md mx-auto lg:max-w-none">
+              <div className="bg-white text-foreground rounded-2xl shadow-strong p-5 sm:p-6 border border-white/10">
+                {heroSubmitted ? (
+                  <div className="text-center py-4">
+                    <div className="w-14 h-14 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                      <CheckCircle2 className="h-8 w-8 text-green-600" />
+                    </div>
+                    <h3 className="text-xl font-bold text-primary mb-2">Richiesta ricevuta!</h3>
+                    <p className="text-sm text-muted-foreground leading-relaxed mb-4">
+                      Grazie {heroForm.nome.split(" ")[0]}! Ti ricontattiamo <strong>entro poche ore</strong> per fissare il sopralluogo gratuito.
+                    </p>
+                    <a
+                      href={`tel:${PHONE_TEL}`}
+                      onClick={() => handleCallClick("hero_success")}
+                      className="inline-flex items-center justify-center gap-2 bg-cta hover:bg-cta-hover text-cta-foreground font-bold rounded-lg px-4 py-3 min-h-[48px] text-sm w-full transition-colors"
+                    >
+                      <Phone className="h-4 w-4" fill="currentColor" />
+                      Preferisci parlare subito? Chiama
+                    </a>
+                  </div>
+                ) : (
+                  <>
+                    <div className="text-center mb-4">
+                      <div className="inline-flex items-center gap-1.5 bg-cta/10 text-cta-hover font-bold text-xs uppercase tracking-wide px-3 py-1 rounded-full mb-2">
+                        <Clock className="h-3 w-3" /> Risposta entro poche ore
+                      </div>
+                      <h2 className="text-xl sm:text-2xl font-bold text-primary leading-tight">
+                        Richiedi il tuo preventivo
+                      </h2>
+                      <p className="text-sm text-muted-foreground mt-1">
+                        Compila in 30 secondi. Nessun impegno.
+                      </p>
+                    </div>
+
+                    <form onSubmit={handleHeroSubmit} className="space-y-3">
+                      <div>
+                        <label htmlFor="hero-nome" className="sr-only">Nome e Cognome</label>
+                        <input
+                          id="hero-nome" name="nome" type="text" required autoComplete="name"
+                          placeholder="Nome e cognome *"
+                          value={heroForm.nome} onChange={updateHero("nome")}
+                          maxLength={200}
+                          className={inputCls} style={inputStyle}
+                        />
+                      </div>
+                      <div>
+                        <label htmlFor="hero-tel" className="sr-only">Telefono</label>
+                        <input
+                          id="hero-tel" name="telefono" type="tel" required autoComplete="tel"
+                          placeholder="Numero di telefono *"
+                          value={heroForm.telefono} onChange={updateHero("telefono")}
+                          maxLength={30}
+                          className={inputCls} style={inputStyle}
+                        />
+                      </div>
+                      <div>
+                        <label htmlFor="hero-email" className="sr-only">Email (opzionale)</label>
+                        <input
+                          id="hero-email" name="email" type="email" autoComplete="email"
+                          placeholder="Email (opzionale)"
+                          value={heroForm.email} onChange={updateHero("email")}
+                          maxLength={255}
+                          className={inputCls} style={inputStyle}
+                        />
+                      </div>
+
+                      {heroError && (
+                        <div className="bg-red-50 border border-red-300 rounded-lg p-3 text-red-800 text-sm" role="alert" aria-live="polite">
+                          {heroError}
+                        </div>
+                      )}
+
+                      <button
+                        type="submit"
+                        disabled={heroSubmitting}
+                        className="w-full inline-flex items-center justify-center gap-2 bg-cta hover:bg-cta-hover text-cta-foreground font-bold rounded-lg px-6 py-4 min-h-[56px] shadow-cta transition-colors disabled:opacity-60"
+                        style={inputStyle}
+                      >
+                        {heroSubmitting ? "Invio..." : (<>Richiedi Preventivo Gratuito <ArrowRight className="h-5 w-5" /></>)}
+                      </button>
+
+                      <div className="flex items-center justify-center gap-4 pt-1 text-xs text-muted-foreground">
+                        <span className="inline-flex items-center gap-1"><Shield className="h-3 w-3" /> Dati protetti</span>
+                        <span className="inline-flex items-center gap-1"><CheckCircle2 className="h-3 w-3 text-green-600" /> Nessun impegno</span>
+                      </div>
+
+                      <div className="relative py-2">
+                        <div className="absolute inset-0 flex items-center"><div className="w-full border-t border-border"></div></div>
+                        <div className="relative flex justify-center text-xs uppercase"><span className="bg-white px-2 text-muted-foreground">oppure</span></div>
+                      </div>
+
+                      <div className="grid grid-cols-2 gap-2">
+                        <a
+                          href={`tel:${PHONE_TEL}`}
+                          onClick={() => handleCallClick("hero_form")}
+                          className="inline-flex items-center justify-center gap-1.5 bg-white border-2 border-cta text-cta-hover font-bold rounded-lg px-3 py-3 min-h-[48px] text-sm hover:bg-cta/5 transition-colors"
+                        >
+                          <Phone className="h-4 w-4" fill="currentColor" /> Chiama
+                        </a>
+                        <a
+                          href={WA_HERO}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          onClick={() => handleWhatsAppClick("hero_form")}
+                          className="inline-flex items-center justify-center gap-1.5 bg-white border-2 border-green-600 text-green-700 font-bold rounded-lg px-3 py-3 min-h-[48px] text-sm hover:bg-green-50 transition-colors"
+                        >
+                          <MessageCircle className="h-4 w-4" fill="currentColor" /> WhatsApp
+                        </a>
+                      </div>
+                    </form>
+                  </>
+                )}
+              </div>
+            </div>
           </div>
-          <p className="mt-3 text-xs sm:text-sm text-white/85">
-            📍 Azienda di Bologna, non un call center nazionale
-          </p>
         </div>
       </section>
 
       {/* SOCIAL PROOF */}
       <section className="bg-slate-50 px-4 py-8">
-        <div className="max-w-3xl mx-auto">
+        <div className="max-w-5xl mx-auto">
           <div className="grid grid-cols-3 gap-3 sm:gap-6 text-center">
             {[
               { n: "50+", l: "Impianti Installati" },
-              { n: "5★", l: "Valutazione Media" },
+              { n: "5★", l: "Valutazione Google" },
               { n: "10+", l: "Anni di Esperienza" },
             ].map((s) => (
               <div key={s.l} className="bg-white rounded-xl p-4 sm:p-6 shadow-sm border border-border">
@@ -237,49 +427,73 @@ const PreventivoBologna = () => {
         </div>
       </section>
 
-      {/* WHY US */}
+      {/* WHY US — with engineer photo */}
       <section className="bg-white px-4 py-10 md:py-14">
-        <div className="max-w-3xl mx-auto">
-          <h2 className="text-2xl sm:text-3xl font-bold text-center text-primary mb-8">
-            Perché scegliere PRM Fotovoltaico?
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {[
-              { Icon: Award, t: "Un Ingegnere, Non un Venditore", d: "Riccardo Navone segue personalmente ogni progetto. Non parliamo con te una volta per vendere e poi sparire. Siamo presenti dalla progettazione al giorno in cui il tuo impianto va in funzione." },
-              { Icon: Euro, t: "Prezzi Chiari, Nessuna Sorpresa", d: "Il preventivo che firmi è quello che paghi. Niente voci che lievitano a lavoro iniziato, niente costi nascosti. Se emerge qualcosa di imprevisto, te lo diciamo prima, non dopo." },
-              { Icon: Home, t: "Siamo di Bologna, Non Passiamo e Basta", d: "Non siamo una grande azienda che manda squadre da fuori regione. Siamo un'azienda bolognese con un numero diretto e una persona responsabile. Se hai un problema dopo l'installazione, rispondiamo." },
-              { Icon: Clock, t: "Assistenza Reale Dopo l'Installazione", d: "Molti installatori finiscono il lavoro e spariscono. Noi no. Monitoraggio, manutenzione, assistenza tecnica: siamo il tuo punto di riferimento per tutta la vita dell'impianto." },
-            ].map(({ Icon, t, d }) => (
-              <div key={t} className="border border-border rounded-xl p-5 bg-card hover:shadow-md transition-shadow">
-                <div className="inline-flex items-center justify-center h-12 w-12 rounded-lg bg-primary/10 text-primary mb-3">
-                  <Icon className="h-6 w-6" />
+        <div className="max-w-6xl mx-auto">
+          <div className="grid lg:grid-cols-[1fr_1.2fr] gap-8 lg:gap-12 items-center">
+            <div className="order-2 lg:order-1">
+              <div className="relative rounded-2xl overflow-hidden shadow-strong">
+                <img
+                  src={ingegnereCantiere}
+                  alt="Ing. Riccardo Navone in cantiere durante l'installazione di un impianto fotovoltaico a Bologna"
+                  className="w-full h-auto"
+                  loading="lazy"
+                  width={1200}
+                  height={1400}
+                />
+                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-5 text-white">
+                  <div className="font-bold text-lg">Ing. Riccardo Navone</div>
+                  <div className="text-sm text-white/90">Il tuo referente diretto, dalla prima chiamata all'ultimo intervento.</div>
                 </div>
-                <h3 className="font-bold text-lg mb-1.5 text-foreground">{t}</h3>
-                <p className="text-base text-muted-foreground leading-relaxed">{d}</p>
               </div>
-            ))}
+            </div>
+
+            <div className="order-1 lg:order-2">
+              <h2 className="text-2xl sm:text-3xl font-bold text-primary mb-6 text-center lg:text-left">
+                Perché scegliere PRM Fotovoltaico
+              </h2>
+              <div className="space-y-4">
+                {[
+                  { Icon: Award, t: "Un Ingegnere, Non un Venditore", d: "Riccardo Navone segue personalmente ogni progetto. Nessun subappalto, nessun call center." },
+                  { Icon: Euro, t: "Prezzi Chiari, Nessuna Sorpresa", d: "Il preventivo che firmi è quello che paghi. Se emerge un imprevisto, te lo diciamo prima." },
+                  { Icon: Home, t: "Siamo di Bologna, Ci Trovi Sempre", d: "Azienda bolognese con un numero diretto. Se hai un problema, rispondiamo di persona." },
+                  { Icon: Clock, t: "Assistenza Reale Post-Installazione", d: "Monitoraggio, manutenzione e supporto tecnico per tutta la vita dell'impianto." },
+                ].map(({ Icon, t, d }) => (
+                  <div key={t} className="flex gap-4 items-start">
+                    <div className="flex-shrink-0 inline-flex items-center justify-center h-12 w-12 rounded-lg bg-primary/10 text-primary">
+                      <Icon className="h-6 w-6" />
+                    </div>
+                    <div>
+                      <h3 className="font-bold text-lg mb-1 text-foreground">{t}</h3>
+                      <p className="text-base text-muted-foreground leading-relaxed">{d}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
       {/* COME FUNZIONA */}
-      <section className="bg-white px-4 py-10 md:py-14">
+      <section className="bg-slate-50 px-4 py-10 md:py-14">
         <div className="max-w-5xl mx-auto">
-          <h2 className="text-2xl sm:text-3xl font-bold text-center text-primary mb-8">
+          <h2 className="text-2xl sm:text-3xl font-bold text-center text-primary mb-2">
             Dalla prima chiamata all'impianto in funzione
           </h2>
+          <p className="text-center text-muted-foreground mb-8">4 passi semplici, tutto gestito da noi.</p>
           <div className="grid grid-cols-1 md:grid-cols-4 gap-4 sm:gap-6">
             {[
               { Icon: Phone, t: "Ci contatti", d: "Chiamata o WhatsApp: ci racconti la tua situazione in 5 minuti." },
               { Icon: Home, t: "Sopralluogo gratuito", d: "Riccardo viene da te, valuta il tetto e i tuoi consumi. Nessun impegno." },
-              { Icon: FileText, t: "Preventivo fisso e trasparente", d: "Ricevi un preventivo dettagliato. Quel numero non cambia." },
-              { Icon: Sun, t: "Impianto in funzione", d: "Installiamo in 1-2 giorni. Gestiamo tutte le pratiche burocratiche al posto tuo." },
+              { Icon: FileText, t: "Preventivo fisso", d: "Ricevi un preventivo dettagliato e trasparente. Quel numero non cambia." },
+              { Icon: Sun, t: "Impianto in funzione", d: "Installiamo in 1-2 giorni. Gestiamo tutte le pratiche burocratiche." },
             ].map(({ Icon, t, d }, i) => (
-              <div key={t} className="relative border border-border rounded-xl p-5 bg-card text-center">
+              <div key={t} className="relative border border-border rounded-xl p-5 pt-8 bg-white text-center shadow-sm">
                 <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-primary text-primary-foreground text-sm font-bold rounded-full h-7 w-7 flex items-center justify-center shadow-sm">
                   {i + 1}
                 </div>
-                <div className="inline-flex items-center justify-center h-14 w-14 rounded-full bg-primary/10 text-primary mb-3 mt-2">
+                <div className="inline-flex items-center justify-center h-14 w-14 rounded-full bg-primary/10 text-primary mb-3">
                   <Icon className="h-7 w-7" />
                 </div>
                 <h3 className="font-bold text-base sm:text-lg mb-1.5 text-foreground">{t}</h3>
@@ -289,30 +503,39 @@ const PreventivoBologna = () => {
           </div>
           <div className="text-center mt-8">
             <a
-              href={`tel:${PHONE_TEL}`}
-              onClick={() => handleCallClick("come_funziona")}
+              href="#hero-form"
               className="inline-flex items-center justify-center gap-2 bg-cta hover:bg-cta-hover text-cta-foreground font-bold rounded-lg px-6 py-3 min-h-[52px] text-base shadow-cta transition-colors"
             >
-              <Phone className="h-5 w-5" fill="currentColor" />
-              Chiama Ora, Sopralluogo Gratuito
+              Richiedi Sopralluogo Gratuito <ArrowRight className="h-5 w-5" />
             </a>
           </div>
         </div>
       </section>
 
-      {/* PRIMA / DOPO BOLLETTA */}
-      <section className="bg-slate-50 px-4 py-10 md:py-14">
-        <div className="max-w-3xl mx-auto">
+      {/* PRIMA / DOPO BOLLETTA — with panel detail image band */}
+      <section className="relative px-4 py-10 md:py-14 overflow-hidden">
+        <div className="absolute inset-0">
+          <img
+            src={pannelliDettaglio}
+            alt="Pannelli fotovoltaici installati su tetto"
+            className="w-full h-full object-cover"
+            loading="lazy"
+            width={1400}
+            height={900}
+          />
+          <div className="absolute inset-0 bg-gradient-to-br from-white/95 to-white/85" />
+        </div>
+        <div className="relative max-w-3xl mx-auto">
           <h2 className="text-2xl sm:text-3xl font-bold text-center text-primary mb-8">
             Cosa cambia davvero in bolletta
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
-            <div className="rounded-xl p-6 text-center border-2 border-red-200 bg-red-50">
+            <div className="rounded-xl p-6 text-center border-2 border-red-200 bg-white/95 backdrop-blur-sm shadow-md">
               <div className="text-sm font-semibold uppercase tracking-wide text-red-700 mb-2">Prima</div>
               <div className="text-3xl sm:text-4xl font-extrabold text-red-700 mb-1">€ 220 / mese</div>
               <div className="text-sm text-red-900/80">Bolletta media famiglia Bologna</div>
             </div>
-            <div className="rounded-xl p-6 text-center border-2 border-green-300 bg-green-50">
+            <div className="rounded-xl p-6 text-center border-2 border-green-300 bg-white/95 backdrop-blur-sm shadow-md">
               <div className="text-sm font-semibold uppercase tracking-wide text-green-700 mb-2">Dopo</div>
               <div className="text-3xl sm:text-4xl font-extrabold text-green-700 mb-1">€ 30 / mese</div>
               <div className="text-sm text-green-900/80">Con impianto PRM da 6kW + accumulo</div>
@@ -324,8 +547,31 @@ const PreventivoBologna = () => {
         </div>
       </section>
 
-      {/* FAQ */}
+      {/* TESTIMONIALS / SOCIAL PROOF */}
       <section className="bg-white px-4 py-10 md:py-14">
+        <div className="max-w-3xl mx-auto text-center">
+          <div className="flex justify-center gap-1 mb-3">
+            {[1,2,3,4,5].map(i => <Star key={i} className="h-6 w-6 fill-yellow-400 text-yellow-400" />)}
+          </div>
+          <h2 className="text-2xl sm:text-3xl font-bold text-primary mb-4">
+            Cosa dicono di noi
+          </h2>
+          <p className="text-base sm:text-lg text-foreground leading-relaxed mb-3 max-w-xl mx-auto">
+            Oltre 50 impianti installati a Bologna e provincia. Valutazione media <span className="text-yellow-500 font-semibold">5★</span> su Google.
+          </p>
+          <a
+            href="#"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-sm text-primary underline hover:no-underline font-medium"
+          >
+            Leggi le recensioni →
+          </a>
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <section className="bg-slate-50 px-4 py-10 md:py-14">
         <div className="max-w-3xl mx-auto">
           <h2 className="text-2xl sm:text-3xl font-bold text-center text-primary mb-8">
             Le domande più frequenti
@@ -338,7 +584,7 @@ const PreventivoBologna = () => {
               { q: "Il preventivo può cambiare dopo la firma?", a: "No. Il preventivo che firmi è quello che paghi. Se emergono imprevisti tecnici te li comunichiamo prima di procedere, mai dopo." },
               { q: "Ci sono finanziamenti disponibili?", a: "Sì, offriamo soluzioni di finanziamento per dilazionare l'investimento. Ne parliamo nel dettaglio durante il sopralluogo." },
             ].map((item, i) => (
-              <AccordionItem key={i} value={`item-${i}`} className="border-border">
+              <AccordionItem key={i} value={`item-${i}`} className="border-border bg-white rounded-lg mb-2 px-4">
                 <AccordionTrigger className="text-left text-base sm:text-lg font-semibold text-foreground hover:text-primary py-4 min-h-[52px]">
                   {item.q}
                 </AccordionTrigger>
@@ -363,16 +609,14 @@ const PreventivoBologna = () => {
         </div>
       </section>
 
-
-
-      {/* FORM */}
+      {/* FORM DETTAGLIATO — reinforcement per chi ha scrollato tutto */}
       <section id="form-preventivo" className="px-4 py-10 md:py-14" style={{ backgroundColor: "#eff6ff" }}>
         <div className="max-w-2xl mx-auto">
           <h2 className="text-2xl sm:text-3xl font-bold text-center text-primary mb-2">
-            Richiedi il tuo Preventivo Gratuito
+            Vuoi darci qualche dettaglio in più?
           </h2>
           <p className="text-center text-base text-muted-foreground mb-6">
-            Richiedi il tuo preventivo in 1 minuto. Ti ricontattiamo entro poche ore.
+            Compila il modulo dettagliato per un preventivo ancora più preciso. Ti ricontattiamo entro poche ore.
           </p>
 
           {submitted ? (
@@ -422,7 +666,6 @@ const PreventivoBologna = () => {
 
           ) : (
             <div className="bg-white rounded-xl p-5 sm:p-6 shadow-md border border-border">
-              {/* Progress bar — solo allo step 2 */}
               {step === 2 && (
                 <div className="mb-5">
                   <div className="text-xs font-semibold text-muted-foreground mb-1.5">
@@ -439,17 +682,17 @@ const PreventivoBologna = () => {
                   <div>
                     <label htmlFor="nome" className="block text-sm font-semibold mb-1.5">Nome e Cognome *</label>
                     <input id="nome" name="nome" type="text" required placeholder="Mario Rossi"
-                      value={form.nome} onChange={updateField("nome")} className={inputCls} style={inputStyle} />
+                      value={form.nome} onChange={updateField("nome")} maxLength={200} className={inputCls} style={inputStyle} />
                   </div>
                   <div>
                     <label htmlFor="telefono" className="block text-sm font-semibold mb-1.5">Numero di Telefono *</label>
                     <input id="telefono" name="telefono" type="tel" required placeholder="+39 333 000 0000"
-                      value={form.telefono} onChange={updateField("telefono")} className={inputCls} style={inputStyle} />
+                      value={form.telefono} onChange={updateField("telefono")} maxLength={30} className={inputCls} style={inputStyle} />
                   </div>
                   <div>
                     <label htmlFor="comune" className="block text-sm font-semibold mb-1.5">Comune *</label>
                     <input id="comune" name="comune" type="text" required placeholder="Bologna, San Lazzaro, Casalecchio..."
-                      value={form.comune} onChange={updateField("comune")} className={inputCls} style={inputStyle} />
+                      value={form.comune} onChange={updateField("comune")} maxLength={100} className={inputCls} style={inputStyle} />
                   </div>
 
                   {error && (
@@ -492,6 +735,7 @@ const PreventivoBologna = () => {
                     <label htmlFor="note" className="block text-sm font-semibold mb-1.5">Note (opzionale)</label>
                     <textarea id="note" name="note" rows={3}
                       value={form.note} onChange={updateField("note")}
+                      maxLength={1000}
                       placeholder="Es: ho già un preventivo da confrontare, voglio anche l'accumulo..."
                       className="w-full rounded-lg border border-input bg-background px-3 py-3" style={inputStyle} />
                   </div>
@@ -526,26 +770,6 @@ const PreventivoBologna = () => {
               )}
             </div>
           )}
-        </div>
-      </section>
-
-      {/* TESTIMONIALS */}
-      <section className="bg-white px-4 py-10 md:py-14">
-        <div className="max-w-3xl mx-auto text-center">
-          <h2 className="text-2xl sm:text-3xl font-bold text-primary mb-4">
-            Cosa dicono di noi
-          </h2>
-          <p className="text-base sm:text-lg text-foreground leading-relaxed mb-3">
-            Oltre 50 impianti installati a Bologna e provincia. Valutazione media <span className="text-yellow-500 font-semibold">5★</span> su Google.
-          </p>
-          <a
-            href="#"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-sm text-primary underline hover:no-underline font-medium"
-          >
-            Leggi le recensioni →
-          </a>
         </div>
       </section>
 
