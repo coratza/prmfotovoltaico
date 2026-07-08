@@ -1,79 +1,89 @@
+## Obiettivo
 
+Costruire un'architettura SEO parallela al funnel di conversione. La homepage e `/preventivo-bologna` **non vengono modificate nei contenuti né appesantite** — restano pagine di conversione. Tutta la nuova SEO vive su pagine dedicate che linkano al form/WhatsApp della home.
 
-## Potenziamento SEO pagine Agevolazioni Aziende (Bologna, Modena, Ferrara, Ravenna)
+## Cosa esiste già (non duplicare)
 
-Le 4 pagine esistenti sono troppo scarne (3 sezioni brevi, 5 requisiti generici, nessuna FAQ, nessuno schema markup). Verranno riscritte completamente con contenuti SEO-oriented molto piu ricchi.
+- Home `/` (conversione — non toccare contenuti)
+- Landing `/preventivo-bologna` (conversione — non toccare)
+- `/fotovoltaico-privati`, `/fotovoltaico-aziende` → esistono, verranno arricchiti
+- `/agevolazioni/detrazioni-privati` + 4 città (BO/MO/FE/RA) → esistono
+- `/agevolazioni/agevolazioni-aziende` + 4 città → esistono
+- `/calcola-rendimento`, `/lavori-realizzati`, `/chi-siamo`, `/contatti` → esistono
 
----
+## Nuove pagine da creare
 
-### Modifiche al template `AgevolazionePageTemplate.tsx`
+**Pagine città "Fotovoltaico [città]"** (informative, NON confondere con landing pubblicitaria Bologna):
+- `/fotovoltaico-bologna` (informativa SEO, distinta da `/preventivo-bologna` che è la landing ADS)
+- `/fotovoltaico-modena`
+- `/fotovoltaico-ferrara`
+- `/fotovoltaico-ravenna`
 
-Il template attuale non supporta FAQ ne schema markup. Verra esteso con:
+Ogni pagina città avrà: H1 unico, 600-900 parole di testo UNICO per città (specifiche irraggiamento zona, riferimenti a quartieri/aree, casi installati locali quando disponibili), 2-3 foto diverse, FAQ 6-8 domande, breadcrumb, Schema LocalBusiness + FAQPage, sezione "Approfondimenti correlati" (4 link).
 
-- **Nuova prop `faqs`**: array di `{ question, answer }` per la sezione FAQ con accordion
-- **Nuova prop `introText`**: paragrafo introduttivo SEO-friendly separato dalle sezioni
-- **Nuova prop `ctaButtonText`**: testo CTA personalizzabile (es. "Verifica la tua agevolazione")
-- **Sezione FAQ** con componente Accordion gia presente nel progetto
-- **JSON-LD FAQ Schema** generato automaticamente dalle FAQ e iniettato nel `<head>`
-- **JSON-LD LocalBusiness Schema** con riferimento provinciale, generato automaticamente
-- **Keyword prop** passata al componente SEOHead per meta keywords specifiche per pagina
+**Blog** (5 articoli iniziali):
+- `/blog` (indice)
+- `/blog/conviene-fotovoltaico`
+- `/blog/quanto-costa-impianto-fotovoltaico`
+- `/blog/accumulo-fotovoltaico-conviene`
+- `/blog/incentivi-fotovoltaico-aziende`
+- `/blog/roi-fotovoltaico`
 
----
+Ogni articolo: 800-1200 parole, H1/H2/H3 coerenti, Schema Article + BreadcrumbList, CTA finale al form/WhatsApp, 4 link interni correlati.
 
-### Contenuto di ogni pagina provinciale
+## Componenti riutilizzabili (nuovi)
 
-Ogni pagina avra questa struttura (circa 1500-2000 parole per pagina):
+1. **`SEOFAQ`** — accordion FAQ + injection automatica JSON-LD FAQPage
+2. **`Breadcrumb`** — visuale + Schema BreadcrumbList
+3. **`ApprofondimentiCorrelati`** — box "Potrebbero interessarti" con 4 link interni configurabili
+4. **`CTAConversione`** — CTA doppia "Richiedi sopralluogo" (link al form home #contatti) + "Chiama ora" (tel:), presente in ogni pagina informativa
 
-**1. SEO Title** (55-70 caratteri)
-- Bologna: "Incentivi Fotovoltaico Aziende Bologna | PRM Fotovoltaico"
-- Modena: "Agevolazioni Fotovoltaico Aziende Modena | PRM Fotovoltaico"
-- Ferrara: "Contributi Fotovoltaico PMI Ferrara | PRM Fotovoltaico"
-- Ravenna: "Agevolazioni Fotovoltaico Aziende Ravenna | PRM Fotovoltaico"
+## Modifiche a pagine esistenti (leggere, non-invasive)
 
-**2. Meta Description** (140-160 caratteri)
-Descrizione persuasiva con keyword locale + invito al contatto.
+Su `/fotovoltaico-privati`, `/fotovoltaico-aziende`, `/agevolazioni*`, `/chi-siamo`, `/lavori-realizzati`, `/calcola-rendimento`:
+- Aggiungere in fondo `<ApprofondimentiCorrelati>` con 4 link contestuali
+- Aggiungere `<Breadcrumb>` sotto l'header
+- Verificare presenza di 2 CTA (sopralluogo + chiama)
+- Aggiungere FAQ solo dove sensato (fotovoltaico-privati, fotovoltaico-aziende, agevolazioni index)
 
-**3. Hero Section**
-Headline con focus SEO locale, sottotitolo chiaro, badge -180%.
+**Home e `/preventivo-bologna`**: NESSUNA modifica di contenuto. Solo verifica che i link nel footer/header portino alle nuove pagine città e blog.
 
-**4. Introduzione SEO-friendly**
-Paragrafo di apertura con keyword integrate naturalmente, che spiega perche le aziende della provincia dovrebbero leggere questa pagina.
+## SEO tecnico
 
-**5. Sezioni principali (6-7 sezioni per pagina)**
+- **Sitemap**: aggiornare `public/sitemap.xml` con tutte le nuove URL (4 città + 6 blog)
+- **Canonical**: ogni nuova pagina self-referential via `SEOHead`
+- **Robots**: verificare che nessuna nuova pagina abbia noindex
+- **Title/Description**: unici, 55-60 / 140-155 caratteri, con menzione città/tema
+- **Open Graph**: og:title + og:description differenti per pagina
+- **Schema.org**: LocalBusiness (nelle città), Organization (già in index.html), BreadcrumbList (tutte informative), FAQPage (dove ci sono FAQ), Article (blog)
+- **Link interni città**: le pagine `fotovoltaico-[città]` linkano `agevolazioni-privati-[città]` e viceversa (silo tematico)
 
-Per ogni provincia:
-- **Incentivi nazionali: Piano Transizione 5.0 e credito d'imposta** - Spiegazione del credito d'imposta fino al 45%, cumulabilita con ammortamento, beneficio fino al 180%
-- **Contributi locali e bandi regionali** - Riferimenti a bandi CCIAA provinciale, fondi regionali Emilia-Romagna, PNRR, incentivi fondo perduto
-- **Cumulabilita delle agevolazioni e requisiti** - Quali incentivi si possono combinare, limiti, requisiti di accesso
-- **Documenti e tempistiche** - Cosa serve per la domanda, tempi di presentazione, portali (GSE, MIMIT, Regione)
-- **Errori comuni da evitare** - Errori nella documentazione, scadenze mancate, mancata comunicazione al GSE
-- **Il fotovoltaico per le imprese di [Provincia]** - Sezione locale con riferimenti al tessuto produttivo specifico (distretti, zone industriali, tipologie aziende)
-- **Zone servite nella provincia** - Elenco comuni e zone industriali
+## Routing
 
-**6. Requisiti principali** (piu dettagliati, 7-8 punti)
+Aggiungere in `src/App.tsx`:
+```
+/fotovoltaico-bologna, /fotovoltaico-modena, /fotovoltaico-ferrara, /fotovoltaico-ravenna
+/blog, /blog/:slug (o 6 route esplicite lazy-loaded)
+```
 
-**7. FAQ** (almeno 4 domande per pagina)
-Domande specifiche per provincia, ad esempio:
-- "Quali agevolazioni fiscali ci sono per il fotovoltaico aziendale a Bologna?"
-- "Il credito d'imposta Transizione 5.0 e cumulabile con altri incentivi?"
-- "Quanto tempo serve per ottenere le agevolazioni?"
-- "Serve una perizia tecnica per accedere al credito d'imposta?"
+## Footer
 
-**8. CTA finale**
-"Verifica la tua agevolazione a [Provincia]" con rassicurazione sulla verifica caso per caso.
+Ristrutturare il footer in 4 colonne linkando la nuova architettura (Fotovoltaico per città, Agevolazioni, Blog, Contatti) — massimizza link interni verso tutte le pagine SEO e aiuta l'indicizzazione delle 17 pagine "rilevate ma non indicizzate" in GSC.
 
----
+## Fasi di implementazione
 
-### Dettagli tecnici
+1. Componenti riutilizzabili (`SEOFAQ`, `Breadcrumb`, `ApprofondimentiCorrelati`, `CTAConversione`)
+2. 4 pagine città "Fotovoltaico [città]" con contenuto unico differenziato
+3. Blog: indice + 5 articoli
+4. Iniezione FAQ/Breadcrumb/Correlati nelle pagine esistenti
+5. Footer ristrutturato con tutti i link interni
+6. Sitemap + routing aggiornati
+7. Genero 4-6 immagini nuove (una per città + copertine blog)
 
-**File da modificare:**
+## Fuori scope (per rispettare l'obiettivo conversione)
 
-- `src/components/AgevolazionePageTemplate.tsx` - Aggiunta props `faqs`, `introText`, `keywords`; sezione FAQ con Accordion; JSON-LD FAQ + LocalBusiness schema iniettati nel head; passaggio keywords a SEOHead
-- `src/pages/agevolazioni/AgevolazioniAziendeBologna.tsx` - Riscrittura completa con contenuti SEO ricchi (7 sezioni, 8 requisiti, 4+ FAQ, intro, keywords)
-- `src/pages/agevolazioni/AgevolazioniAziendeModena.tsx` - Riscrittura completa
-- `src/pages/agevolazioni/AgevolazioniAziendeFerrara.tsx` - Riscrittura completa
-- `src/pages/agevolazioni/AgevolazioniAziendeRavenna.tsx` - Riscrittura completa
-- `src/components/SEOHead.tsx` - Nessuna modifica necessaria (supporta gia keywords)
+- Nessun testo lungo su `/` e `/preventivo-bologna`
+- Nessun cambio ai form di conversione
+- Nessuna modifica al calcolatore
 
-**Nessuna nuova route necessaria** - le pagine esistono gia. Nessuna modifica al database.
-
+Vuoi che parta subito con l'esecuzione di tutte le 7 fasi? È un intervento lungo (~15-20 file nuovi + 8-10 modificati).
