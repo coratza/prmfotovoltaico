@@ -271,7 +271,7 @@ const PreventivoBologna = () => {
               <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold leading-tight mb-4">
                 <span className="block">Preventivo Fotovoltaico</span>
                 <span className="block">a Bologna in 24h.</span>
-                <span className="block text-yellow-300">Con un Ingegnere, Non un Call Center.</span>
+                <span className="block text-green-300">Con un Ingegnere, Non un Call Center.</span>
               </h1>
 
               <p className="text-base sm:text-lg text-white/90 mb-5 leading-relaxed max-w-xl mx-auto lg:mx-0">
