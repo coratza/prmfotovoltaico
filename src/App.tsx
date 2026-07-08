@@ -27,6 +27,12 @@ const AgevolazioniAziendeFerrara = lazy(() => import("./pages/agevolazioni/Agevo
 const AgevolazioniAziendeRavenna = lazy(() => import("./pages/agevolazioni/AgevolazioniAziendeRavenna"));
 const Admin = lazy(() => import("./pages/Admin"));
 const PreventivoBologna = lazy(() => import("./pages/PreventivoBologna"));
+const FotovoltaicoBologna = lazy(() => import("./pages/FotovoltaicoBologna"));
+const FotovoltaicoModena = lazy(() => import("./pages/FotovoltaicoModena"));
+const FotovoltaicoFerrara = lazy(() => import("./pages/FotovoltaicoFerrara"));
+const FotovoltaicoRavenna = lazy(() => import("./pages/FotovoltaicoRavenna"));
+const Blog = lazy(() => import("./pages/Blog"));
+const BlogArticle = lazy(() => import("./pages/BlogArticle"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
 const queryClient = new QueryClient();
@@ -60,6 +66,12 @@ const App = () => (
             <Route path="/agevolazioni/agevolazioni-aziende-ravenna" element={<AgevolazioniAziendeRavenna />} />
             <Route path="/admin" element={<Admin />} />
             <Route path="/preventivo-bologna" element={<PreventivoBologna />} />
+            <Route path="/fotovoltaico-bologna" element={<FotovoltaicoBologna />} />
+            <Route path="/fotovoltaico-modena" element={<FotovoltaicoModena />} />
+            <Route path="/fotovoltaico-ferrara" element={<FotovoltaicoFerrara />} />
+            <Route path="/fotovoltaico-ravenna" element={<FotovoltaicoRavenna />} />
+            <Route path="/blog" element={<Blog />} />
+            <Route path="/blog/:slug" element={<BlogArticle />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
