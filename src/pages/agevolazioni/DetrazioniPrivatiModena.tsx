@@ -2,8 +2,9 @@ import AgevolazionePageTemplate from "@/components/AgevolazionePageTemplate";
 
 const DetrazioniPrivatiModena = () => (
   <AgevolazionePageTemplate
-    title="Detrazioni Fotovoltaico Privati Modena - PRM Fotovoltaico"
-    metaDescription="Detrazione fiscale fino al 50% per impianti fotovoltaici su abitazioni a Modena e provincia. Installatore locale PRM Fotovoltaico."
+    title="Detrazione Fotovoltaico Privati Modena | Ecobonus 50% Casa | PRM"
+    metaDescription="Detrazione fiscale 50% per impianti fotovoltaici su abitazioni a Modena e provincia. Installatore fotovoltaico PRM. Sopralluogo gratuito, preventivo chiavi in mano."
+    keywords="detrazione fotovoltaico Modena, ecobonus fotovoltaico Modena, detrazione 50% fotovoltaico casa Modena, agevolazioni fotovoltaico privati Modena, bonus fotovoltaico Modena provincia, installatore fotovoltaico Modena, pannelli solari casa Modena"
     heroTitle="Detrazioni Fotovoltaico Privati a Modena"
     heroSubtitle="Possiedi una casa a Modena o in provincia? Puoi usufruire della detrazione fiscale del 50% per l'installazione del tuo impianto fotovoltaico."
     badge="-50%"
