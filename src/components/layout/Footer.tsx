@@ -50,9 +50,9 @@ const Footer = () => {
                   <p className="text-primary-foreground/60 text-xs mt-0.5 ml-6">Ing. Navone Riccardo</p>
                 </li>
                 <li>
-                  <a href="mailto:prm.navone@legalmail.it" className="flex items-center gap-2 text-primary-foreground/80 hover:text-primary-foreground transition-colors py-1 break-all">
+                  <a href="mailto:navonericcardo@hotmail.com" className="flex items-center gap-2 text-primary-foreground/80 hover:text-primary-foreground transition-colors py-1 break-all">
                     <Mail className="w-4 h-4 flex-shrink-0" />
-                    <span className="text-xs sm:text-sm">prm.navone@legalmail.it</span>
+                    <span className="text-xs sm:text-sm">navonericcardo@hotmail.com</span>
                   </a>
                 </li>
                 <li className="flex items-start gap-2 text-primary-foreground/80">
@@ -75,9 +75,9 @@ const Footer = () => {
                 <p className="text-primary-foreground/60 text-xs mt-0.5 ml-6">Ing. Navone Riccardo</p>
               </li>
               <li>
-                <a href="mailto:prm.navone@legalmail.it" className="flex items-center gap-2 text-primary-foreground/80 hover:text-primary-foreground transition-colors">
+                <a href="mailto:navonericcardo@hotmail.com" className="flex items-center gap-2 text-primary-foreground/80 hover:text-primary-foreground transition-colors">
                   <Mail className="w-4 h-4" />
-                  prm.navone@legalmail.it
+                  navonericcardo@hotmail.com
                 </a>
               </li>
               <li className="flex items-start gap-2 text-primary-foreground/80">
