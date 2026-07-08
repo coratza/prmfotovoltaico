@@ -195,8 +195,8 @@ const Contatti = () => {
                     </div>
                     <div>
                       <h3 className="font-semibold text-foreground text-sm mb-0.5">Email</h3>
-                      <a href="mailto:navonericcardo@hotmail.com" className="text-primary hover:underline text-sm">
-                        navonericcardo@hotmail.com
+                      <a href="mailto:navonericcardo@hotmail.it" className="text-primary hover:underline text-sm">
+                        navonericcardo@hotmail.it
                       </a>
                     </div>
                   </div>
