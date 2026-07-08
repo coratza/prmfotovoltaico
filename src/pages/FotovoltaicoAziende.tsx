@@ -52,6 +52,12 @@ const FotovoltaicoAziende = () => {
           { name: "Fotovoltaico Aziende", href: "/fotovoltaico-aziende" },
         ]}
         faqs={seoFaqs}
+        service={{
+          name: "Impianti Fotovoltaici Industriali e Aziendali",
+          description: "Progettazione e installazione di impianti fotovoltaici per aziende, capannoni industriali, PMI e attività commerciali in Emilia-Romagna. Studio di fattibilità gratuito, credito d'imposta Transizione 5.0 fino al 45%, super ammortamento e assistenza post-vendita dedicata.",
+          serviceType: "Installazione impianti fotovoltaici aziendali e industriali",
+          areaServed: ["Bologna", "Modena", "Ferrara", "Ravenna", "Emilia-Romagna"],
+        }}
       />
       {/* Hero */}
       <section className="relative py-20 md:py-32">

@@ -17,6 +17,13 @@ interface SoftwareAppSchema {
   category: string;
 }
 
+interface ServiceSchema {
+  name: string;
+  description: string;
+  serviceType: string;
+  areaServed?: string[];
+}
+
 interface SEOHeadProps {
   title: string;
   description: string;
@@ -25,11 +32,12 @@ interface SEOHeadProps {
   breadcrumbs?: BreadcrumbItem[];
   faqs?: FAQItem[];
   softwareApp?: SoftwareAppSchema;
+  service?: ServiceSchema;
 }
 
 const SITE_URL = "https://prmfotovoltaico.com";
 
-const SEOHead = ({ title, description, keywords, canonicalPath, breadcrumbs, faqs, softwareApp }: SEOHeadProps) => {
+const SEOHead = ({ title, description, keywords, canonicalPath, breadcrumbs, faqs, softwareApp, service }: SEOHeadProps) => {
   useEffect(() => {
     document.title = title;
 
@@ -142,11 +150,39 @@ const SEOHead = ({ title, description, keywords, canonicalPath, breadcrumbs, faq
       scripts.push(script);
     }
 
+    // Service schema (offering)
+    if (service) {
+      const serviceSchema = {
+        "@context": "https://schema.org",
+        "@type": "Service",
+        name: service.name,
+        description: service.description,
+        serviceType: service.serviceType,
+        provider: {
+          "@type": "LocalBusiness",
+          "@id": `${SITE_URL}/#organization`,
+          name: "PRM Fotovoltaico",
+          telephone: "+393356117388",
+          url: SITE_URL,
+        },
+        areaServed: (service.areaServed || ["Bologna", "Modena", "Ferrara", "Ravenna", "Emilia-Romagna"]).map((a) => ({
+          "@type": "AdministrativeArea",
+          name: a,
+        })),
+        ...(canonicalPath ? { url: `${SITE_URL}${canonicalPath}` } : {}),
+      };
+      const script = document.createElement("script");
+      script.type = "application/ld+json";
+      script.text = JSON.stringify(serviceSchema);
+      document.head.appendChild(script);
+      scripts.push(script);
+    }
+
     return () => {
       document.title = "PRM Fotovoltaico | Impianti Fotovoltaici Bologna, Modena, Ferrara, Ravenna";
       scripts.forEach((s) => s.remove());
     };
-  }, [title, description, keywords, canonicalPath, breadcrumbs, faqs, softwareApp]);
+  }, [title, description, keywords, canonicalPath, breadcrumbs, faqs, softwareApp, service]);
 
   return null;
 };

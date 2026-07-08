@@ -59,6 +59,12 @@ const FotovoltaicoPrivati = () => {
           { name: "Fotovoltaico Privati", href: "/fotovoltaico-privati" },
         ]}
         faqs={seoFaqs}
+        service={{
+          name: "Impianti Fotovoltaici Residenziali Chiavi in Mano",
+          description: "Progettazione e installazione di impianti fotovoltaici per abitazioni private in Emilia-Romagna. Servizio chiavi in mano con detrazione fiscale 50%, sistemi di accumulo, monitoraggio e assistenza post-vendita.",
+          serviceType: "Installazione impianti fotovoltaici residenziali",
+          areaServed: ["Bologna", "Modena", "Ferrara", "Ravenna", "Emilia-Romagna"],
+        }}
       />
       {/* Hero */}
       <section className="relative py-20 md:py-32">

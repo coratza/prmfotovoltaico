@@ -2,8 +2,9 @@ import AgevolazionePageTemplate from "@/components/AgevolazionePageTemplate";
 
 const DetrazioniPrivatiBologna = () => (
   <AgevolazionePageTemplate
-    title="Detrazioni Fotovoltaico Privati Bologna - PRM Fotovoltaico"
-    metaDescription="Detrazione fiscale fino al 50% per impianti fotovoltaici su abitazioni a Bologna e provincia. Installatore locale PRM Fotovoltaico."
+    title="Detrazione Fotovoltaico Privati Bologna | Ecobonus 50% Casa | PRM"
+    metaDescription="Detrazione fiscale 50% per impianti fotovoltaici su abitazioni a Bologna e provincia. Installatore locale PRM Fotovoltaico. Sopralluogo gratuito, chiavi in mano."
+    keywords="detrazione fotovoltaico Bologna, ecobonus fotovoltaico Bologna, detrazione 50% fotovoltaico casa Bologna, agevolazioni fotovoltaico privati Bologna, bonus fotovoltaico Bologna provincia, detrazione fiscale pannelli solari Bologna, installatore fotovoltaico San Lazzaro di Savena"
     heroTitle="Detrazioni Fotovoltaico Privati a Bologna"
     heroSubtitle="Sei proprietario di una casa a Bologna o in provincia? Puoi usufruire della detrazione fiscale del 50% per l'installazione di un impianto fotovoltaico sulla tua abitazione."
     badge="-50%"

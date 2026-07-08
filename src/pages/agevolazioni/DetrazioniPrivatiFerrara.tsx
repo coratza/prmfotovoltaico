@@ -2,8 +2,9 @@ import AgevolazionePageTemplate from "@/components/AgevolazionePageTemplate";
 
 const DetrazioniPrivatiFerrara = () => (
   <AgevolazionePageTemplate
-    title="Detrazioni Fotovoltaico Privati Ferrara - PRM Fotovoltaico"
-    metaDescription="Detrazione fiscale fino al 50% per impianti fotovoltaici su abitazioni a Ferrara e provincia. Installatore locale PRM Fotovoltaico."
+    title="Detrazione Fotovoltaico Privati Ferrara | Ecobonus 50% Casa | PRM"
+    metaDescription="Detrazione fiscale 50% per impianti fotovoltaici su abitazioni a Ferrara e provincia. Installatore locale PRM Fotovoltaico. Sopralluogo gratuito, preventivo chiavi in mano."
+    keywords="detrazione fotovoltaico Ferrara, ecobonus fotovoltaico Ferrara, detrazione 50% fotovoltaico casa Ferrara, agevolazioni fotovoltaico privati Ferrara, bonus fotovoltaico Ferrara provincia, installatore fotovoltaico Ferrara, pannelli solari casa Ferrara"
     heroTitle="Detrazioni Fotovoltaico Privati a Ferrara"
     heroSubtitle="Hai una casa a Ferrara o in provincia? Puoi beneficiare della detrazione fiscale del 50% per installare un impianto fotovoltaico sulla tua abitazione."
     badge="-50%"
