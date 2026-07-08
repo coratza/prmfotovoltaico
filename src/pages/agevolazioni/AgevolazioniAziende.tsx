@@ -4,8 +4,9 @@ const provinces = ["Bologna", "Modena", "Ferrara", "Ravenna"];
 
 const AgevolazioniAziende = () => (
   <AgevolazionePageTemplate
-    title="Agevolazioni Fotovoltaico Aziende - PRM Fotovoltaico"
-    metaDescription="Agevolazioni fiscali fino al 180% per impianti fotovoltaici aziendali in Emilia-Romagna. Scopri i benefici per la tua impresa."
+    title="Agevolazioni Fotovoltaico Aziende Emilia-Romagna | Credito Imposta 180% | PRM"
+    metaDescription="Credito d'imposta, ammortamento e Transizione 5.0: agevolazioni fiscali fino al 180% per impianti fotovoltaici aziendali in Emilia-Romagna. Guida completa PRM."
+    keywords="agevolazioni fotovoltaico aziende, credito d'imposta fotovoltaico, Transizione 5.0 fotovoltaico, super ammortamento fotovoltaico industriale, agevolazioni fiscali PMI Emilia-Romagna, incentivi fotovoltaico impresa, credito imposta beni strumentali 5.0, contributi fotovoltaico aziendale, deduzione fiscale impianto fotovoltaico"
     heroTitle="Agevolazioni Fotovoltaico per Aziende"
     heroSubtitle="Sono disponibili agevolazioni fiscali fino al 180% del valore dell'investimento. Il beneficio dipende dalla tipologia di impresa e dal regime fiscale."
     badge="-180%"

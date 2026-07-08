@@ -2,8 +2,9 @@ import AgevolazionePageTemplate from "@/components/AgevolazionePageTemplate";
 
 const DetrazioniPrivatiRavenna = () => (
   <AgevolazionePageTemplate
-    title="Detrazioni Fotovoltaico Privati Ravenna - PRM Fotovoltaico"
-    metaDescription="Detrazione fiscale fino al 50% per impianti fotovoltaici su abitazioni a Ravenna e provincia. Installatore locale PRM Fotovoltaico."
+    title="Detrazione Fotovoltaico Privati Ravenna | Ecobonus 50% Casa | PRM"
+    metaDescription="Detrazione fiscale 50% per impianti fotovoltaici su abitazioni a Ravenna e provincia. Installatore locale PRM Fotovoltaico. Sopralluogo gratuito, preventivo chiavi in mano."
+    keywords="detrazione fotovoltaico Ravenna, ecobonus fotovoltaico Ravenna, detrazione 50% fotovoltaico casa Ravenna, agevolazioni fotovoltaico privati Ravenna, bonus fotovoltaico Ravenna provincia, installatore fotovoltaico Ravenna, pannelli solari casa Ravenna"
     heroTitle="Detrazioni Fotovoltaico Privati a Ravenna"
     heroSubtitle="Possiedi una casa a Ravenna o in provincia? Scopri come usufruire della detrazione fiscale del 50% per il tuo impianto fotovoltaico."
     badge="-50%"

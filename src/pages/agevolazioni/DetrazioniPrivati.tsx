@@ -4,8 +4,9 @@ const provinces = ["Bologna", "Modena", "Ferrara", "Ravenna"];
 
 const DetrazioniPrivati = () => (
   <AgevolazionePageTemplate
-    title="Detrazioni Fotovoltaico Privati - PRM Fotovoltaico"
-    metaDescription="Detrazione fiscale fino al 50% per impianti fotovoltaici su abitazioni in Emilia-Romagna. Scopri come risparmiare con PRM Fotovoltaico."
+    title="Detrazioni Fotovoltaico Privati Emilia-Romagna | Ecobonus 50% | PRM"
+    metaDescription="Detrazione fiscale 50% per impianti fotovoltaici su abitazioni in Emilia-Romagna. Requisiti, come richiederla, quanto risparmi. Guida completa PRM Fotovoltaico."
+    keywords="detrazione fotovoltaico 50%, detrazione fiscale fotovoltaico privati, ecobonus fotovoltaico casa, agevolazioni fotovoltaico residenziale Emilia-Romagna, detrazione impianto fotovoltaico abitazione, bonus fotovoltaico 2026, come funziona detrazione fotovoltaico, comunicazione ENEA fotovoltaico, detrazione accumulo batterie"
     heroTitle="Detrazioni Fotovoltaico per Privati"
     heroSubtitle="È prevista una detrazione fiscale fino al 50% per l'installazione di impianti fotovoltaici su abitazioni. La detrazione viene recuperata nel tempo tramite la dichiarazione dei redditi."
     badge="-50%"
